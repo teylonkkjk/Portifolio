@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Portfolio Teylon Oliveira</title>
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="./assets/images/logo.svg" type="image/x-icon">
+
+  <!-- custom css link -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- google font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <main>
+
+    <!--
+      - #SIDEBAR (MENU LATERAL)
+    -->
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <!-- Nome simplificado para não bugar -->
+          <img src="perfil.png" alt="Teylon Oliveira" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Teylon Oliveira">Teylon Oliveira</h1>
+
+          <div style="display: flex; flex-wrap:wrap; gap: 5px; justify-content: center;">
+            <p class="title">Desenvolvedor Full-Stack</p>
+            <p class="title">Técnico de TI</p>
+          </div>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Mostrar Contatos</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+              <a href="mailto:oteylon84@gmail.com" class="contact-link">oteylon84@gmail.com</a>
+            </div>
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Telefone / WhatsApp</p>
+              <a href="tel:+5599984413253" class="contact-link">+55 (99) 98441-3253</a>
+            </div>
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Aniversário</p>
+              <time datetime="2006-10-03">03 Outubro, 2006</time>
+            </div>
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Localização</p>
+              <address>Teresina, Piauí, BR</address>
+            </div>
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+          <li class="social-item">
+            <a href="https://wa.me/5599984413253" class="social-link" target="_blank">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://github.com/teylonkkjk/Portifolio" class="social-link" target="_blank">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://www.linkedin.com/in/teylonoliveira/" class="social-link" target="_blank">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </aside>
+
+    <!--
+      - #MAIN CONTENT (CONTEÚDO PRINCIPAL)
+    -->
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <button class="navbar-link active" data-nav-link>Sobre</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Currículo</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfólio</button>
+          </li>
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contato</button>
+          </li>
+        </ul>
+      </nav>
+
+      <!--
+        - #ABOUT (SOBRE)
+      -->
+      <article class="sobre active" data-page="sobre">
+
+        <header>
+          <h2 class="h2 article-title">Sobre Mim</h2>
+        </header>
+
+        <section class="sobre-text">
+          <p>
+            Olá! Sou o Teylon, graduando em Ciência da Computação pela Uninasau e atuo como Desenvolvedor Full Stack e Técnico de Suporte de TI. Tenho um forte foco na construção de sistemas web, buscando sempre a integração perfeita entre a teoria acadêmica e a prática do mercado.
+          </p>
+          <p>
+            Minha especialidade inclui arquitetura e estruturação de sistemas eficientes utilizando Python, Django e bancos de dados SQL (como PostgreSQL e SQLite), além de forte domínio em front-end com HTML e CSS. Sou adaptável, possuo facilidade para aprender novas tecnologias e busco sempre soluções ágeis e organizadas para os desafios do dia a dia.
+          </p>
+        </section>
+
+        <section class="service">
+          <h3 class="h3 service-title">O que Faço</h3>
+          <ul class="service-list">
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="code-slash-outline" style="font-size: 40px; color: var(--vegas-gold);"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Desenvolvimento Full-Stack</h4>
+                <p class="service-item-text">
+                  Construção de sistemas web estruturados e APIs REST utilizando Python e Django Framework.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="server-outline" style="font-size: 40px; color: var(--vegas-gold);"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Bancos de Dados</h4>
+                <p class="service-item-text">
+                  Modelagem e gerenciamento de dados utilizando PostgreSQL, SQLite e linguagem SQL.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="hardware-chip-outline" style="font-size: 40px; color: var(--vegas-gold);"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Suporte de TI</h4>
+                <p class="service-item-text">
+                  Manutenção de computadores, impressoras e estruturação de redes.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="bar-chart-outline" style="font-size: 40px; color: var(--vegas-gold);"></ion-icon>
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Análise de Dados</h4>
+                <p class="service-item-text">
+                  Capacidade analítica e resolução de problemas aplicados a dados e performance de sistemas.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </section>
+      </article>
+
+      <!--
+        - #RESUME (CURRÍCULO)
+      -->
+      <article class="currículo" data-page="currículo">
+
+        <header>
+          <h2 class="h2 article-title">Currículo</h2>
+        </header>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Educação e Cursos</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Ciências da Computação</h4>
+              <h4 class="h4 timeline-item-subtitle">Uninasau</h4>
+              <span>Previsão de conclusão: 2028</span>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Crie APIs REST com Python e Django REST Framework: Essencial</h4>
+              <h4 class="h4 timeline-item-subtitle">Udemy</h4>
+              <span>Conclusão: 2026</span>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">HTML5, CSS e Javascript na prática</h4>
+              <h4 class="h4 timeline-item-subtitle">Udemy</h4>
+              <span>Conclusão: 2024</span>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Programação em Python do básico ao avançado</h4>
+              <h4 class="h4 timeline-item-subtitle">Udemy</h4>
+              <span>Conclusão: 2024</span>
+            </li>
+            
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Programação Web com Python e Django Framework: Essencial</h4>
+              <h4 class="h4 timeline-item-subtitle">Udemy</h4>
+              <span>Conclusão: 2024</span>
+            </li>
+
+          </ol>
+        </section>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="briefcase-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Experiência Profissional</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Analista de Dados</h4>
+              <h4 class="h4 timeline-item-subtitle">Stringhini</h4>
+              <span>03/2026 — 05/2026</span>
+              <p class="timeline-text">
+                Atuação em análise de dados e extração de insights.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Técnico de TI</h4>
+              <h4 class="h4 timeline-item-subtitle">Miny preço</h4>
+              <span>01/2022 — 03/2025</span>
+              <p class="timeline-text">
+                Manutenção de computadores, impressoras e estruturação de redes.
+              </p>
+            </li>
+
+          </ol>
+        </section>
+
+        <section class="skill">
+          <h3 class="h3 skills-title">Habilidades</h3>
+
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">HTML, CSS & Tailwind CSS</h5>
+                <data value="90">Avançado</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">Python</h5>
+                <data value="75">Intermediário</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 75%;"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">Django & Django REST</h5>
+                <data value="75">Intermediário</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 75%;"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">PostgreSQL & Bancos Relacionais (SQL)</h5>
+                <data value="75">Intermediário</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 75%;"></div>
+              </div>
+            </li>
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">Resolução de Problemas / Lógica</h5>
+                <data value="90">Avançado</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+            </li>
+
+          </ul>
+        </section>
+
+      </article>
+
+      <!--
+        - #PORTFOLIO (PORTFÓLIO)
+      -->
+      <article class="portfólio" data-page="portfólio">
+
+        <header>
+          <h2 class="h2 article-title">Portfólio</h2>
+        </header>
+
+        <section class="projects">
+          <ul class="filter-list">
+            <li class="filter-item">
+              <button class="active" data-filter-btn>Todos</button>
+            </li>
+          </ul>
+
+          <ul class="project-list">
+            
+            <!-- Projeto 1: Sistema de Gestão de Tasks -->
+            <li class="project-item active" data-filter-item data-category="Desenvolvimento Web">
+              
+              <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank">
+                
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="logo-github"></ion-icon>
+                  </div>
+                  
+                  <!-- Nome simplificado para não bugar -->
+                  <img src="projeto.png" alt="Sistema de Gestão de Tasks - Taskflow" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Taskflow - Gestão de Tasks (RBAC)</h3>
+                <p class="project-category">Django, PostgreSQL e Tailwind CSS</p>
+                
+              </a>
+            </li>
+
+          </ul>
+        </section>
+
+      </article>
+
+      <!--
+        - #CONTACT (CONTATO)
+      -->
+      <article class="contato" data-page="contato">
+        <header>
+          <h2 class="h2 article-title">Contato</h2>
+        </header>
+        
+        <section class="contact-form">
+          <div style="display: flex; flex-wrap:wrap; gap:15px;">
+            <a type="button" class="form-btn" target="_blank" href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio%20e%20tenho%20interesse%20em%20falar%20com%20voc%C3%AA.">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+              <span>Enviar Mensagem</span>
+            </a>
+  
+            <a type="button" class="form-btn" href="mailto:oteylon84@gmail.com">
+              <ion-icon name="mail"></ion-icon>
+              <span>Enviar E-mail</span>
+            </a>
+          </div>
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!-- Lógica JavaScript Inserida Diretamente -->
+  <script>
+    // Seleciona todos os botões do menu e todas as páginas (articles)
+    const navigationLinks = document.querySelectorAll("[data-nav-link]");
+    const pages = document.querySelectorAll("[data-page]");
+
+    // Navegação das abas
+    navigationLinks.forEach((botao, index) => {
+      botao.addEventListener("click", () => {
+        // Remove a classe 'active' de todos os botões e páginas
+        navigationLinks.forEach(link => link.classList.remove("active"));
+        pages.forEach(page => page.classList.remove("active"));
+
+        // Adiciona a classe 'active' apenas no botão que foi clicado e na página correspondente
+        botao.classList.add("active");
+        pages[index].classList.add("active");
+        
+        // Joga a tela de volta pro topo suavemente
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // Lógica para abrir/fechar o menu de contatos no Celular
+    const sidebar = document.querySelector("[data-sidebar]");
+    const sidebarBtn = document.querySelector("[data-sidebar-btn]");
+    
+    if (sidebarBtn) {
+      sidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+      });
+    }
+  </script>
+
+</body>
+
+</html>
