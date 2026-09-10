@@ -97,7 +97,7 @@
                 <a href="#projetos" class="hover:text-djangoLight transition-colors">Projetos</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="https://github.com/teylonkkjk/Portifolio" target="_blank" class="text-gray-400 hover:text-white transition-colors text-xl"><i class="fa-brands fa-github"></i></a>
+                <a href="https://github.com/teylonkkjk" target="_blank" class="text-gray-400 hover:text-white transition-colors text-xl"><i class="fa-brands fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/teylonoliveira/" target="_blank" class="text-gray-400 hover:text-[#0A66C2] transition-colors text-xl"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio%20e%20tenho%20interesse%20em%20falar%20com%20voc%C3%AA." target="_blank" class="hidden md:flex px-5 py-2 rounded border border-djangoLight text-djangoLight hover:bg-djangoLight hover:text-darkBg transition-all duration-300 shadow-[0_0_10px_rgba(68,183,139,0.1)] hover:shadow-[0_0_20px_rgba(68,183,139,0.4)] font-mono text-sm items-center gap-2">
                     <i class="fa-brands fa-whatsapp"></i> Contato
@@ -126,7 +126,7 @@
                 </p>
                 <div class="flex flex-wrap gap-4 gsap-reveal">
                     <a href="#projetos" class="px-6 py-3 rounded bg-djangoLight text-darkBg font-bold hover:bg-white transition-all duration-300">
-                        Ver Projeto Destaque
+                        Ver Projetos
                     </a>
                     <a href="mailto:oteylon84@gmail.com" class="px-6 py-3 rounded glass text-white hover:border-djangoLight transition-all duration-300 font-mono flex items-center gap-2">
                         <i class="fa-regular fa-envelope"></i> oteylon84@gmail.com
@@ -259,53 +259,73 @@
         </div>
     </section>
 
-    <!-- PROJETO DESTAQUE (HERO CARD) -->
+    <!-- PROJETOS DESTAQUE (GRID 2 COLUNAS) -->
     <section id="projetos" class="py-24 bg-cardBg relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 gsap-reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Meu Projeto <span class="text-djangoLight">Destaque</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Em vez de focar em volume, dedico meu tempo à engenharia profunda de sistemas robustos.</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Projetos em <span class="text-djangoLight">Destaque</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Sistemas robustos construídos do zero com foco em arquitetura estruturada, controle de acesso e performance.</p>
             </div>
             
-            <!-- Card Largo do Projeto Taskflow -->
-            <div class="max-w-5xl mx-auto glass rounded-2xl overflow-hidden border border-djangoLight/50 group relative gsap-reveal tilt-card shadow-[0_0_25px_rgba(68,183,139,0.15)] flex flex-col md:flex-row">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 
-                <!-- Imagem / Visual -->
-                <div class="md:w-5/12 h-64 md:h-auto bg-gray-900 relative overflow-hidden flex items-center justify-center">
-                    <!-- Fundo animado abstrato -->
-                    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-djangoLight via-gray-900 to-darkBg"></div>
-                    
-                    <i class="fa-solid fa-list-check text-8xl text-djangoLight group-hover:scale-125 transition-transform duration-700 relative z-10"></i>
-                    
-                    <!-- Gradiente escuro para mesclar com o texto -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-cardBg md:bg-gradient-to-r md:from-transparent md:to-cardBg to-transparent opacity-90 z-20"></div>
-                </div>
-
-                <!-- Conteúdo -->
-                <div class="md:w-7/12 p-8 md:p-12 relative z-30 bg-cardBg/90 flex flex-col justify-center">
-                    <div class="flex gap-2 mb-6 flex-wrap">
-                        <span class="px-3 py-1 bg-djangoLight/10 text-djangoLight border border-djangoLight/30 text-xs rounded font-mono font-bold">Django</span>
-                        <span class="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs rounded font-mono font-bold">PostgreSQL</span>
-                        <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs rounded font-mono font-bold">Tailwind CSS</span>
-                        <span class="px-3 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/30 text-xs rounded font-mono font-bold">RBAC (Segurança)</span>
+                <!-- Card 1: Taskflow -->
+                <div class="glass rounded-2xl overflow-hidden border border-gray-700 hover:border-djangoLight/50 group relative gsap-reveal tilt-card shadow-lg transition-colors flex flex-col h-full">
+                    <div class="h-56 bg-gray-900 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-djangoLight via-gray-900 to-darkBg"></div>
+                        <i class="fa-solid fa-list-check text-7xl text-djangoLight group-hover:scale-110 transition-transform duration-700 relative z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-cardBg to-transparent opacity-90 z-20"></div>
                     </div>
                     
-                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 text-white">Taskflow</h3>
-                    <h4 class="text-lg text-djangoLight font-mono mb-6">Sistema Avançado de Gestão de Tasks</h4>
-                    
-                    <p class="text-gray-400 text-sm md:text-base mb-8 leading-relaxed">
-                        Uma plataforma web completa desenvolvida para gerenciar demandas de forma eficiente. O sistema apresenta uma modelagem de banco de dados relacional complexa (PostgreSQL) para organizar setores, e implementa <strong class="text-gray-200">Role-Based Access Control (RBAC)</strong>, garantindo que usuários, gerentes e administradores tenham permissões estritamente adequadas às suas funções. A interface foi construída para ser 100% responsiva utilizando Tailwind CSS.
-                    </p>
-                    
-                    <div class="mt-auto">
-                        <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-djangoLight text-darkBg rounded-lg hover:bg-white transition-all duration-300 font-bold tracking-wide shadow-lg hover:shadow-[0_0_20px_rgba(68,183,139,0.5)]">
-                            <i class="fa-brands fa-github text-2xl"></i> 
-                            <span>Ver Repositório e Código-Fonte</span>
+                    <div class="p-8 relative z-30 bg-cardBg/90 flex flex-col flex-grow">
+                        <div class="flex gap-2 mb-4 flex-wrap">
+                            <span class="px-2 py-1 bg-djangoLight/10 text-djangoLight border border-djangoLight/30 text-xs rounded font-mono font-bold">Django</span>
+                            <span class="px-2 py-1 bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs rounded font-mono font-bold">Tailwind CSS</span>
+                            <span class="px-2 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/30 text-xs rounded font-mono font-bold">RBAC</span>
+                        </div>
+                        
+                        <h3 class="text-2xl font-extrabold mb-2 text-white group-hover:text-djangoLight transition-colors">Taskflow</h3>
+                        <h4 class="text-sm text-gray-500 font-mono mb-4">Gestão de Demandas Corporativas</h4>
+                        
+                        <p class="text-gray-400 text-sm mb-8 leading-relaxed flex-grow">
+                            Sistema completo para gerenciar tarefas entre equipes. Implementa modelagem relacional para gerir setores e um controle de acesso baseado em funções (Role-Based Access Control), garantindo que administradores e usuários comuns tenham escopos restritos.
+                        </p>
+                        
+                        <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank" class="mt-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-600 text-white rounded hover:bg-white hover:text-darkBg transition-all duration-300 font-bold tracking-wide w-full">
+                            <i class="fa-brands fa-github text-lg"></i> VER CÓDIGO
                         </a>
                     </div>
                 </div>
-            </div>
 
+                <!-- Card 2: TT-ANABOLIC -->
+                <div class="glass rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500/50 group relative gsap-reveal tilt-card shadow-lg transition-colors flex flex-col h-full">
+                    <div class="h-56 bg-gray-900 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500 via-gray-900 to-darkBg"></div>
+                        <i class="fa-solid fa-cart-shopping text-7xl text-blue-400 group-hover:scale-110 transition-transform duration-700 relative z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-cardBg to-transparent opacity-90 z-20"></div>
+                    </div>
+                    
+                    <div class="p-8 relative z-30 bg-cardBg/90 flex flex-col flex-grow">
+                        <div class="flex gap-2 mb-4 flex-wrap">
+                            <span class="px-2 py-1 bg-djangoLight/10 text-djangoLight border border-djangoLight/30 text-xs rounded font-mono font-bold">Django</span>
+                            <span class="px-2 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs rounded font-mono font-bold">E-commerce</span>
+                            <span class="px-2 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/30 text-xs rounded font-mono font-bold">SMTP / Auth</span>
+                        </div>
+                        
+                        <h3 class="text-2xl font-extrabold mb-2 text-white group-hover:text-blue-400 transition-colors">TT-ANABOLIC</h3>
+                        <h4 class="text-sm text-gray-500 font-mono mb-4">Plataforma E-commerce Completa</h4>
+                        
+                        <p class="text-gray-400 text-sm mb-8 leading-relaxed flex-grow">
+                            Loja virtual desenvolvida do zero com Django. Conta com autenticação personalizada, gestão de carrinho de compras, e checkout utilizando <strong>Transações Atômicas</strong> para garantir a consistência do estoque. Inclui envio automático de e-mails via SMTP na confirmação de pedidos.
+                        </p>
+                        
+                        <a href="https://github.com/teylonkkjk/TT-ANABOLIC" target="_blank" class="mt-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-600 text-white rounded hover:bg-white hover:text-darkBg transition-all duration-300 font-bold tracking-wide w-full">
+                            <i class="fa-brands fa-github text-lg"></i> VER CÓDIGO
+                        </a>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -324,7 +344,7 @@
 
     <script>
         // 1. Efeito de Digitação no Terminal (Hero)
-        const termText = "const developer = {\n  nome: 'Teylon Oliveira',\n  local: 'Teresina, PI',\n  graduacao: 'Ciência da Computação (Cursando)',\n  foco: ['Backend', 'APIs', 'Sistemas Web']\n};\n> print('Conectando teoria à prática de mercado!')";
+        const termText = "const developer = {\n  nome: 'Teylon Oliveira',\n  local: 'Teresina, PI',\n  graduacao: 'Ciência da Computação (Cursando)',\n  foco: ['Backend', 'APIs', 'E-commerces']\n};\n> print('Conectando teoria à prática de mercado!')";
         let i = 0;
         function typeTerminal() {
             if (i < termText.length) {
@@ -396,7 +416,7 @@
             // Reset state
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processando Requisição...';
             btn.classList.add('opacity-50', 'cursor-not-allowed');
-            status.innerHTML = "<span class='text-cyan-400'>[GET] /api/tasks/ -> Solicitando dados ao servidor...</span>";
+            status.innerHTML = "<span class='text-cyan-400'>[GET] /api/produtos/ -> Solicitando dados ao servidor...</span>";
             lines[0].classList.remove('reverse');
             lines[1].classList.remove('reverse');
             
@@ -423,7 +443,7 @@
                         setTimeout(() => {
                             nodes.db.classList.replace('border-gray-600', 'border-blue-400');
                             nodes.db.classList.add('shadow-[0_0_15px_#60A5FA]', 'scale-110');
-                            status.innerHTML = "<span class='text-blue-400'>[PostgreSQL] SELECT * FROM tasks; executado com sucesso.</span>";
+                            status.innerHTML = "<span class='text-blue-400'>[PostgreSQL] SELECT * FROM produtos; executado com sucesso.</span>";
                             
                             // Step 3: DB -> API (Response)
                             setTimeout(() => {
