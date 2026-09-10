@@ -1,479 +1,473 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Portfolio Teylon Oliveira</title>
-
-  <!-- favicon -->
-  <link rel="shortcut icon" href="./assets/images/logo.svg" type="image/x-icon">
-
-  <!-- custom css link -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!-- google font link -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
-  <main>
-
-    <!--
-      - #SIDEBAR (MENU LATERAL)
-    -->
-    <aside class="sidebar" data-sidebar>
-
-      <div class="sidebar-info">
-
-        <figure class="avatar-box">
-          <!-- Nome simplificado para não bugar -->
-          <img src="perfil.png" alt="Teylon Oliveira" width="80">
-        </figure>
-
-        <div class="info-content">
-          <h1 class="name" title="Teylon Oliveira">Teylon Oliveira</h1>
-
-          <div style="display: flex; flex-wrap:wrap; gap: 5px; justify-content: center;">
-            <p class="title">Desenvolvedor Full-Stack</p>
-            <p class="title">Técnico de TI</p>
-          </div>
-        </div>
-
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Mostrar Contatos</span>
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-
-      </div>
-
-      <div class="sidebar-info_more">
-
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
-
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-              <a href="mailto:oteylon84@gmail.com" class="contact-link">oteylon84@gmail.com</a>
-            </div>
-          </li>
-
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Telefone / WhatsApp</p>
-              <a href="tel:+5599984413253" class="contact-link">+55 (99) 98441-3253</a>
-            </div>
-          </li>
-
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Aniversário</p>
-              <time datetime="2006-10-03">03 Outubro, 2006</time>
-            </div>
-          </li>
-
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Localização</p>
-              <address>Teresina, Piauí, BR</address>
-            </div>
-          </li>
-
-        </ul>
-
-        <div class="separator"></div>
-
-        <ul class="social-list">
-          <li class="social-item">
-            <a href="https://wa.me/5599984413253" class="social-link" target="_blank">
-              <ion-icon name="logo-whatsapp"></ion-icon>
-            </a>
-          </li>
-          <li class="social-item">
-            <a href="https://github.com/teylonkkjk/Portifolio" class="social-link" target="_blank">
-              <ion-icon name="logo-github"></ion-icon>
-            </a>
-          </li>
-          <li class="social-item">
-            <a href="https://www.linkedin.com/in/teylonoliveira/" class="social-link" target="_blank">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-        </ul>
-
-      </div>
-
-    </aside>
-
-    <!--
-      - #MAIN CONTENT (CONTEÚDO PRINCIPAL)
-    -->
-    <div class="main-content">
-
-      <!--
-        - #NAVBAR
-      -->
-      <nav class="navbar">
-        <ul class="navbar-list">
-          <li class="navbar-item">
-            <button class="navbar-link active" data-nav-link>Sobre</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Currículo</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfólio</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contato</button>
-          </li>
-        </ul>
-      </nav>
-
-      <!--
-        - #ABOUT (SOBRE)
-      -->
-      <article class="sobre active" data-page="sobre">
-
-        <header>
-          <h2 class="h2 article-title">Sobre Mim</h2>
-        </header>
-
-        <section class="sobre-text">
-          <p>
-            Olá! Sou o Teylon, graduando em Ciência da Computação pela Uninassau e atuo como Desenvolvedor Full Stack e Técnico de Suporte de TI. Tenho um forte foco na construção de sistemas web, buscando sempre a integração perfeita entre a teoria acadêmica e a prática do mercado.
-          </p>
-          <p>
-            Minha especialidade inclui arquitetura e estruturação de sistemas eficientes utilizando Python, Django e bancos de dados SQL (como PostgreSQL e SQLite), além de forte domínio em front-end com HTML e CSS. Sou adaptável, possuo facilidade para aprender novas tecnologias e busco sempre soluções ágeis e organizadas para os desafios do dia a dia.
-          </p>
-        </section>
-
-        <section class="service">
-          <h3 class="h3 service-title">O que Faço</h3>
-          <ul class="service-list">
-
-            <li class="service-item">
-              <div class="service-icon-box">
-                <ion-icon name="code-slash-outline" style="font-size: 40px; color: var(--vegas-gold);"></ion-icon>
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Desenvolvimento Full-Stack</h4>
-                <p class="service-item-text">
-                  Construção de sistemas web estruturados e APIs REST utilizando Python e Django Framework.
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item">
-              <div class="service-icon-box">
-                <ion-icon name="server-outline" style="font-size: 40px; color: var(--vegas-gold);"></ion-icon>
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Bancos de Dados</h4>
-                <p class="service-item-text">
-                  Modelagem e gerenciamento de dados utilizando PostgreSQL, SQLite e linguagem SQL.
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item">
-              <div class="service-icon-box">
-                <ion-icon name="hardware-chip-outline" style="font-size: 40px; color: var(--vegas-gold);"></ion-icon>
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Suporte de TI</h4>
-                <p class="service-item-text">
-                  Manutenção de computadores, impressoras e estruturação de redes.
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item">
-              <div class="service-icon-box">
-                <ion-icon name="bar-chart-outline" style="font-size: 40px; color: var(--vegas-gold);"></ion-icon>
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Análise de Dados</h4>
-                <p class="service-item-text">
-                  Capacidade analítica e resolução de problemas aplicados a dados e performance de sistemas.
-                </p>
-              </div>
-            </li>
-
-          </ul>
-        </section>
-      </article>
-
-      <!--
-        - #RESUME (CURRÍCULO)
-      -->
-      <article class="currículo" data-page="currículo">
-
-        <header>
-          <h2 class="h2 article-title">Currículo</h2>
-        </header>
-
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-            <h3 class="h3">Educação e Cursos</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Ciências da Computação</h4>
-              <h4 class="h4 timeline-item-subtitle">Uninasau</h4>
-              <span>Previsão de conclusão: 2028</span>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Crie APIs REST com Python e Django REST Framework: Essencial</h4>
-              <h4 class="h4 timeline-item-subtitle">Udemy</h4>
-              <span>Conclusão: 2026</span>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">HTML5, CSS e Javascript na prática</h4>
-              <h4 class="h4 timeline-item-subtitle">Udemy</h4>
-              <span>Conclusão: 2024</span>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Programação em Python do básico ao avançado</h4>
-              <h4 class="h4 timeline-item-subtitle">Udemy</h4>
-              <span>Conclusão: 2024</span>
-            </li>
-            
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Programação Web com Python e Django Framework: Essencial</h4>
-              <h4 class="h4 timeline-item-subtitle">Udemy</h4>
-              <span>Conclusão: 2024</span>
-            </li>
-
-          </ol>
-        </section>
-
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="briefcase-outline"></ion-icon>
-            </div>
-            <h3 class="h3">Experiência Profissional</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Analista de Dados</h4>
-              <h4 class="h4 timeline-item-subtitle">Stringhini</h4>
-              <span>03/2026 — 05/2026</span>
-              <p class="timeline-text">
-                Atuação em análise de dados e extração de insights.
-              </p>
-            </li>
-
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Técnico de TI</h4>
-              <h4 class="h4 timeline-item-subtitle">Miny preço</h4>
-              <span>01/2022 — 03/2025</span>
-              <p class="timeline-text">
-                Manutenção de computadores, impressoras e estruturação de redes.
-              </p>
-            </li>
-
-          </ol>
-        </section>
-
-        <section class="skill">
-          <h3 class="h3 skills-title">Habilidades</h3>
-
-          <ul class="skills-list content-card">
-
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">HTML, CSS & Tailwind CSS</h5>
-                <data value="90">Avançado</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-            </li>
-
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Python</h5>
-                <data value="75">Intermediário</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
-              </div>
-            </li>
-
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Django & Django REST</h5>
-                <data value="75">Intermediário</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
-              </div>
-            </li>
-
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">PostgreSQL & Bancos Relacionais (SQL)</h5>
-                <data value="75">Intermediário</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
-              </div>
-            </li>
-
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Resolução de Problemas / Lógica</h5>
-                <data value="90">Avançado</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-            </li>
-
-          </ul>
-        </section>
-
-      </article>
-
-      <!--
-        - #PORTFOLIO (PORTFÓLIO)
-      -->
-      <article class="portfólio" data-page="portfólio">
-
-        <header>
-          <h2 class="h2 article-title">Portfólio</h2>
-        </header>
-
-        <section class="projects">
-          <ul class="filter-list">
-            <li class="filter-item">
-              <button class="active" data-filter-btn>Todos</button>
-            </li>
-          </ul>
-
-          <ul class="project-list">
-            
-            <!-- Projeto 1: Sistema de Gestão de Tasks -->
-            <li class="project-item active" data-filter-item data-category="Desenvolvimento Web">
-              
-              <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank">
-                
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="logo-github"></ion-icon>
-                  </div>
-                  
-                  <!-- Nome simplificado para não bugar -->
-                  <img src="projeto.png" alt="Sistema de Gestão de Tasks - Taskflow" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Taskflow - Gestão de Tasks (RBAC)</h3>
-                <p class="project-category">Django, PostgreSQL e Tailwind CSS</p>
-                
-              </a>
-            </li>
-
-          </ul>
-        </section>
-
-      </article>
-
-      <!--
-        - #CONTACT (CONTATO)
-      -->
-      <article class="contato" data-page="contato">
-        <header>
-          <h2 class="h2 article-title">Contato</h2>
-        </header>
-        
-        <section class="contact-form">
-          <div style="display: flex; flex-wrap:wrap; gap:15px;">
-            <a type="button" class="form-btn" target="_blank" href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio%20e%20tenho%20interesse%20em%20falar%20com%20voc%C3%AA.">
-              <ion-icon name="logo-whatsapp"></ion-icon>
-              <span>Enviar Mensagem</span>
-            </a>
-  
-            <a type="button" class="form-btn" href="mailto:oteylon84@gmail.com">
-              <ion-icon name="mail"></ion-icon>
-              <span>Enviar E-mail</span>
-            </a>
-          </div>
-        </section>
-
-      </article>
-
-    </div>
-
-  </main>
-
-  <!-- ionicon link -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-  <!-- Lógica JavaScript Inserida Diretamente -->
-  <script>
-    // Seleciona todos os botões do menu e todas as páginas (articles)
-    const navigationLinks = document.querySelectorAll("[data-nav-link]");
-    const pages = document.querySelectorAll("[data-page]");
-
-    // Navegação das abas
-    navigationLinks.forEach((botao, index) => {
-      botao.addEventListener("click", () => {
-        // Remove a classe 'active' de todos os botões e páginas
-        navigationLinks.forEach(link => link.classList.remove("active"));
-        pages.forEach(page => page.classList.remove("active"));
-
-        // Adiciona a classe 'active' apenas no botão que foi clicado e na página correspondente
-        botao.classList.add("active");
-        pages[index].classList.add("active");
-        
-        // Joga a tela de volta pro topo suavemente
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
-
-    // Lógica para abrir/fechar o menu de contatos no Celular
-    const sidebar = document.querySelector("[data-sidebar]");
-    const sidebarBtn = document.querySelector("[data-sidebar-btn]");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teylon Oliveira | Full Stack Developer</title>
     
-    if (sidebarBtn) {
-      sidebarBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
-      });
-    }
-  </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        django: '#092E20',
+                        djangoLight: '#44B78B',
+                        pythonBlue: '#306998',
+                        darkBg: '#050810',
+                        cardBg: '#0B1120'
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite alternate',
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '100%': { transform: 'translate(50px, -50px) scale(1.2)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050810; color: white; overflow-x: hidden; }
+        .font-mono { font-family: 'Fira Code', monospace; }
+        
+        .glass {
+            background: rgba(11, 17, 32, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(68, 183, 139, 0.15);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .gsap-reveal { opacity: 0; transform: translateY(40px); }
+        
+        #cursor-glow {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(68,183,139,0.08) 0%, rgba(0,0,0,0) 60%);
+            position: fixed; top: 0; left: 0;
+            border-radius: 50%; pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999; transition: width 0.3s, height 0.3s, background 0.3s;
+        }
+
+        .connection-line {
+            height: 2px; width: 60px;
+            background: linear-gradient(90deg, #374151 50%, transparent 50%);
+            background-size: 10px 10px;
+            animation: move-line 1s linear infinite backwards;
+            opacity: 0.3; transition: all 0.3s;
+        }
+        .connection-line.active {
+            background: linear-gradient(90deg, #44B78B 50%, transparent 50%);
+            background-size: 10px 10px;
+            opacity: 1; box-shadow: 0 0 10px #44B78B;
+        }
+        .connection-line.reverse {
+            animation: move-line-reverse 1s linear infinite backwards;
+        }
+        @keyframes move-line { 0% { background-position: 0 0; } 100% { background-position: 20px 0; } }
+        @keyframes move-line-reverse { 0% { background-position: 20px 0; } 100% { background-position: 0 0; } }
+    </style>
+</head>
+<body class="antialiased selection:bg-djangoLight selection:text-darkBg">
+
+    <div id="cursor-glow"></div>
+
+    <!-- Nav -->
+    <nav class="fixed w-full z-50 glass border-b border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="text-xl font-bold font-mono text-white tracking-tighter">
+                Teylon<span class="text-djangoLight">.</span>Oliveira
+            </span>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="#home" class="hover:text-djangoLight transition-colors">Início</a>
+                <a href="#experiencia" class="hover:text-djangoLight transition-colors">Trajetória</a>
+                <a href="#projetos" class="hover:text-djangoLight transition-colors">Projetos</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/teylonkkjk/Portifolio" target="_blank" class="text-gray-400 hover:text-white transition-colors text-xl"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/teylonoliveira/" target="_blank" class="text-gray-400 hover:text-[#0A66C2] transition-colors text-xl"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio%20e%20tenho%20interesse%20em%20falar%20com%20voc%C3%AA." target="_blank" class="hidden md:flex px-5 py-2 rounded border border-djangoLight text-djangoLight hover:bg-djangoLight hover:text-darkBg transition-all duration-300 shadow-[0_0_10px_rgba(68,183,139,0.1)] hover:shadow-[0_0_20px_rgba(68,183,139,0.4)] font-mono text-sm items-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> Contato
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero com Terminal -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute top-20 -left-20 w-96 h-96 bg-pythonBlue rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
+        <div class="absolute bottom-20 -right-20 w-96 h-96 bg-djangoLight rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob" style="animation-delay: 2s"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
+            <!-- Texto -->
+            <div class="text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700 text-xs font-mono text-gray-300 mb-6 gsap-reveal">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse-fast"></span> Ciência da Computação | UNINASSAU
+                </div>
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 gsap-reveal text-white">
+                    Desenvolvedor <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-djangoLight to-blue-400">Full Stack & IT.</span>
+                </h1>
+                <p class="text-gray-400 text-lg mb-8 gsap-reveal">
+                    Foco na construção de sistemas web, buscando a integração perfeita entre a teoria acadêmica e a prática do mercado. Especialista em arquitetura estruturada com Python, Django, PostgreSQL e Tailwind CSS.
+                </p>
+                <div class="flex flex-wrap gap-4 gsap-reveal">
+                    <a href="#projetos" class="px-6 py-3 rounded bg-djangoLight text-darkBg font-bold hover:bg-white transition-all duration-300">
+                        Ver Projeto Destaque
+                    </a>
+                    <a href="mailto:oteylon84@gmail.com" class="px-6 py-3 rounded glass text-white hover:border-djangoLight transition-all duration-300 font-mono flex items-center gap-2">
+                        <i class="fa-regular fa-envelope"></i> oteylon84@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Fake Terminal -->
+            <div class="glass rounded-lg overflow-hidden border border-gray-700 gsap-reveal shadow-2xl tilt-card">
+                <div class="bg-gray-900 px-4 py-2 flex items-center gap-2 border-b border-gray-800">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-2 text-xs font-mono text-gray-500">teylon_profile.py</span>
+                </div>
+                <div class="p-6 font-mono text-sm text-gray-300 h-72 overflow-y-auto" id="terminal-content">
+                    <p class="text-djangoLight">teylon@dev:~$ python load_profile.py</p>
+                    <p class="text-gray-500 mt-1">[INFO] Inicializando perfil do desenvolvedor...</p>
+                    <p class="text-gray-500">[INFO] Conectando ao DB de habilidades... OK</p>
+                    <div id="typewriter-term" class="mt-2 text-blue-400 leading-relaxed"></div>
+                    <span class="animate-pulse text-white mt-1 inline-block">_</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resumo de Experiência e Skills -->
+    <section id="experiencia" class="py-20 bg-cardBg border-y border-gray-800/50 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center gsap-reveal">Minha <span class="text-djangoLight">Trajetória</span></h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Timeline -->
+                <div class="gsap-reveal">
+                    <h3 class="text-xl font-mono text-djangoLight mb-6"><i class="fa-solid fa-briefcase mr-2"></i> Experiência Profissional</h3>
+                    <div class="border-l-2 border-gray-800 pl-6 space-y-8 relative">
+                        <!-- Exp 1 -->
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-pythonBlue border-4 border-cardBg"></div>
+                            <h4 class="font-bold text-white text-lg">Analista de Dados</h4>
+                            <p class="text-sm text-gray-500 font-mono mb-2">Stringhini | Mar 2026 - Mai 2026</p>
+                            <p class="text-gray-400 text-sm">Tratamento e limpeza de bases de dados complexas. Criação de dashboards interativos e relatórios gerenciais para análise de métricas, apoiando decisões estratégicas.</p>
+                        </div>
+                        <!-- Exp 2 -->
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-gray-600 border-4 border-cardBg"></div>
+                            <h4 class="font-bold text-white text-lg">Técnico de TI</h4>
+                            <p class="text-sm text-gray-500 font-mono mb-2">Miny preço | Jan 2022 - Mar 2025</p>
+                            <p class="text-gray-400 text-sm">Manutenção de hardware, redes LAN/WLAN, e suporte técnico direto aos usuários. Foco em resolução ágil de problemas para minimizar inatividade operacional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hard Skills e Educação -->
+                <div class="gsap-reveal flex flex-col gap-8">
+                    <div>
+                        <h3 class="text-xl font-mono text-djangoLight mb-6"><i class="fa-solid fa-code mr-2"></i> Hard Skills (90%+)</h3>
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <span class="px-3 py-1 bg-orange-500/20 text-orange-400 rounded font-mono text-sm border border-orange-500/30">HTML5 / CSS3</span>
+                            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded font-mono text-sm border border-purple-500/30">Resolução de Lógica</span>
+                        </div>
+                        <h3 class="text-md font-mono text-gray-400 mb-3 mt-4">Core Intermediário</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-pythonBlue/20 text-pythonBlue rounded font-mono text-sm border border-pythonBlue/30">Python</span>
+                            <span class="px-3 py-1 bg-djangoLight/20 text-djangoLight rounded font-mono text-sm border border-djangoLight/30">Django & DRF</span>
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30">PostgreSQL / SQL</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-mono text-djangoLight mb-4"><i class="fa-solid fa-graduation-cap mr-2"></i> Certificações</h3>
+                        <div class="space-y-3">
+                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
+                                <strong class="text-white block">Crie APIs REST com Python e DRF</strong>
+                                <span class="text-djangoLight font-mono">Udemy</span>
+                            </div>
+                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
+                                <strong class="text-white block">Programação Web c/ Django Framework</strong>
+                                <span class="text-djangoLight font-mono">Udemy</span>
+                            </div>
+                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
+                                <strong class="text-white block">Programação em Python: Básico ao Avançado</strong>
+                                <span class="text-djangoLight font-mono">Udemy</span>
+                            </div>
+                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
+                                <strong class="text-white block">HTML5, CSS e Javascript na Prática</strong>
+                                <span class="text-djangoLight font-mono">Udemy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulador de Arquitetura Interativo -->
+    <section id="arquitetura" class="py-24 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 gsap-reveal">
+                <h2 class="text-3xl font-bold mb-4">Arquitetura de <span class="text-djangoLight">API RESTful</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Demonstração visual do meu domínio sobre o ciclo de requisições HTTP utilizando Django REST Framework e PostgreSQL.</p>
+            </div>
+
+            <div class="glass p-8 rounded-2xl border border-gray-700 gsap-reveal flex flex-col items-center tilt-card">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 w-full mb-10 font-mono text-xs">
+                    <div class="flex flex-col items-center gap-2 node" id="node-client">
+                        <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-2xl text-cyan-400"><i class="fa-solid fa-laptop-code"></i></div>
+                        <span class="text-gray-400">Front-end (Tailwind)</span>
+                    </div>
+                    <div class="connection-line hidden md:block" id="line-1"></div>
+                    <div class="flex flex-col items-center gap-2 node" id="node-api">
+                        <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-3xl text-djangoLight"><i class="fa-brands fa-python"></i></div>
+                        <span class="text-gray-400">Django API (DRF)</span>
+                    </div>
+                    <div class="connection-line hidden md:block" id="line-2"></div>
+                    <div class="flex flex-col items-center gap-2 node" id="node-db">
+                        <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-3xl text-blue-400"><i class="fa-solid fa-database"></i></div>
+                        <span class="text-gray-400">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-lg bg-gray-900 rounded-lg p-4 font-mono text-sm border border-gray-700 mb-6 flex flex-col items-center h-28 justify-center">
+                    <div id="sim-status" class="text-gray-500 mb-4 text-center h-8">Pronto. Aguardando requisição do cliente...</div>
+                    <button onclick="runSimulation()" id="sim-btn" class="px-6 py-2 bg-djangoLight/20 text-djangoLight border border-djangoLight rounded hover:bg-djangoLight hover:text-darkBg transition-colors mt-2 flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Enviar Requisição GET
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETO DESTAQUE (HERO CARD) -->
+    <section id="projetos" class="py-24 bg-cardBg relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 gsap-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Meu Projeto <span class="text-djangoLight">Destaque</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Em vez de focar em volume, dedico meu tempo à engenharia profunda de sistemas robustos.</p>
+            </div>
+            
+            <!-- Card Largo do Projeto Taskflow -->
+            <div class="max-w-5xl mx-auto glass rounded-2xl overflow-hidden border border-djangoLight/50 group relative gsap-reveal tilt-card shadow-[0_0_25px_rgba(68,183,139,0.15)] flex flex-col md:flex-row">
+                
+                <!-- Imagem / Visual -->
+                <div class="md:w-5/12 h-64 md:h-auto bg-gray-900 relative overflow-hidden flex items-center justify-center">
+                    <!-- Fundo animado abstrato -->
+                    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-djangoLight via-gray-900 to-darkBg"></div>
+                    
+                    <i class="fa-solid fa-list-check text-8xl text-djangoLight group-hover:scale-125 transition-transform duration-700 relative z-10"></i>
+                    
+                    <!-- Gradiente escuro para mesclar com o texto -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-cardBg md:bg-gradient-to-r md:from-transparent md:to-cardBg to-transparent opacity-90 z-20"></div>
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="md:w-7/12 p-8 md:p-12 relative z-30 bg-cardBg/90 flex flex-col justify-center">
+                    <div class="flex gap-2 mb-6 flex-wrap">
+                        <span class="px-3 py-1 bg-djangoLight/10 text-djangoLight border border-djangoLight/30 text-xs rounded font-mono font-bold">Django</span>
+                        <span class="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs rounded font-mono font-bold">PostgreSQL</span>
+                        <span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs rounded font-mono font-bold">Tailwind CSS</span>
+                        <span class="px-3 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/30 text-xs rounded font-mono font-bold">RBAC (Segurança)</span>
+                    </div>
+                    
+                    <h3 class="text-3xl md:text-4xl font-extrabold mb-4 text-white">Taskflow</h3>
+                    <h4 class="text-lg text-djangoLight font-mono mb-6">Sistema Avançado de Gestão de Tasks</h4>
+                    
+                    <p class="text-gray-400 text-sm md:text-base mb-8 leading-relaxed">
+                        Uma plataforma web completa desenvolvida para gerenciar demandas de forma eficiente. O sistema apresenta uma modelagem de banco de dados relacional complexa (PostgreSQL) para organizar setores, e implementa <strong class="text-gray-200">Role-Based Access Control (RBAC)</strong>, garantindo que usuários, gerentes e administradores tenham permissões estritamente adequadas às suas funções. A interface foi construída para ser 100% responsiva utilizando Tailwind CSS.
+                    </p>
+                    
+                    <div class="mt-auto">
+                        <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-djangoLight text-darkBg rounded-lg hover:bg-white transition-all duration-300 font-bold tracking-wide shadow-lg hover:shadow-[0_0_20px_rgba(68,183,139,0.5)]">
+                            <i class="fa-brands fa-github text-2xl"></i> 
+                            <span>Ver Repositório e Código-Fonte</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800/50 py-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-gray-500 font-mono text-xs text-center">
+            <p>&copy; 2026 Teylon Carvalho Oliveira. Desenvolvedor Full Stack.</p>
+            <p class="mt-2">Teresina, Piauí, Brasil.</p>
+        </div>
+    </footer>
+
+    <!-- Bibliotecas Externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+    <script>
+        // 1. Efeito de Digitação no Terminal (Hero)
+        const termText = "const developer = {\n  nome: 'Teylon Oliveira',\n  local: 'Teresina, PI',\n  graduacao: 'Ciência da Computação (Cursando)',\n  foco: ['Backend', 'APIs', 'Sistemas Web']\n};\n> print('Conectando teoria à prática de mercado!')";
+        let i = 0;
+        function typeTerminal() {
+            if (i < termText.length) {
+                let char = termText.charAt(i);
+                if(char === '\n') {
+                    document.getElementById("typewriter-term").innerHTML += "<br>&nbsp;&nbsp;";
+                } else {
+                    document.getElementById("typewriter-term").innerHTML += char;
+                }
+                i++;
+                setTimeout(typeTerminal, 30);
+            }
+        }
+        setTimeout(typeTerminal, 1500);
+
+        // 2. Animações de Scroll (GSAP)
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.gsap-reveal').forEach(element => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                ease: "power2.out"
+            });
+        });
+
+        // 3. Efeito 3D
+        VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
+            max: 2, speed: 400, glare: true, "max-glare": 0.05
+        });
+
+        // 4. Custom Cursor
+        const cursor = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, button, .tilt-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '500px'; cursor.style.height = '500px';
+                cursor.style.background = 'radial-gradient(circle, rgba(68,183,139,0.15) 0%, rgba(0,0,0,0) 60%)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '400px'; cursor.style.height = '400px';
+                cursor.style.background = 'radial-gradient(circle, rgba(68,183,139,0.08) 0%, rgba(0,0,0,0) 60%)';
+            });
+        });
+
+        // 5. Lógica do Simulador da API REST
+        let isSimulating = false;
+        function runSimulation() {
+            if(isSimulating) return;
+            isSimulating = true;
+            
+            const btn = document.getElementById('sim-btn');
+            const status = document.getElementById('sim-status');
+            const nodes = {
+                client: document.getElementById('node-client').firstElementChild,
+                api: document.getElementById('node-api').firstElementChild,
+                db: document.getElementById('node-db').firstElementChild
+            };
+            const lines = [document.getElementById('line-1'), document.getElementById('line-2')];
+            
+            // Reset state
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processando Requisição...';
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            status.innerHTML = "<span class='text-cyan-400'>[GET] /api/tasks/ -> Solicitando dados ao servidor...</span>";
+            lines[0].classList.remove('reverse');
+            lines[1].classList.remove('reverse');
+            
+            // Step 1: Client -> API
+            setTimeout(() => {
+                nodes.client.classList.replace('border-gray-600', 'border-cyan-400');
+                nodes.client.classList.add('shadow-[0_0_15px_#22D3EE]');
+                lines[0].classList.add('active');
+                
+                setTimeout(() => {
+                    nodes.api.classList.replace('border-gray-600', 'border-djangoLight');
+                    nodes.api.classList.add('shadow-[0_0_15px_#44B78B]', 'scale-110');
+                    status.innerHTML = "<span class='text-djangoLight'>[API DRF] Validando Token e chamando o ORM do Django...</span>";
+                    
+                    // Step 2: API -> DB (Query)
+                    setTimeout(() => {
+                        lines[0].classList.remove('active');
+                        nodes.client.classList.remove('shadow-[0_0_15px_#22D3EE]');
+                        nodes.client.classList.replace('border-cyan-400', 'border-gray-600');
+                        
+                        lines[1].classList.add('active');
+                        nodes.api.classList.remove('scale-110');
+                        
+                        setTimeout(() => {
+                            nodes.db.classList.replace('border-gray-600', 'border-blue-400');
+                            nodes.db.classList.add('shadow-[0_0_15px_#60A5FA]', 'scale-110');
+                            status.innerHTML = "<span class='text-blue-400'>[PostgreSQL] SELECT * FROM tasks; executado com sucesso.</span>";
+                            
+                            // Step 3: DB -> API (Response)
+                            setTimeout(() => {
+                                lines[1].classList.add('reverse'); 
+                                nodes.db.classList.remove('scale-110');
+                                
+                                setTimeout(() => {
+                                    nodes.db.classList.remove('shadow-[0_0_15px_#60A5FA]');
+                                    nodes.db.classList.replace('border-blue-400', 'border-gray-600');
+                                    lines[1].classList.remove('active');
+                                    
+                                    nodes.api.classList.add('scale-110', 'shadow-[0_0_15px_#44B78B]');
+                                    status.innerHTML = "<span class='text-djangoLight'>[API DRF] Serializando dados para JSON (Response 200 OK)</span>";
+                                    
+                                    // Step 4: API -> Client (Return)
+                                    setTimeout(() => {
+                                        lines[0].classList.add('active', 'reverse');
+                                        nodes.api.classList.remove('scale-110', 'shadow-[0_0_15px_#44B78B]');
+                                        
+                                        setTimeout(() => {
+                                            nodes.client.classList.add('shadow-[0_0_15px_#22D3EE]', 'scale-110');
+                                            nodes.client.classList.replace('border-gray-600', 'border-cyan-400');
+                                            
+                                            status.innerHTML = "<span class='text-white'>✔ Sucesso! Dados renderizados na interface via Tailwind.</span>";
+                                            lines[0].classList.remove('active');
+                                            
+                                            setTimeout(() => {
+                                                nodes.client.classList.remove('shadow-[0_0_15px_#22D3EE]', 'scale-110');
+                                                nodes.client.classList.replace('border-cyan-400', 'border-gray-600');
+                                                
+                                                btn.innerHTML = '<i class="fa-solid fa-rotate-right mr-2"></i> Simular Novamente';
+                                                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                                                isSimulating = false;
+                                            }, 1000);
+                                            
+                                        }, 800);
+                                    }, 800);
+                                }, 600);
+                            }, 1200);
+                        }, 600);
+                    }, 1000);
+                }, 600);
+            }, 300);
+        }
+    </script>
 </body>
-
 </html>
