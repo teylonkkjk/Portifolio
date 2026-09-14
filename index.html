@@ -17,6 +17,7 @@
                         django: '#092E20',
                         djangoLight: '#44B78B',
                         pythonBlue: '#306998',
+                        reactBlue: '#61DAFB',
                         darkBg: '#050810',
                         cardBg: '#0B1120'
                     },
@@ -109,7 +110,7 @@
     <!-- Hero com Terminal -->
     <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <div class="absolute top-20 -left-20 w-96 h-96 bg-pythonBlue rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
-        <div class="absolute bottom-20 -right-20 w-96 h-96 bg-djangoLight rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob" style="animation-delay: 2s"></div>
+        <div class="absolute bottom-20 -right-20 w-96 h-96 bg-reactBlue rounded-full mix-blend-screen filter blur-[100px] opacity-10 animate-blob" style="animation-delay: 2s"></div>
 
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
             <!-- Texto -->
@@ -119,10 +120,10 @@
                 </div>
                 <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 gsap-reveal text-white">
                     Desenvolvedor <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-djangoLight to-blue-400">Full Stack & IT.</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-djangoLight to-reactBlue">Full Stack Web.</span>
                 </h1>
                 <p class="text-gray-400 text-lg mb-8 gsap-reveal">
-                    Foco na construção de sistemas web, buscando a integração perfeita entre a teoria acadêmica e a prática do mercado. Especialista em arquitetura estruturada com Python, Django, PostgreSQL e Tailwind CSS.
+                    Especializado na construção de Sistemas Web robustos e escaláveis. Foco na integração entre a base teórica acadêmica e as melhores práticas do mercado, garantindo a entrega de sistemas eficientes, performáticos (SSR/SSG) e com arquitetura bem estruturada.
                 </p>
                 <div class="flex flex-wrap gap-4 gsap-reveal">
                     <a href="#projetos" class="px-6 py-3 rounded bg-djangoLight text-darkBg font-bold hover:bg-white transition-all duration-300">
@@ -140,13 +141,13 @@
                     <div class="w-3 h-3 rounded-full bg-red-500"></div>
                     <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                     <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    <span class="ml-2 text-xs font-mono text-gray-500">teylon_profile.py</span>
+                    <span class="ml-2 text-xs font-mono text-gray-500">teylon_profile.js</span>
                 </div>
                 <div class="p-6 font-mono text-sm text-gray-300 h-72 overflow-y-auto" id="terminal-content">
-                    <p class="text-djangoLight">teylon@dev:~$ python load_profile.py</p>
-                    <p class="text-gray-500 mt-1">[INFO] Inicializando perfil do desenvolvedor...</p>
+                    <p class="text-reactBlue">teylon@dev:~$ node load_profile.js</p>
+                    <p class="text-gray-500 mt-1">[INFO] Inicializando perfil full stack...</p>
                     <p class="text-gray-500">[INFO] Conectando ao DB de habilidades... OK</p>
-                    <div id="typewriter-term" class="mt-2 text-blue-400 leading-relaxed"></div>
+                    <div id="typewriter-term" class="mt-2 text-djangoLight leading-relaxed"></div>
                     <span class="animate-pulse text-white mt-1 inline-block">_</span>
                 </div>
             </div>
@@ -183,23 +184,40 @@
                 <!-- Hard Skills e Educação -->
                 <div class="gsap-reveal flex flex-col gap-8">
                     <div>
-                        <h3 class="text-xl font-mono text-djangoLight mb-6"><i class="fa-solid fa-code mr-2"></i> Hard Skills (90%+)</h3>
-                        <div class="flex flex-wrap gap-3 mb-4">
-                            <span class="px-3 py-1 bg-orange-500/20 text-orange-400 rounded font-mono text-sm border border-orange-500/30">HTML5 / CSS3</span>
-                            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded font-mono text-sm border border-cyan-500/30">Tailwind CSS</span>
-                            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded font-mono text-sm border border-purple-500/30">Resolução de Lógica</span>
+                        <h3 class="text-xl font-mono text-djangoLight mb-4"><i class="fa-solid fa-code mr-2"></i> Hard Skills</h3>
+                        
+                        <!-- Front-end -->
+                        <h4 class="text-xs font-mono text-gray-400 mb-2 uppercase tracking-wider">Front-end</h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-reactBlue/10 text-reactBlue rounded font-mono text-xs border border-reactBlue/30">React.js</span>
+                            <span class="px-2 py-1 bg-gray-100/10 text-gray-200 rounded font-mono text-xs border border-gray-500/30">Next.js (SSR, SSG, ISR)</span>
+                            <span class="px-2 py-1 bg-cyan-500/10 text-cyan-400 rounded font-mono text-xs border border-cyan-500/30">Tailwind CSS</span>
+                            <span class="px-2 py-1 bg-reactBlue/10 text-reactBlue rounded font-mono text-xs border border-reactBlue/30">React Hooks / Fetch API</span>
                         </div>
-                        <h3 class="text-md font-mono text-gray-400 mb-3 mt-4">Core Intermediário</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="px-3 py-1 bg-pythonBlue/20 text-pythonBlue rounded font-mono text-sm border border-pythonBlue/30">Python</span>
-                            <span class="px-3 py-1 bg-djangoLight/20 text-djangoLight rounded font-mono text-sm border border-djangoLight/30">Django & DRF</span>
-                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded font-mono text-sm border border-blue-500/30">PostgreSQL / SQL</span>
+
+                        <!-- Back-end -->
+                        <h4 class="text-xs font-mono text-gray-400 mb-2 mt-4 uppercase tracking-wider">Back-end</h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-pythonBlue/10 text-pythonBlue rounded font-mono text-xs border border-pythonBlue/30">Python</span>
+                            <span class="px-2 py-1 bg-djangoLight/10 text-djangoLight rounded font-mono text-xs border border-djangoLight/30">Django & DRF</span>
+                            <span class="px-2 py-1 bg-purple-500/10 text-purple-400 rounded font-mono text-xs border border-purple-500/30">Arquitetura de Sistemas</span>
+                        </div>
+
+                        <!-- Banco de Dados & Infra -->
+                        <h4 class="text-xs font-mono text-gray-400 mb-2 mt-4 uppercase tracking-wider">Banco de Dados & DevOps</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-blue-500/10 text-blue-400 rounded font-mono text-xs border border-blue-500/30">PostgreSQL / SQL / SQLite</span>
+                            <span class="px-2 py-1 bg-gray-500/10 text-white rounded font-mono text-xs border border-gray-500/30">Vercel / Heroku (Deploy)</span>
                         </div>
                     </div>
 
                     <div>
-                        <h3 class="text-xl font-mono text-djangoLight mb-4"><i class="fa-solid fa-graduation-cap mr-2"></i> Certificações</h3>
+                        <h3 class="text-xl font-mono text-djangoLight mb-4"><i class="fa-solid fa-graduation-cap mr-2"></i> Certificações & Cursos</h3>
                         <div class="space-y-3">
+                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
+                                <strong class="text-white block">Next.js & React: Crie Aplicações do Zero</strong>
+                                <span class="text-reactBlue font-mono">Udemy</span>
+                            </div>
                             <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
                                 <strong class="text-white block">Crie APIs REST com Python e DRF</strong>
                                 <span class="text-djangoLight font-mono">Udemy</span>
@@ -210,10 +228,6 @@
                             </div>
                             <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
                                 <strong class="text-white block">Programação em Python: Básico ao Avançado</strong>
-                                <span class="text-djangoLight font-mono">Udemy</span>
-                            </div>
-                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
-                                <strong class="text-white block">HTML5, CSS e Javascript na Prática</strong>
                                 <span class="text-djangoLight font-mono">Udemy</span>
                             </div>
                         </div>
@@ -227,15 +241,15 @@
     <section id="arquitetura" class="py-24 relative overflow-hidden">
         <div class="max-w-6xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16 gsap-reveal">
-                <h2 class="text-3xl font-bold mb-4">Arquitetura de <span class="text-djangoLight">API RESTful</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Demonstração visual do meu domínio sobre o ciclo de requisições HTTP utilizando Django REST Framework e PostgreSQL.</p>
+                <h2 class="text-3xl font-bold mb-4">Arquitetura <span class="text-djangoLight">Full Stack</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Demonstração visual do meu domínio sobre o ciclo de requisições HTTP, unindo Front-end em Next.js e Back-end robusto com Django.</p>
             </div>
 
             <div class="glass p-8 rounded-2xl border border-gray-700 gsap-reveal flex flex-col items-center tilt-card">
                 <div class="flex flex-col md:flex-row items-center justify-center gap-4 w-full mb-10 font-mono text-xs">
                     <div class="flex flex-col items-center gap-2 node" id="node-client">
-                        <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-2xl text-cyan-400"><i class="fa-solid fa-laptop-code"></i></div>
-                        <span class="text-gray-400">Front-end (Tailwind)</span>
+                        <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-3xl text-reactBlue"><i class="fa-brands fa-react"></i></div>
+                        <span class="text-gray-400">Front-end (Next.js)</span>
                     </div>
                     <div class="connection-line hidden md:block" id="line-1"></div>
                     <div class="flex flex-col items-center gap-2 node" id="node-api">
@@ -250,9 +264,9 @@
                 </div>
 
                 <div class="w-full max-w-lg bg-gray-900 rounded-lg p-4 font-mono text-sm border border-gray-700 mb-6 flex flex-col items-center h-28 justify-center">
-                    <div id="sim-status" class="text-gray-500 mb-4 text-center h-8">Pronto. Aguardando requisição do cliente...</div>
-                    <button onclick="runSimulation()" id="sim-btn" class="px-6 py-2 bg-djangoLight/20 text-djangoLight border border-djangoLight rounded hover:bg-djangoLight hover:text-darkBg transition-colors mt-2 flex items-center">
-                        <i class="fa-solid fa-paper-plane mr-2"></i> Enviar Requisição GET
+                    <div id="sim-status" class="text-gray-500 mb-4 text-center h-8">Pronto. Aguardando requisição do Client-side...</div>
+                    <button onclick="runSimulation()" id="sim-btn" class="px-6 py-2 bg-reactBlue/10 text-reactBlue border border-reactBlue/50 rounded hover:bg-reactBlue hover:text-darkBg transition-colors mt-2 flex items-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Next Auth / Fetch API
                     </button>
                 </div>
             </div>
@@ -344,7 +358,7 @@
 
     <script>
         // 1. Efeito de Digitação no Terminal (Hero)
-        const termText = "const developer = {\n  nome: 'Teylon Oliveira',\n  local: 'Teresina, PI',\n  graduacao: 'Ciência da Computação (Cursando)',\n  foco: ['Backend', 'APIs', 'E-commerces']\n};\n> print('Conectando teoria à prática de mercado!')";
+        const termText = "const developer = {\n  nome: 'Teylon Oliveira',\n  stack: ['Next.js', 'React', 'Django', 'Python'],\n  foco: 'Sistemas escaláveis e performáticos'\n};\n> init_portfolio();";
         let i = 0;
         function typeTerminal() {
             if (i < termText.length) {
@@ -416,26 +430,26 @@
             // Reset state
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processando Requisição...';
             btn.classList.add('opacity-50', 'cursor-not-allowed');
-            status.innerHTML = "<span class='text-cyan-400'>[GET] /api/produtos/ -> Solicitando dados ao servidor...</span>";
+            status.innerHTML = "<span class='text-reactBlue'>[Next.js] Fetch API -> Solicitando dados ao servidor...</span>";
             lines[0].classList.remove('reverse');
             lines[1].classList.remove('reverse');
             
             // Step 1: Client -> API
             setTimeout(() => {
-                nodes.client.classList.replace('border-gray-600', 'border-cyan-400');
-                nodes.client.classList.add('shadow-[0_0_15px_#22D3EE]');
+                nodes.client.classList.replace('border-gray-600', 'border-reactBlue');
+                nodes.client.classList.add('shadow-[0_0_15px_#61DAFB]');
                 lines[0].classList.add('active');
                 
                 setTimeout(() => {
                     nodes.api.classList.replace('border-gray-600', 'border-djangoLight');
                     nodes.api.classList.add('shadow-[0_0_15px_#44B78B]', 'scale-110');
-                    status.innerHTML = "<span class='text-djangoLight'>[API DRF] Validando Token e chamando o ORM do Django...</span>";
+                    status.innerHTML = "<span class='text-djangoLight'>[API DRF] Validando Token JWT e chamando o ORM...</span>";
                     
                     // Step 2: API -> DB (Query)
                     setTimeout(() => {
                         lines[0].classList.remove('active');
-                        nodes.client.classList.remove('shadow-[0_0_15px_#22D3EE]');
-                        nodes.client.classList.replace('border-cyan-400', 'border-gray-600');
+                        nodes.client.classList.remove('shadow-[0_0_15px_#61DAFB]');
+                        nodes.client.classList.replace('border-reactBlue', 'border-gray-600');
                         
                         lines[1].classList.add('active');
                         nodes.api.classList.remove('scale-110');
@@ -464,15 +478,15 @@
                                         nodes.api.classList.remove('scale-110', 'shadow-[0_0_15px_#44B78B]');
                                         
                                         setTimeout(() => {
-                                            nodes.client.classList.add('shadow-[0_0_15px_#22D3EE]', 'scale-110');
-                                            nodes.client.classList.replace('border-gray-600', 'border-cyan-400');
+                                            nodes.client.classList.add('shadow-[0_0_15px_#61DAFB]', 'scale-110');
+                                            nodes.client.classList.replace('border-gray-600', 'border-reactBlue');
                                             
-                                            status.innerHTML = "<span class='text-white'>✔ Sucesso! Dados renderizados na interface via Tailwind.</span>";
+                                            status.innerHTML = "<span class='text-white'>✔ Sucesso! Dados renderizados na UI com Next.js.</span>";
                                             lines[0].classList.remove('active');
                                             
                                             setTimeout(() => {
-                                                nodes.client.classList.remove('shadow-[0_0_15px_#22D3EE]', 'scale-110');
-                                                nodes.client.classList.replace('border-cyan-400', 'border-gray-600');
+                                                nodes.client.classList.remove('shadow-[0_0_15px_#61DAFB]', 'scale-110');
+                                                nodes.client.classList.replace('border-reactBlue', 'border-gray-600');
                                                 
                                                 btn.innerHTML = '<i class="fa-solid fa-rotate-right mr-2"></i> Simular Novamente';
                                                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
