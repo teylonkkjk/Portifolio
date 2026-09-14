@@ -123,7 +123,7 @@
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-djangoLight to-reactBlue">Full Stack Web.</span>
                 </h1>
                 <p class="text-gray-400 text-lg mb-8 gsap-reveal">
-                    Especializado na construção de Sistemas Web robustos e escaláveis. Foco na integração entre a base teórica acadêmica e as melhores práticas do mercado, garantindo a entrega de sistemas eficientes, performáticos (SSR/SSG) e com arquitetura bem estruturada.
+                    Construindo sistemas robustos de ponta a ponta. Tenho forte domínio em Back-end com Python/Django e utilizo todo o poder Full Stack do Next.js e React para criar arquiteturas limpas, seguras e de altíssima performance.
                 </p>
                 <div class="flex flex-wrap gap-4 gsap-reveal">
                     <a href="#projetos" class="px-6 py-3 rounded bg-djangoLight text-darkBg font-bold hover:bg-white transition-all duration-300">
@@ -187,20 +187,20 @@
                         <h3 class="text-xl font-mono text-djangoLight mb-4"><i class="fa-solid fa-code mr-2"></i> Hard Skills</h3>
                         
                         <!-- Front-end -->
-                        <h4 class="text-xs font-mono text-gray-400 mb-2 uppercase tracking-wider">Front-end</h4>
+                        <h4 class="text-xs font-mono text-gray-400 mb-2 uppercase tracking-wider">Front-end (Interface)</h4>
                         <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-100/10 text-gray-200 rounded font-mono text-xs border border-gray-500/30">Next.js (UI, SSR, SSG)</span>
                             <span class="px-2 py-1 bg-reactBlue/10 text-reactBlue rounded font-mono text-xs border border-reactBlue/30">React.js</span>
-                            <span class="px-2 py-1 bg-gray-100/10 text-gray-200 rounded font-mono text-xs border border-gray-500/30">Next.js (SSR, SSG, UI)</span>
                             <span class="px-2 py-1 bg-cyan-500/10 text-cyan-400 rounded font-mono text-xs border border-cyan-500/30">Tailwind CSS</span>
-                            <span class="px-2 py-1 bg-reactBlue/10 text-reactBlue rounded font-mono text-xs border border-reactBlue/30">React Hooks / Fetch API</span>
+                            <span class="px-2 py-1 bg-reactBlue/10 text-reactBlue rounded font-mono text-xs border border-reactBlue/30">React Hooks</span>
                         </div>
 
                         <!-- Back-end -->
-                        <h4 class="text-xs font-mono text-gray-400 mb-2 mt-4 uppercase tracking-wider">Back-end</h4>
+                        <h4 class="text-xs font-mono text-gray-400 mb-2 mt-4 uppercase tracking-wider">Back-end (Servidor)</h4>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-2 py-1 bg-pythonBlue/10 text-pythonBlue rounded font-mono text-xs border border-pythonBlue/30">Python</span>
                             <span class="px-2 py-1 bg-djangoLight/10 text-djangoLight rounded font-mono text-xs border border-djangoLight/30">Django & DRF</span>
-                            <span class="px-2 py-1 bg-gray-100/10 text-gray-200 rounded font-mono text-xs border border-gray-500/30">Next.js (Next Auth & Rotas)</span>
+                            <span class="px-2 py-1 bg-gray-100/10 text-white rounded font-mono text-xs border border-gray-500/50 shadow-[0_0_8px_rgba(255,255,255,0.1)]">Next.js (Server, API Routes, Next Auth)</span>
                             <span class="px-2 py-1 bg-purple-500/10 text-purple-400 rounded font-mono text-xs border border-purple-500/30">Arquitetura de Sistemas</span>
                         </div>
 
@@ -215,12 +215,10 @@
                     <div>
                         <h3 class="text-xl font-mono text-djangoLight mb-4"><i class="fa-solid fa-graduation-cap mr-2"></i> Certificações & Cursos</h3>
                         <div class="space-y-3">
-                            <!-- Curso Novo -->
                             <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
                                 <strong class="text-white block">Next.js & React: Crie Aplicações do Zero</strong>
                                 <span class="text-reactBlue font-mono">Udemy</span>
                             </div>
-                            <!-- Cursos Antigos -->
                             <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
                                 <strong class="text-white block">Crie APIs REST com Python e DRF</strong>
                                 <span class="text-djangoLight font-mono">Udemy</span>
@@ -248,22 +246,25 @@
     <section id="arquitetura" class="py-24 relative overflow-hidden">
         <div class="max-w-6xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16 gsap-reveal">
-                <h2 class="text-3xl font-bold mb-4">Arquitetura <span class="text-djangoLight">Full Stack</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Demonstração visual do meu domínio sobre o ciclo de requisições HTTP, unindo Front-end em Next.js e Back-end robusto com Django.</p>
+                <h2 class="text-3xl font-bold mb-4">Arquitetura <span class="text-djangoLight">Full Stack Integrada</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Demonstração visual do ciclo de requisições, onde o servidor Next.js atua junto à robusta API do Django.</p>
             </div>
 
             <div class="glass p-8 rounded-2xl border border-gray-700 gsap-reveal flex flex-col items-center tilt-card">
                 <div class="flex flex-col md:flex-row items-center justify-center gap-4 w-full mb-10 font-mono text-xs">
+                    <!-- NODE 1: NEXT.JS UI / SERVER -->
                     <div class="flex flex-col items-center gap-2 node" id="node-client">
                         <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-3xl text-reactBlue"><i class="fa-brands fa-react"></i></div>
-                        <span class="text-gray-400">Front-end (Next.js)</span>
+                        <span class="text-gray-400">Next.js (Front & Server)</span>
                     </div>
                     <div class="connection-line hidden md:block" id="line-1"></div>
+                    <!-- NODE 2: DJANGO API -->
                     <div class="flex flex-col items-center gap-2 node" id="node-api">
                         <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-3xl text-djangoLight"><i class="fa-brands fa-python"></i></div>
                         <span class="text-gray-400">Django API (DRF)</span>
                     </div>
                     <div class="connection-line hidden md:block" id="line-2"></div>
+                    <!-- NODE 3: DB -->
                     <div class="flex flex-col items-center gap-2 node" id="node-db">
                         <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-3xl text-blue-400"><i class="fa-solid fa-database"></i></div>
                         <span class="text-gray-400">PostgreSQL</span>
@@ -271,9 +272,9 @@
                 </div>
 
                 <div class="w-full max-w-lg bg-gray-900 rounded-lg p-4 font-mono text-sm border border-gray-700 mb-6 flex flex-col items-center h-28 justify-center">
-                    <div id="sim-status" class="text-gray-500 mb-4 text-center h-8">Pronto. Aguardando requisição do Client-side...</div>
+                    <div id="sim-status" class="text-gray-500 mb-4 text-center h-8">Pronto. Aguardando interação do usuário na interface...</div>
                     <button onclick="runSimulation()" id="sim-btn" class="px-6 py-2 bg-reactBlue/10 text-reactBlue border border-reactBlue/50 rounded hover:bg-reactBlue hover:text-darkBg transition-colors mt-2 flex items-center">
-                        <i class="fa-solid fa-paper-plane mr-2"></i> Next Auth / Fetch API
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Iniciar Requisição (Next Auth)
                     </button>
                 </div>
             </div>
@@ -365,7 +366,7 @@
 
     <script>
         // 1. Efeito de Digitação no Terminal (Hero)
-        const termText = "const developer = {\n  nome: 'Teylon Oliveira',\n  stack: ['Next.js', 'React', 'Django', 'Python'],\n  foco: 'Sistemas escaláveis e performáticos'\n};\n> init_portfolio();";
+        const termText = "const developer = {\n  nome: 'Teylon Oliveira',\n  stack: ['Next.js (Front & Back)', 'Django (API)', 'Python', 'React'],\n  foco: 'Sistemas escaláveis e performáticos'\n};\n> init_portfolio();";
         let i = 0;
         function typeTerminal() {
             if (i < termText.length) {
@@ -435,13 +436,13 @@
             const lines = [document.getElementById('line-1'), document.getElementById('line-2')];
             
             // Reset state
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processando Requisição...';
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processando...';
             btn.classList.add('opacity-50', 'cursor-not-allowed');
-            status.innerHTML = "<span class='text-reactBlue'>[Next.js] Fetch API -> Solicitando dados ao servidor...</span>";
+            status.innerHTML = "<span class='text-reactBlue'>[Next.js Server] Autenticando usuário (Next Auth) e chamando API Externa...</span>";
             lines[0].classList.remove('reverse');
             lines[1].classList.remove('reverse');
             
-            // Step 1: Client -> API
+            // Step 1: Next.js -> Django API
             setTimeout(() => {
                 nodes.client.classList.replace('border-gray-600', 'border-reactBlue');
                 nodes.client.classList.add('shadow-[0_0_15px_#61DAFB]');
@@ -450,9 +451,9 @@
                 setTimeout(() => {
                     nodes.api.classList.replace('border-gray-600', 'border-djangoLight');
                     nodes.api.classList.add('shadow-[0_0_15px_#44B78B]', 'scale-110');
-                    status.innerHTML = "<span class='text-djangoLight'>[API DRF] Validando Token JWT e chamando o ORM...</span>";
+                    status.innerHTML = "<span class='text-djangoLight'>[Django API] Recebendo Token, validando e chamando o ORM...</span>";
                     
-                    // Step 2: API -> DB (Query)
+                    // Step 2: Django API -> DB
                     setTimeout(() => {
                         lines[0].classList.remove('active');
                         nodes.client.classList.remove('shadow-[0_0_15px_#61DAFB]');
@@ -466,7 +467,7 @@
                             nodes.db.classList.add('shadow-[0_0_15px_#60A5FA]', 'scale-110');
                             status.innerHTML = "<span class='text-blue-400'>[PostgreSQL] SELECT * FROM produtos; executado com sucesso.</span>";
                             
-                            // Step 3: DB -> API (Response)
+                            // Step 3: DB -> Django API
                             setTimeout(() => {
                                 lines[1].classList.add('reverse'); 
                                 nodes.db.classList.remove('scale-110');
@@ -477,9 +478,9 @@
                                     lines[1].classList.remove('active');
                                     
                                     nodes.api.classList.add('scale-110', 'shadow-[0_0_15px_#44B78B]');
-                                    status.innerHTML = "<span class='text-djangoLight'>[API DRF] Serializando dados para JSON (Response 200 OK)</span>";
+                                    status.innerHTML = "<span class='text-djangoLight'>[Django API] Serializando dados para JSON (Response 200 OK)</span>";
                                     
-                                    // Step 4: API -> Client (Return)
+                                    // Step 4: Django API -> Next.js UI
                                     setTimeout(() => {
                                         lines[0].classList.add('active', 'reverse');
                                         nodes.api.classList.remove('scale-110', 'shadow-[0_0_15px_#44B78B]');
@@ -488,7 +489,7 @@
                                             nodes.client.classList.add('shadow-[0_0_15px_#61DAFB]', 'scale-110');
                                             nodes.client.classList.replace('border-gray-600', 'border-reactBlue');
                                             
-                                            status.innerHTML = "<span class='text-white'>✔ Sucesso! Dados renderizados na UI com Next.js.</span>";
+                                            status.innerHTML = "<span class='text-white'>✔ Sucesso! Dados renderizados na interface via Server-Side Rendering.</span>";
                                             lines[0].classList.remove('active');
                                             
                                             setTimeout(() => {
