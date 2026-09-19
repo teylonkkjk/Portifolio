@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teylon Oliveira | Full Stack Developer</title>
+    <title>Teylon Oliveira | Full Stack & AI Developer</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,24 +11,40 @@
     <!-- Configuração do Tailwind -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        django: '#092E20',
-                        djangoLight: '#44B78B',
-                        pythonBlue: '#306998',
-                        reactBlue: '#61DAFB',
-                        darkBg: '#050810',
-                        cardBg: '#0B1120'
+                        brand: {
+                            dark: '#030712', // gray-950
+                            card: '#111827', // gray-900
+                            django: '#10b981', // emerald-500
+                            react: '#0ea5e9',  // sky-500
+                            ai: '#a855f7',     // purple-500
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
                     },
                     animation: {
-                        'blob': 'blob 10s infinite alternate',
-                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '100%': { transform: 'translate(50px, -50px) scale(1.2)' },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 10px rgba(16, 185, 129, 0.8))' },
+                            '50%': { opacity: .5, filter: 'drop-shadow(0 0 2px rgba(16, 185, 129, 0.3))' },
                         }
                     }
                 }
@@ -37,316 +53,418 @@
     </script>
 
     <!-- Fontes e Ícones -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050810; color: white; overflow-x: hidden; }
-        .font-mono { font-family: 'Fira Code', monospace; }
+        body { 
+            background-color: #030712; 
+            color: #f3f4f6; 
+            overflow-x: hidden; 
+        }
         
-        .glass {
-            background: rgba(11, 17, 32, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(68, 183, 139, 0.15);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        /* Grid Background Pattern */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
         }
 
-        .gsap-reveal { opacity: 0; transform: translateY(40px); }
-        
-        #cursor-glow {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(68,183,139,0.08) 0%, rgba(0,0,0,0) 60%);
+        /* Glassmorphism Refinado */
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom Cursor Moderno */
+        #cursor-dot {
+            width: 8px; height: 8px;
+            background-color: #10b981;
             position: fixed; top: 0; left: 0;
             border-radius: 50%; pointer-events: none;
             transform: translate(-50%, -50%);
-            z-index: 9999; transition: width 0.3s, height 0.3s, background 0.3s;
+            z-index: 10000;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
         }
+        #cursor-ring {
+            width: 32px; height: 32px;
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            position: fixed; top: 0; left: 0;
+            border-radius: 50%; pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: all 0.1s ease-out;
+        }
+        
+        .hover-active #cursor-dot { width: 40px; height: 40px; background-color: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; }
+        .hover-active #cursor-ring { opacity: 0; scale: 1.5; }
 
-        .connection-line {
-            height: 2px; width: 60px;
-            background: linear-gradient(90deg, #374151 50%, transparent 50%);
-            background-size: 10px 10px;
-            animation: move-line 1s linear infinite backwards;
-            opacity: 0.3; transition: all 0.3s;
+        /* GSAP Classes */
+        .reveal-up { opacity: 0; transform: translateY(50px); }
+        .reveal-left { opacity: 0; transform: translateX(-50px); }
+        .reveal-right { opacity: 0; transform: translateX(50px); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); }
+
+        /* SVG Line Animation */
+        .path-line {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            transition: stroke-dashoffset 1s ease-in-out;
         }
-        .connection-line.active {
-            background: linear-gradient(90deg, #44B78B 50%, transparent 50%);
-            background-size: 10px 10px;
-            opacity: 1; box-shadow: 0 0 10px #44B78B;
-        }
-        .connection-line.reverse {
-            animation: move-line-reverse 1s linear infinite backwards;
-        }
-        @keyframes move-line { 0% { background-position: 0 0; } 100% { background-position: 20px 0; } }
-        @keyframes move-line-reverse { 0% { background-position: 20px 0; } 100% { background-position: 0 0; } }
+        .path-line.active { stroke-dashoffset: 0; animation: dashMove 2s linear infinite; }
+        @keyframes dashMove { to { stroke-dashoffset: -200; } }
+        
+        /* Oculta scrollbar mas permite scroll */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #374151; }
     </style>
 </head>
-<body class="antialiased selection:bg-djangoLight selection:text-darkBg">
+<body class="antialiased selection:bg-brand-django selection:text-white">
 
-    <div id="cursor-glow"></div>
+    <!-- Fundo de Grade Dinâmico -->
+    <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
 
-    <!-- Nav -->
-    <nav class="fixed w-full z-50 glass border-b border-gray-800/50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="text-xl font-bold font-mono text-white tracking-tighter">
-                Teylon<span class="text-djangoLight">.</span>Oliveira
-            </span>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
-                <a href="#home" class="hover:text-djangoLight transition-colors">Início</a>
-                <a href="#experiencia" class="hover:text-djangoLight transition-colors">Trajetória</a>
-                <a href="#projetos" class="hover:text-djangoLight transition-colors">Projetos</a>
-            </div>
-            <div class="flex items-center gap-4">
-                <a href="https://github.com/teylonkkjk" target="_blank" class="text-gray-400 hover:text-white transition-colors text-xl"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/teylonoliveira/" target="_blank" class="text-gray-400 hover:text-[#0A66C2] transition-colors text-xl"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio%20e%20tenho%20interesse%20em%20falar%20com%20voc%C3%AA." target="_blank" class="hidden md:flex px-5 py-2 rounded border border-djangoLight text-djangoLight hover:bg-djangoLight hover:text-darkBg transition-all duration-300 shadow-[0_0_10px_rgba(68,183,139,0.1)] hover:shadow-[0_0_20px_rgba(68,183,139,0.4)] font-mono text-sm items-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i> Contato
-                </a>
+    <!-- Efeitos de Brilho de Fundo -->
+    <div class="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-django/10 blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-brand-react/10 blur-[120px] pointer-events-none z-0"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="hidden md:block"></div>
+    <div id="cursor-ring" class="hidden md:block"></div>
+
+    <!-- Navegação -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 mt-2">
+            <div class="glass-panel rounded-full px-6 py-3 flex justify-between items-center w-full">
+                <span class="text-xl font-bold font-mono text-white tracking-tighter cursor-hover">
+                    Teylon<span class="text-brand-django">.</span>dev
+                </span>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
+                    <a href="#home" class="hover:text-white transition-colors cursor-hover">Início</a>
+                    <a href="#skills" class="hover:text-white transition-colors cursor-hover">Expertise</a>
+                    <a href="#experiencia" class="hover:text-white transition-colors cursor-hover">Trajetória</a>
+                    <a href="#projetos" class="hover:text-white transition-colors cursor-hover">Projetos</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/teylonkkjk" target="_blank" class="text-gray-400 hover:text-white transition-colors text-xl cursor-hover"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/teylonoliveira/" target="_blank" class="text-gray-400 hover:text-brand-react transition-colors text-xl cursor-hover"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio!" target="_blank" class="hidden md:flex px-5 py-2 rounded-full bg-brand-django/10 border border-brand-django/30 text-brand-django hover:bg-brand-django hover:text-brand-dark transition-all duration-300 font-semibold text-sm items-center gap-2 cursor-hover">
+                        <i class="fa-brands fa-whatsapp"></i> Vamos Conversar
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero com Terminal -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="absolute top-20 -left-20 w-96 h-96 bg-pythonBlue rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
-        <div class="absolute bottom-20 -right-20 w-96 h-96 bg-reactBlue rounded-full mix-blend-screen filter blur-[100px] opacity-10 animate-blob" style="animation-delay: 2s"></div>
-
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
-            <!-- Texto -->
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
+            
+            <!-- Conteúdo Textual -->
             <div class="text-left">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700 text-xs font-mono text-gray-300 mb-6 gsap-reveal">
-                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse-fast"></span> Ciência da Computação | UNINASSAU
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-white/5 text-xs font-mono text-gray-300 mb-8 reveal-up">
+                    <span class="w-2 h-2 rounded-full bg-brand-django animate-pulse-glow"></span> 
+                    Ciência da Computação | UNINASSAU
                 </div>
-                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 gsap-reveal text-white">
-                    Desenvolvedor <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-djangoLight to-reactBlue">Full Stack Web.</span>
+                
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white reveal-up leading-[1.1]" style="transition-delay: 100ms;">
+                    Sistemas robustos.<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-django via-brand-react to-brand-ai">IA & Automação.</span>
                 </h1>
-                <p class="text-gray-400 text-lg mb-8 gsap-reveal">
-                    Construindo sistemas robustos de ponta a ponta. Tenho forte domínio em Back-end com Python/Django e utilizo todo o poder Full Stack do Next.js e React para criar arquiteturas limpas, seguras e de altíssima performance.
+                
+                <p class="text-gray-400 text-lg mb-8 reveal-up leading-relaxed max-w-xl" style="transition-delay: 200ms;">
+                    Sou <strong>Teylon Oliveira</strong>, desenvolvedor Full Stack. Uno o poder do Back-end <strong>Python/Django</strong> à performance do Front-end <strong>Next.js/React</strong>. Além de sistemas web, sou especialista em integrar <strong>Inteligência Artificial, RAG e agentes autônomos (n8n/Docker)</strong> para criar fluxos inovadores.
                 </p>
-                <div class="flex flex-wrap gap-4 gsap-reveal">
-                    <a href="#projetos" class="px-6 py-3 rounded bg-djangoLight text-darkBg font-bold hover:bg-white transition-all duration-300">
-                        Ver Projetos
+                
+                <div class="flex flex-wrap gap-4 reveal-up" style="transition-delay: 300ms;">
+                    <a href="#projetos" class="px-8 py-3.5 rounded-xl bg-white text-brand-dark font-bold hover:bg-gray-200 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)] cursor-hover">
+                        Ver Meus Projetos
                     </a>
-                    <a href="mailto:oteylon84@gmail.com" class="px-6 py-3 rounded glass text-white hover:border-djangoLight transition-all duration-300 font-mono flex items-center gap-2">
+                    <a href="mailto:oteylon84@gmail.com" class="px-8 py-3.5 rounded-xl glass-panel text-white hover:border-gray-500 transition-all duration-300 font-mono text-sm flex items-center gap-2 cursor-hover">
                         <i class="fa-regular fa-envelope"></i> oteylon84@gmail.com
                     </a>
                 </div>
             </div>
 
-            <!-- Fake Terminal -->
-            <div class="glass rounded-lg overflow-hidden border border-gray-700 gsap-reveal shadow-2xl tilt-card">
-                <div class="bg-gray-900 px-4 py-2 flex items-center gap-2 border-b border-gray-800">
-                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    <span class="ml-2 text-xs font-mono text-gray-500">teylon_profile.js</span>
-                </div>
-                <div class="p-6 font-mono text-sm text-gray-300 h-72 overflow-y-auto" id="terminal-content">
-                    <p class="text-reactBlue">teylon@dev:~$ node load_profile.js</p>
-                    <p class="text-gray-500 mt-1">[INFO] Inicializando perfil full stack...</p>
-                    <p class="text-gray-500">[INFO] Conectando ao DB de habilidades... OK</p>
-                    <div id="typewriter-term" class="mt-2 text-djangoLight leading-relaxed"></div>
-                    <span class="animate-pulse text-white mt-1 inline-block">_</span>
+            <!-- Modern Code Editor UI -->
+            <div class="relative reveal-scale animate-float w-full max-w-lg mx-auto lg:mx-0">
+                <!-- Efeito de brilho atrás do editor -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-brand-django to-brand-ai opacity-20 blur-2xl rounded-2xl"></div>
+                
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 relative z-10 shadow-2xl">
+                    <!-- Mac Header -->
+                    <div class="bg-black/40 px-4 py-3 flex items-center gap-2 border-b border-white/5 backdrop-blur-md">
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <div class="mx-auto flex gap-4 text-[10px] font-mono text-gray-500">
+                            <span class="text-brand-django">app.py</span>
+                            <span class="text-gray-600">|</span>
+                            <span class="text-brand-react">agent.ts</span>
+                        </div>
+                    </div>
+                    <!-- Editor Body -->
+                    <div class="p-6 font-mono text-sm h-80 overflow-y-auto bg-[#0d1117] relative">
+                        <!-- Line numbers -->
+                        <div class="absolute left-0 top-0 bottom-0 w-8 bg-black/20 border-r border-white/5 flex flex-col items-center py-6 text-gray-700 text-xs select-none">
+                            1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9
+                        </div>
+                        <div class="pl-6" id="code-typer">
+                            <!-- JS fará a digitação aqui -->
+                        </div>
+                        <span class="animate-pulse text-white inline-block pl-6 mt-1" id="cursor-blink">|</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Resumo de Experiência e Skills -->
-    <section id="experiencia" class="py-20 bg-cardBg border-y border-gray-800/50 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center gsap-reveal">Minha <span class="text-djangoLight">Trajetória</span></h2>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Timeline -->
-                <div class="gsap-reveal">
-                    <h3 class="text-xl font-mono text-djangoLight mb-6"><i class="fa-solid fa-briefcase mr-2"></i> Experiência Profissional</h3>
-                    <div class="border-l-2 border-gray-800 pl-6 space-y-8 relative">
-                        <!-- Exp 1 -->
-                        <div class="relative">
-                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-pythonBlue border-4 border-cardBg"></div>
-                            <h4 class="font-bold text-white text-lg">Analista de Dados</h4>
-                            <p class="text-sm text-gray-500 font-mono mb-2">Stringhini | Mar 2026 - Mai 2026</p>
-                            <p class="text-gray-400 text-sm">Tratamento e limpeza de bases de dados complexas. Criação de dashboards interativos e relatórios gerenciais para análise de métricas, apoiando decisões estratégicas.</p>
-                        </div>
-                        <!-- Exp 2 -->
-                        <div class="relative">
-                            <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-gray-600 border-4 border-cardBg"></div>
-                            <h4 class="font-bold text-white text-lg">Técnico de TI</h4>
-                            <p class="text-sm text-gray-500 font-mono mb-2">Miny preço | Jan 2022 - Mar 2025</p>
-                            <p class="text-gray-400 text-sm">Manutenção de hardware, redes LAN/WLAN, e suporte técnico direto aos usuários. Foco em resolução ágil de problemas para minimizar inatividade operacional.</p>
-                        </div>
-                    </div>
-                </div>
+        </div>
+    </section>
 
-                <!-- Hard Skills e Educação -->
-                <div class="gsap-reveal flex flex-col gap-8">
-                    <div>
-                        <h3 class="text-xl font-mono text-djangoLight mb-4"><i class="fa-solid fa-code mr-2"></i> Hard Skills</h3>
-                        
-                        <!-- Front-end -->
-                        <h4 class="text-xs font-mono text-gray-400 mb-2 uppercase tracking-wider">Front-end (Interface)</h4>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100/10 text-gray-200 rounded font-mono text-xs border border-gray-500/30">Next.js (UI, SSR, SSG)</span>
-                            <span class="px-2 py-1 bg-reactBlue/10 text-reactBlue rounded font-mono text-xs border border-reactBlue/30">React.js</span>
-                            <span class="px-2 py-1 bg-cyan-500/10 text-cyan-400 rounded font-mono text-xs border border-cyan-500/30">Tailwind CSS</span>
-                            <span class="px-2 py-1 bg-reactBlue/10 text-reactBlue rounded font-mono text-xs border border-reactBlue/30">React Hooks</span>
-                        </div>
-
-                        <!-- Back-end -->
-                        <h4 class="text-xs font-mono text-gray-400 mb-2 mt-4 uppercase tracking-wider">Back-end (Servidor)</h4>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-pythonBlue/10 text-pythonBlue rounded font-mono text-xs border border-pythonBlue/30">Python</span>
-                            <span class="px-2 py-1 bg-djangoLight/10 text-djangoLight rounded font-mono text-xs border border-djangoLight/30">Django & DRF</span>
-                            <span class="px-2 py-1 bg-gray-100/10 text-white rounded font-mono text-xs border border-gray-500/50 shadow-[0_0_8px_rgba(255,255,255,0.1)]">Next.js (Server, API Routes, Next Auth)</span>
-                            <span class="px-2 py-1 bg-purple-500/10 text-purple-400 rounded font-mono text-xs border border-purple-500/30">Arquitetura de Sistemas</span>
-                        </div>
-
-                        <!-- Banco de Dados & Infra -->
-                        <h4 class="text-xs font-mono text-gray-400 mb-2 mt-4 uppercase tracking-wider">Banco de Dados & DevOps</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-blue-500/10 text-blue-400 rounded font-mono text-xs border border-blue-500/30">PostgreSQL / SQL / SQLite</span>
-                            <span class="px-2 py-1 bg-gray-500/10 text-white rounded font-mono text-xs border border-gray-500/30">Vercel / Heroku (Deploy)</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xl font-mono text-djangoLight mb-4"><i class="fa-solid fa-graduation-cap mr-2"></i> Certificações & Cursos</h3>
-                        <div class="space-y-3">
-                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
-                                <strong class="text-white block">Next.js & React: Crie Aplicações do Zero</strong>
-                                <span class="text-reactBlue font-mono">Udemy</span>
-                            </div>
-                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
-                                <strong class="text-white block">Crie APIs REST com Python e DRF</strong>
-                                <span class="text-djangoLight font-mono">Udemy</span>
-                            </div>
-                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
-                                <strong class="text-white block">Programação Web c/ Django Framework</strong>
-                                <span class="text-djangoLight font-mono">Udemy</span>
-                            </div>
-                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
-                                <strong class="text-white block">Programação em Python: Básico ao Avançado</strong>
-                                <span class="text-djangoLight font-mono">Udemy</span>
-                            </div>
-                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center">
-                                <strong class="text-white block">HTML5, CSS e Javascript na Prática</strong>
-                                <span class="text-djangoLight font-mono">Udemy</span>
-                            </div>
-                            <div class="glass p-4 rounded border border-gray-800 text-sm flex justify-between items-center gap-4">
-                                <strong class="text-white block">Aprenda n8n do zero com projetos reais, APIs, IA, Docker, WhatsApp, MCP, RAG e agentes inteligentes</strong>
-                                <span class="text-djangoLight font-mono whitespace-nowrap">Udemy</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Marquee de Tecnologias (Infinite Scroll) -->
+    <section id="skills" class="py-10 border-y border-white/5 bg-black/20 overflow-hidden relative z-10">
+        <div class="flex whitespace-nowrap">
+            <div class="animate-marquee flex gap-12 items-center text-gray-500 font-mono text-lg px-6 font-bold uppercase tracking-widest">
+                <span>Next.js SSR</span> • <span class="text-brand-django">Python/Django</span> • <span>React Hooks</span> • <span class="text-brand-react">Tailwind</span> • <span>PostgreSQL</span> • <span class="text-brand-ai">n8n (Workflows)</span> • <span>Docker</span> • <span>APIs REST</span> • <span>RAG/LLMs</span> •
+                <!-- Repeat for infinite illusion -->
+                <span>Next.js SSR</span> • <span class="text-brand-django">Python/Django</span> • <span>React Hooks</span> • <span class="text-brand-react">Tailwind</span> • <span>PostgreSQL</span> • <span class="text-brand-ai">n8n (Workflows)</span> • <span>Docker</span> • <span>APIs REST</span> • <span>RAG/LLMs</span> •
             </div>
         </div>
     </section>
 
-    <!-- Simulador de Arquitetura Interativo -->
-    <section id="arquitetura" class="py-24 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 gsap-reveal">
-                <h2 class="text-3xl font-bold mb-4">Arquitetura <span class="text-djangoLight">Full Stack Integrada</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Demonstração visual do ciclo de requisições, onde o servidor Next.js atua junto à robusta API do Django.</p>
-            </div>
-
-            <div class="glass p-8 rounded-2xl border border-gray-700 gsap-reveal flex flex-col items-center tilt-card">
-                <div class="flex flex-col md:flex-row items-center justify-center gap-4 w-full mb-10 font-mono text-xs">
-                    <!-- NODE 1: NEXT.JS UI / SERVER -->
-                    <div class="flex flex-col items-center gap-2 node" id="node-client">
-                        <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-3xl text-reactBlue"><i class="fa-brands fa-react"></i></div>
-                        <span class="text-gray-400">Next.js (Front & Server)</span>
-                    </div>
-                    <div class="connection-line hidden md:block" id="line-1"></div>
-                    <!-- NODE 2: DJANGO API -->
-                    <div class="flex flex-col items-center gap-2 node" id="node-api">
-                        <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-3xl text-djangoLight"><i class="fa-brands fa-python"></i></div>
-                        <span class="text-gray-400">Django API (DRF)</span>
-                    </div>
-                    <div class="connection-line hidden md:block" id="line-2"></div>
-                    <!-- NODE 3: DB -->
-                    <div class="flex flex-col items-center gap-2 node" id="node-db">
-                        <div class="w-16 h-16 rounded-xl bg-gray-800 flex items-center justify-center border border-gray-600 transition-all duration-300 text-3xl text-blue-400"><i class="fa-solid fa-database"></i></div>
-                        <span class="text-gray-400">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <div class="w-full max-w-lg bg-gray-900 rounded-lg p-4 font-mono text-sm border border-gray-700 mb-6 flex flex-col items-center h-28 justify-center">
-                    <div id="sim-status" class="text-gray-500 mb-4 text-center h-8">Pronto. Aguardando interação do usuário na interface...</div>
-                    <button onclick="runSimulation()" id="sim-btn" class="px-6 py-2 bg-reactBlue/10 text-reactBlue border border-reactBlue/50 rounded hover:bg-reactBlue hover:text-darkBg transition-colors mt-2 flex items-center">
-                        <i class="fa-solid fa-paper-plane mr-2"></i> Iniciar Requisição (Next Auth)
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJETOS DESTAQUE (GRID 2 COLUNAS) -->
-    <section id="projetos" class="py-24 bg-cardBg relative">
+    <!-- Jornada (Educação e Experiência lado a lado) -->
+    <section id="experiencia" class="py-24 relative z-10">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 gsap-reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Projetos em <span class="text-djangoLight">Destaque</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Sistemas robustos construídos do zero com foco em arquitetura estruturada, controle de acesso e performance.</p>
+            <div class="text-center mb-16 reveal-up">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Minha <span class="text-brand-django">Trajetória</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">A evolução constante entre desenvolvimento tradicional e novas arquiteturas inteligentes.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- Coluna Esquerda: Experiência Profissional -->
+                <div class="reveal-left">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-10 h-10 rounded-lg bg-brand-react/10 text-brand-react flex items-center justify-center text-xl border border-brand-react/20"><i class="fa-solid fa-briefcase"></i></div>
+                        <h3 class="text-2xl font-bold">Experiência</h3>
+                    </div>
+                    
+                    <div class="border-l border-gray-800 pl-8 space-y-12 relative ml-4">
+                        <!-- Exp 1 -->
+                        <div class="relative group cursor-hover">
+                            <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-brand-dark border-2 border-brand-django group-hover:bg-brand-django transition-colors"></div>
+                            <h4 class="font-bold text-white text-xl group-hover:text-brand-django transition-colors">Analista de Dados</h4>
+                            <p class="text-sm text-brand-django font-mono mb-3">Stringhini | Mar 2026 - Mai 2026</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">Tratamento avançado e limpeza de bases de dados complexas. Desenvolvimento de dashboards interativos e relatórios gerenciais, focando em transformar dados brutos em inteligência estratégica para tomada de decisão.</p>
+                        </div>
+                        
+                        <!-- Exp 2 -->
+                        <div class="relative group cursor-hover">
+                            <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-brand-dark border-2 border-gray-600 group-hover:border-white transition-colors"></div>
+                            <h4 class="font-bold text-white text-xl group-hover:text-white transition-colors">Técnico de TI</h4>
+                            <p class="text-sm text-gray-500 font-mono mb-3">Miny preço | Jan 2022 - Mar 2025</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">Infraestrutura, manutenção de hardware e redes LAN/WLAN. Suporte técnico ágil garantindo alta disponibilidade operacional para os usuários finais e sistemas da empresa.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita: Cursos e Especializações (Reformulado conf. Prompt) -->
+                <div class="reveal-right">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-10 h-10 rounded-lg bg-brand-ai/10 text-brand-ai flex items-center justify-center text-xl border border-brand-ai/20"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h3 class="text-2xl font-bold">Capacitação & Cursos</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <!-- Curso Destaque (IA / n8n) -->
+                        <div class="glass-panel p-5 rounded-xl border border-brand-ai/40 relative overflow-hidden group cursor-hover hover:border-brand-ai transition-colors">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-brand-ai/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-brand-ai/20 transition-all"></div>
+                            <div class="relative z-10 flex gap-4 items-start">
+                                <div class="text-brand-ai mt-1 text-2xl"><i class="fa-solid fa-robot"></i></div>
+                                <div>
+                                    <div class="flex gap-2 mb-2 flex-wrap">
+                                        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-brand-ai/20 text-brand-ai rounded">Top Skill</span>
+                                    </div>
+                                    <h4 class="font-bold text-white mb-1">n8n, IA, APIs e Agentes Inteligentes</h4>
+                                    <p class="text-xs text-gray-400 mb-2">Treinamento completo focando na criação de workflows reais, integração de APIs, Docker, WhatsApp bots, MCP e arquitetura RAG.</p>
+                                    <span class="text-xs font-mono text-gray-500">Udemy</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid de Outros Cursos -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-brand-django/30 transition-colors cursor-hover">
+                                <i class="fa-brands fa-python text-brand-django mb-2 text-xl"></i>
+                                <h4 class="font-semibold text-sm text-white">APIs REST Python & DRF</h4>
+                                <span class="text-xs font-mono text-gray-500">Udemy</span>
+                            </div>
+                            
+                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-brand-react/30 transition-colors cursor-hover">
+                                <i class="fa-brands fa-react text-brand-react mb-2 text-xl"></i>
+                                <h4 class="font-semibold text-sm text-white">Next.js & React do Zero</h4>
+                                <span class="text-xs font-mono text-gray-500">Udemy</span>
+                            </div>
+                            
+                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-brand-django/30 transition-colors cursor-hover">
+                                <i class="fa-solid fa-server text-brand-django mb-2 text-xl"></i>
+                                <h4 class="font-semibold text-sm text-white">Web c/ Django Framework</h4>
+                                <span class="text-xs font-mono text-gray-500">Udemy</span>
+                            </div>
+
+                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-gray-400/30 transition-colors cursor-hover">
+                                <i class="fa-solid fa-code text-gray-400 mb-2 text-xl"></i>
+                                <h4 class="font-semibold text-sm text-white">Python: Básico ao Avançado</h4>
+                                <span class="text-xs font-mono text-gray-500">Udemy</span>
+                            </div>
+                            
+                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-orange-500/30 transition-colors cursor-hover md:col-span-2">
+                                <i class="fa-brands fa-html5 text-orange-500 mb-2 text-xl"></i>
+                                <h4 class="font-semibold text-sm text-white">HTML5, CSS e Javascript na Prática</h4>
+                                <span class="text-xs font-mono text-gray-500">Udemy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulador de Arquitetura (Com visual moderno em SVG) -->
+    <section id="arquitetura" class="py-24 relative overflow-hidden z-10 border-y border-white/5 bg-black/40">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16 reveal-up">
+                <h2 class="text-3xl font-bold mb-4">Arquitetura <span class="text-brand-react">Full Stack</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm">Visualização do ciclo de requisições: O Front-end em Next.js consome de forma segura a robusta API do Django conectada ao banco relacional.</p>
+            </div>
+
+            <div class="glass-panel p-8 md:p-12 rounded-3xl border border-white/10 reveal-scale flex flex-col items-center">
+                
+                <!-- Diagrama SVG e Nodes -->
+                <div class="relative w-full h-64 flex justify-between items-center px-4 md:px-10 mb-8 max-w-3xl">
+                    <!-- Linhas SVG de conexão -->
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0;">
+                        <!-- Linha 1: Client to API -->
+                        <path id="svg-line-1" d="M 15% 50% L 50% 50%" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="5,5" fill="none" class="transition-colors duration-300"/>
+                        <!-- Linha 2: API to DB -->
+                        <path id="svg-line-2" d="M 50% 50% L 85% 50%" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="5,5" fill="none" class="transition-colors duration-300"/>
+                    </svg>
+
+                    <!-- NODE 1: NEXT.JS -->
+                    <div class="flex flex-col items-center gap-3 relative z-10 node-ui transition-all duration-300" id="node-client">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#030712] flex items-center justify-center border border-white/10 shadow-lg text-4xl text-brand-react transition-all"><i class="fa-brands fa-react"></i></div>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Next.js UI</span>
+                    </div>
+
+                    <!-- NODE 2: DJANGO -->
+                    <div class="flex flex-col items-center gap-3 relative z-10 node-ui transition-all duration-300" id="node-api">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#030712] flex items-center justify-center border border-white/10 shadow-lg text-4xl text-brand-django transition-all"><i class="fa-brands fa-python"></i></div>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Django API</span>
+                    </div>
+
+                    <!-- NODE 3: DB -->
+                    <div class="flex flex-col items-center gap-3 relative z-10 node-ui transition-all duration-300" id="node-db">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#030712] flex items-center justify-center border border-white/10 shadow-lg text-4xl text-blue-500 transition-all"><i class="fa-solid fa-database"></i></div>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <!-- Painel de Controle -->
+                <div class="w-full bg-[#030712] rounded-xl p-5 border border-white/5 shadow-inner">
+                    <div id="sim-terminal" class="font-mono text-xs text-gray-500 mb-4 h-12 flex items-center justify-center text-center bg-black/50 rounded p-2 border border-white/5">
+                        > Aguardando inicialização do protocolo...
+                    </div>
+                    <div class="flex justify-center">
+                        <button onclick="runAdvancedSim()" id="sim-btn" class="px-8 py-3 rounded-full bg-white text-brand-dark font-bold hover:bg-gray-200 transition-all duration-300 flex items-center gap-2 cursor-hover">
+                            <i class="fa-solid fa-bolt text-brand-django"></i> Executar Requisição
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projetos Destaque -->
+    <section id="projetos" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal-up">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Projetos <span class="text-brand-react">Destaque</span></h2>
+                    <p class="text-gray-400 max-w-xl">Aplicações reais desenvolvidas do zero focadas em controle de acesso, regras de negócio complexas e performance.</p>
+                </div>
+                <a href="https://github.com/teylonkkjk" target="_blank" class="mt-4 md:mt-0 text-sm font-mono text-gray-400 hover:text-white border-b border-gray-600 pb-1 flex items-center gap-2 transition-colors cursor-hover">
+                    Ver todos no GitHub <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 
-                <!-- Card 1: Taskflow -->
-                <div class="glass rounded-2xl overflow-hidden border border-gray-700 hover:border-djangoLight/50 group relative gsap-reveal tilt-card shadow-lg transition-colors flex flex-col h-full">
-                    <div class="h-56 bg-gray-900 relative overflow-hidden flex items-center justify-center">
-                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-djangoLight via-gray-900 to-darkBg"></div>
-                        <i class="fa-solid fa-list-check text-7xl text-djangoLight group-hover:scale-110 transition-transform duration-700 relative z-10"></i>
-                        <div class="absolute inset-0 bg-gradient-to-t from-cardBg to-transparent opacity-90 z-20"></div>
+                <!-- PROJETO 1: TASKFLOW -->
+                <div class="group relative rounded-3xl bg-brand-card border border-white/5 overflow-hidden reveal-up cursor-hover hover:border-brand-django/50 transition-colors duration-500 flex flex-col h-full">
+                    <!-- Image/Header área abstrata -->
+                    <div class="h-64 relative overflow-hidden bg-[#0a1018] flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-br from-brand-django/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <!-- Decorative CSS Grid -->
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
+                        
+                        <i class="fa-solid fa-layer-group text-7xl text-white/10 group-hover:text-brand-django group-hover:scale-110 transition-all duration-700 z-10"></i>
                     </div>
                     
-                    <div class="p-8 relative z-30 bg-cardBg/90 flex flex-col flex-grow">
-                        <div class="flex gap-2 mb-4 flex-wrap">
-                            <span class="px-2 py-1 bg-djangoLight/10 text-djangoLight border border-djangoLight/30 text-xs rounded font-mono font-bold">Django</span>
-                            <span class="px-2 py-1 bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs rounded font-mono font-bold">Tailwind CSS</span>
-                            <span class="px-2 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/30 text-xs rounded font-mono font-bold">RBAC</span>
+                    <div class="p-8 relative z-20 flex flex-col flex-grow bg-gradient-to-t from-brand-dark to-transparent">
+                        <div class="flex gap-2 mb-5 flex-wrap">
+                            <span class="px-2.5 py-1 bg-brand-django/10 text-brand-django border border-brand-django/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Django</span>
+                            <span class="px-2.5 py-1 bg-brand-react/10 text-brand-react border border-brand-react/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Tailwind</span>
+                            <span class="px-2.5 py-1 bg-brand-ai/10 text-brand-ai border border-brand-ai/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">RBAC (Roles)</span>
                         </div>
                         
-                        <h3 class="text-2xl font-extrabold mb-2 text-white group-hover:text-djangoLight transition-colors">Taskflow</h3>
-                        <h4 class="text-sm text-gray-500 font-mono mb-4">Gestão de Demandas Corporativas</h4>
+                        <h3 class="text-3xl font-extrabold mb-1 text-white group-hover:text-brand-django transition-colors">Taskflow</h3>
+                        <h4 class="text-sm text-gray-500 font-mono mb-5">Gestão de Demandas Corporativas</h4>
                         
-                        <p class="text-gray-400 text-sm mb-8 leading-relaxed flex-grow">
-                            Sistema completo para gerenciar tarefas entre equipes. Implementa modelagem relacional para gerir setores e um controle de acesso baseado em funções (Role-Based Access Control), garantindo que administradores e usuários comuns tenham escopos restritos.
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
+                            Arquitetura relacional avançada para gerenciar fluxos entre setores. Implementação de <strong>Role-Based Access Control (RBAC)</strong> garantindo segurança nas permissões de administradores e usuários comuns.
                         </p>
                         
-                        <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank" class="mt-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-600 text-white rounded hover:bg-white hover:text-darkBg transition-all duration-300 font-bold tracking-wide w-full">
-                            <i class="fa-brands fa-github text-lg"></i> VER CÓDIGO
+                        <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
                         </a>
                     </div>
                 </div>
 
-                <!-- Card 2: TT-ANABOLIC -->
-                <div class="glass rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500/50 group relative gsap-reveal tilt-card shadow-lg transition-colors flex flex-col h-full">
-                    <div class="h-56 bg-gray-900 relative overflow-hidden flex items-center justify-center">
-                        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500 via-gray-900 to-darkBg"></div>
-                        <i class="fa-solid fa-cart-shopping text-7xl text-blue-400 group-hover:scale-110 transition-transform duration-700 relative z-10"></i>
-                        <div class="absolute inset-0 bg-gradient-to-t from-cardBg to-transparent opacity-90 z-20"></div>
+                <!-- PROJETO 2: TT-ANABOLIC -->
+                <div class="group relative rounded-3xl bg-brand-card border border-white/5 overflow-hidden reveal-up cursor-hover hover:border-blue-500/50 transition-colors duration-500 flex flex-col h-full" style="transition-delay: 200ms;">
+                    <div class="h-64 relative overflow-hidden bg-[#0a1018] flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
+                        
+                        <i class="fa-solid fa-cart-shopping text-7xl text-white/10 group-hover:text-blue-500 group-hover:scale-110 transition-all duration-700 z-10"></i>
                     </div>
                     
-                    <div class="p-8 relative z-30 bg-cardBg/90 flex flex-col flex-grow">
-                        <div class="flex gap-2 mb-4 flex-wrap">
-                            <span class="px-2 py-1 bg-djangoLight/10 text-djangoLight border border-djangoLight/30 text-xs rounded font-mono font-bold">Django</span>
-                            <span class="px-2 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs rounded font-mono font-bold">E-commerce</span>
-                            <span class="px-2 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/30 text-xs rounded font-mono font-bold">SMTP / Auth</span>
+                    <div class="p-8 relative z-20 flex flex-col flex-grow bg-gradient-to-t from-brand-dark to-transparent">
+                        <div class="flex gap-2 mb-5 flex-wrap">
+                            <span class="px-2.5 py-1 bg-brand-django/10 text-brand-django border border-brand-django/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Django</span>
+                            <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">E-commerce</span>
+                            <span class="px-2.5 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">SMTP / Auth</span>
                         </div>
                         
-                        <h3 class="text-2xl font-extrabold mb-2 text-white group-hover:text-blue-400 transition-colors">TT-ANABOLIC</h3>
-                        <h4 class="text-sm text-gray-500 font-mono mb-4">Plataforma E-commerce Completa</h4>
+                        <h3 class="text-3xl font-extrabold mb-1 text-white group-hover:text-blue-400 transition-colors">TT-ANABOLIC</h3>
+                        <h4 class="text-sm text-gray-500 font-mono mb-5">Plataforma E-commerce Completa</h4>
                         
-                        <p class="text-gray-400 text-sm mb-8 leading-relaxed flex-grow">
-                            Loja virtual desenvolvida do zero com Django. Conta com autenticação personalizada, gestão de carrinho de compras, e checkout utilizando <strong>Transações Atômicas</strong> para garantir a consistência do estoque. Inclui envio automático de e-mails via SMTP na confirmação de pedidos.
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
+                            Sistema de loja virtual construído com robustez. Desenvolvi gestão de carrinho, disparo automático via SMTP e checkout baseado em <strong>Transações Atômicas</strong>, evitando inconsistências no estoque em concorrência.
                         </p>
                         
-                        <a href="https://github.com/teylonkkjk/TT-ANABOLIC" target="_blank" class="mt-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-600 text-white rounded hover:bg-white hover:text-darkBg transition-all duration-300 font-bold tracking-wide w-full">
-                            <i class="fa-brands fa-github text-lg"></i> VER CÓDIGO
+                        <a href="https://github.com/teylonkkjk/TT-ANABOLIC" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
                         </a>
                     </div>
                 </div>
@@ -356,162 +474,219 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800/50 py-10">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-gray-500 font-mono text-xs text-center">
-            <p>&copy; 2026 Teylon Carvalho Oliveira. Desenvolvedor Full Stack.</p>
-            <p class="mt-2">Teresina, Piauí, Brasil.</p>
+    <footer class="border-t border-white/5 py-12 relative z-10 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500 font-mono text-xs text-center md:text-left">
+                <p class="text-white font-bold text-sm mb-1">Teylon Carvalho Oliveira.</p>
+                <p>&copy; 2026 Desenvolvedor Full Stack & Especialista IA.</p>
+                <p class="mt-1"><i class="fa-solid fa-location-dot mr-1"></i> Teresina, Piauí, Brasil.</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="https://github.com/teylonkkjk" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all cursor-hover"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/teylonoliveira/" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-react hover:bg-brand-react/10 transition-all cursor-hover"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:oteylon84@gmail.com" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-django hover:bg-brand-django/10 transition-all cursor-hover"><i class="fa-regular fa-envelope"></i></a>
+            </div>
         </div>
     </footer>
 
-    <!-- Bibliotecas Externas -->
+    <!-- Bibliotecas Externas GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
     <script>
-        // 1. Efeito de Digitação no Terminal (Hero)
-        const termText = "const developer = {\n  nome: 'Teylon Oliveira',\n  stack: ['Next.js (Front & Back)', 'Django (API)', 'Python', 'React'],\n  foco: 'Sistemas escaláveis e performáticos'\n};\n> init_portfolio();";
-        let i = 0;
-        function typeTerminal() {
-            if (i < termText.length) {
-                let char = termText.charAt(i);
-                if(char === '\n') {
-                    document.getElementById("typewriter-term").innerHTML += "<br>&nbsp;&nbsp;";
-                } else {
-                    document.getElementById("typewriter-term").innerHTML += char;
+        // 1. Navbar Glass Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-brand-dark/50', 'backdrop-blur-lg', 'border-b', 'border-white/5');
+                nav.querySelector('.glass-panel').classList.remove('glass-panel');
+                nav.querySelector('div > div').classList.add('bg-transparent', 'border-transparent', 'shadow-none');
+            } else {
+                nav.classList.remove('bg-brand-dark/50', 'backdrop-blur-lg', 'border-b', 'border-white/5');
+                nav.querySelector('div > div').classList.add('glass-panel');
+            }
+        });
+
+        // 2. Custom Cursor Magnético
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        let isHovering = false;
+
+        document.addEventListener('mousemove', (e) => {
+            // Dot follows instantly
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+            
+            // Ring follows with slight delay using CSS transition
+            cursorRing.style.left = `${e.clientX}px`;
+            cursorRing.style.top = `${e.clientY}px`;
+        });
+
+        const hoverElements = document.querySelectorAll('.cursor-hover, a, button');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
+        });
+
+        // 3. Efeito de Digitação no Hero (Estilo VS Code)
+        const codeText = [
+            "<span class='text-brand-ai'>import</span> { Django, Nextjs, AI } <span class='text-brand-ai'>from</span> <span class='text-brand-django'>'teylon-stack'</span>;",
+            "",
+            "<span class='text-brand-react'>const</span> <span class='text-blue-400'>developer</span> = {",
+            "  name: <span class='text-brand-django'>'Teylon Oliveira'</span>,",
+            "  role: <span class='text-brand-django'>'Full Stack Software Engineer'</span>,",
+            "  skills: [<span class='text-brand-django'>'Python'</span>, <span class='text-brand-django'>'React'</span>, <span class='text-brand-django'>'Docker'</span>, <span class='text-brand-django'>'n8n'</span>],",
+            "  specialty: <span class='text-brand-django'>'Automating the future.'</span>",
+            "};",
+            "",
+            "<span class='text-gray-500'>// Ready to build.</span>"
+        ];
+        
+        let lineIndex = 0;
+        let charIndex = 0;
+        const typerElement = document.getElementById('code-typer');
+        
+        function typeCode() {
+            if (lineIndex < codeText.length) {
+                if (charIndex === 0) {
+                    typerElement.innerHTML += `<div id="line-${lineIndex}" class="min-h-[1.25rem]"></div>`;
                 }
-                i++;
-                setTimeout(typeTerminal, 30);
+                
+                const currentLineDiv = document.getElementById(`line-${lineIndex}`);
+                // Simple hack for HTML tags typing effect
+                if (codeText[lineIndex].charAt(charIndex) === '<') {
+                    let fullTag = "";
+                    while (codeText[lineIndex].charAt(charIndex) !== '>' && charIndex < codeText[lineIndex].length) {
+                        fullTag += codeText[lineIndex].charAt(charIndex);
+                        charIndex++;
+                    }
+                    fullTag += '>';
+                    currentLineDiv.innerHTML += fullTag;
+                    charIndex++;
+                } else {
+                    currentLineDiv.innerHTML += codeText[lineIndex].charAt(charIndex);
+                    charIndex++;
+                }
+
+                if (charIndex >= codeText[lineIndex].length) {
+                    charIndex = 0;
+                    lineIndex++;
+                    setTimeout(typeCode, 200); // Pausa entre linhas
+                } else {
+                    setTimeout(typeCode, 30); // Velocidade de digitação
+                }
+            } else {
+                document.getElementById('cursor-blink').classList.add('animate-pulse');
             }
         }
-        setTimeout(typeTerminal, 1500);
+        setTimeout(typeCode, 1000);
 
-        // 2. Animações de Scroll (GSAP)
+        // 4. Animações GSAP
         gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.gsap-reveal').forEach(element => {
-            gsap.to(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                },
-                opacity: 1,
-                y: 0,
-                duration: 0.7,
-                ease: "power2.out"
+        
+        // Elementos surgindo para cima
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                y: 0, opacity: 1, duration: 0.8, ease: "power3.out"
+            });
+        });
+        
+        // Timeline lateral esquerda
+        gsap.utils.toArray('.reveal-left').forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                x: 0, opacity: 1, duration: 0.8, ease: "power3.out"
             });
         });
 
-        // 3. Efeito 3D
-        VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
-            max: 2, speed: 400, glare: true, "max-glare": 0.05
-        });
-
-        // 4. Custom Cursor
-        const cursor = document.getElementById('cursor-glow');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-        document.querySelectorAll('a, button, .tilt-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.width = '500px'; cursor.style.height = '500px';
-                cursor.style.background = 'radial-gradient(circle, rgba(68,183,139,0.15) 0%, rgba(0,0,0,0) 60%)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.width = '400px'; cursor.style.height = '400px';
-                cursor.style.background = 'radial-gradient(circle, rgba(68,183,139,0.08) 0%, rgba(0,0,0,0) 60%)';
+        // Timeline lateral direita
+        gsap.utils.toArray('.reveal-right').forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2
             });
         });
 
-        // 5. Lógica do Simulador da API REST
+        // Scale nas caixas
+        gsap.utils.toArray('.reveal-scale').forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)"
+            });
+        });
+
+        // 5. Lógica da Simulação de Arquitetura (SVG Line Draw)
         let isSimulating = false;
-        function runSimulation() {
+        function runAdvancedSim() {
             if(isSimulating) return;
             isSimulating = true;
             
             const btn = document.getElementById('sim-btn');
-            const status = document.getElementById('sim-status');
+            const term = document.getElementById('sim-terminal');
             const nodes = {
                 client: document.getElementById('node-client').firstElementChild,
                 api: document.getElementById('node-api').firstElementChild,
                 db: document.getElementById('node-db').firstElementChild
             };
-            const lines = [document.getElementById('line-1'), document.getElementById('line-2')];
+            const lines = {
+                req: document.getElementById('svg-line-1'),
+                db: document.getElementById('svg-line-2')
+            };
             
-            // Reset state
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processando...';
-            btn.classList.add('opacity-50', 'cursor-not-allowed');
-            status.innerHTML = "<span class='text-reactBlue'>[Next.js Server] Autenticando usuário (Next Auth) e chamando API Externa...</span>";
-            lines[0].classList.remove('reverse');
-            lines[1].classList.remove('reverse');
+            // Estado Inicial
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-brand-django"></i> Processando...';
+            btn.classList.add('opacity-50', 'pointer-events-none');
             
-            // Step 1: Next.js -> Django API
+            term.innerHTML = "<span class='text-brand-react'>[Next.js] Request GET /api/data disparado via Next Auth.</span>";
+            nodes.client.classList.add('border-brand-react', 'shadow-[0_0_30px_rgba(14,165,233,0.5)]');
+            
+            // Anima Path 1 (Front to API)
+            lines.req.setAttribute('stroke', '#0ea5e9');
+            
             setTimeout(() => {
-                nodes.client.classList.replace('border-gray-600', 'border-reactBlue');
-                nodes.client.classList.add('shadow-[0_0_15px_#61DAFB]');
-                lines[0].classList.add('active');
+                lines.req.classList.add('active'); // Liga animação dashed
                 
                 setTimeout(() => {
-                    nodes.api.classList.replace('border-gray-600', 'border-djangoLight');
-                    nodes.api.classList.add('shadow-[0_0_15px_#44B78B]', 'scale-110');
-                    status.innerHTML = "<span class='text-djangoLight'>[Django API] Recebendo Token, validando e chamando o ORM...</span>";
+                    // API Recebe
+                    nodes.client.classList.remove('border-brand-react', 'shadow-[0_0_30px_rgba(14,165,233,0.5)]');
+                    lines.req.classList.remove('active');
+                    lines.req.setAttribute('stroke', 'rgba(255,255,255,0.1)');
                     
-                    // Step 2: Django API -> DB
+                    term.innerHTML = "<span class='text-brand-django'>[Django DRF] Token Validado. Consultando banco relacional...</span>";
+                    nodes.api.classList.add('border-brand-django', 'shadow-[0_0_30px_rgba(16,185,129,0.5)]');
+                    lines.db.setAttribute('stroke', '#10b981');
+                    
                     setTimeout(() => {
-                        lines[0].classList.remove('active');
-                        nodes.client.classList.remove('shadow-[0_0_15px_#61DAFB]');
-                        nodes.client.classList.replace('border-reactBlue', 'border-gray-600');
-                        
-                        lines[1].classList.add('active');
-                        nodes.api.classList.remove('scale-110');
+                        lines.db.classList.add('active');
                         
                         setTimeout(() => {
-                            nodes.db.classList.replace('border-gray-600', 'border-blue-400');
-                            nodes.db.classList.add('shadow-[0_0_15px_#60A5FA]', 'scale-110');
-                            status.innerHTML = "<span class='text-blue-400'>[PostgreSQL] SELECT * FROM produtos; executado com sucesso.</span>";
+                            // DB Responde
+                            nodes.api.classList.remove('border-brand-django', 'shadow-[0_0_30px_rgba(16,185,129,0.5)]');
+                            lines.db.classList.remove('active');
                             
-                            // Step 3: DB -> Django API
+                            term.innerHTML = "<span class='text-blue-400'>[PostgreSQL] Dados encontrados com sucesso. Retornando ORM.</span>";
+                            nodes.db.classList.add('border-blue-500', 'shadow-[0_0_30px_rgba(59,130,246,0.5)]');
+                            
                             setTimeout(() => {
-                                lines[1].classList.add('reverse'); 
-                                nodes.db.classList.remove('scale-110');
+                                // Resposta final
+                                nodes.db.classList.remove('border-blue-500', 'shadow-[0_0_30px_rgba(59,130,246,0.5)]');
+                                lines.db.setAttribute('stroke', 'rgba(255,255,255,0.1)');
+                                
+                                term.innerHTML = "<span class='text-white'>✔ Status 200 OK. Dados renderizados perfeitamente na UI!</span>";
+                                nodes.client.classList.add('border-white', 'shadow-[0_0_30px_rgba(255,255,255,0.5)]');
                                 
                                 setTimeout(() => {
-                                    nodes.db.classList.remove('shadow-[0_0_15px_#60A5FA]');
-                                    nodes.db.classList.replace('border-blue-400', 'border-gray-600');
-                                    lines[1].classList.remove('active');
-                                    
-                                    nodes.api.classList.add('scale-110', 'shadow-[0_0_15px_#44B78B]');
-                                    status.innerHTML = "<span class='text-djangoLight'>[Django API] Serializando dados para JSON (Response 200 OK)</span>";
-                                    
-                                    // Step 4: Django API -> Next.js UI
-                                    setTimeout(() => {
-                                        lines[0].classList.add('active', 'reverse');
-                                        nodes.api.classList.remove('scale-110', 'shadow-[0_0_15px_#44B78B]');
-                                        
-                                        setTimeout(() => {
-                                            nodes.client.classList.add('shadow-[0_0_15px_#61DAFB]', 'scale-110');
-                                            nodes.client.classList.replace('border-gray-600', 'border-reactBlue');
-                                            
-                                            status.innerHTML = "<span class='text-white'>✔ Sucesso! Dados renderizados na interface via Server-Side Rendering.</span>";
-                                            lines[0].classList.remove('active');
-                                            
-                                            setTimeout(() => {
-                                                nodes.client.classList.remove('shadow-[0_0_15px_#61DAFB]', 'scale-110');
-                                                nodes.client.classList.replace('border-reactBlue', 'border-gray-600');
-                                                
-                                                btn.innerHTML = '<i class="fa-solid fa-rotate-right mr-2"></i> Simular Novamente';
-                                                btn.classList.remove('opacity-50', 'cursor-not-allowed');
-                                                isSimulating = false;
-                                            }, 1000);
-                                            
-                                        }, 800);
-                                    }, 800);
-                                }, 600);
-                            }, 1200);
-                        }, 600);
-                    }, 1000);
-                }, 600);
+                                    nodes.client.classList.remove('border-white', 'shadow-[0_0_30px_rgba(255,255,255,0.5)]');
+                                    btn.innerHTML = '<i class="fa-solid fa-bolt text-brand-django"></i> Executar Novamente';
+                                    btn.classList.remove('opacity-50', 'pointer-events-none');
+                                    isSimulating = false;
+                                }, 2000);
+                                
+                            }, 1000);
+                        }, 800);
+                    }, 500);
+                }, 800);
             }, 300);
         }
     </script>
