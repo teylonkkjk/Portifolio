@@ -15,36 +15,24 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            dark: '#030712', // gray-950
-                            card: '#111827', // gray-900
-                            django: '#10b981', // emerald-500
-                            react: '#0ea5e9',  // sky-500
-                            ai: '#a855f7',     // purple-500
-                        }
+                        background: '#09090b', // zinc-950
+                        surface: '#18181b', // zinc-900
+                        primary: '#10b981', // emerald-500
+                        react: '#0ea5e9', // sky-500
+                        ai: '#a855f7', // purple-500
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
                         mono: ['Fira Code', 'monospace'],
                     },
                     animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'float-delayed': 'float 6s ease-in-out 3s infinite',
-                        'marquee': 'marquee 25s linear infinite',
-                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'marquee': 'marquee 35s linear infinite',
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
                         marquee: {
                             '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 10px rgba(16, 185, 129, 0.8))' },
-                            '50%': { opacity: .5, filter: 'drop-shadow(0 0 2px rgba(16, 185, 129, 0.3))' },
+                            '100%': { transform: 'translateX(-50%)' },
                         }
                     }
                 }
@@ -53,175 +41,154 @@
     </script>
 
     <!-- Fontes e Ícones -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body { 
-            background-color: #030712; 
-            color: #f3f4f6; 
+            background-color: #09090b; 
+            color: #a1a1aa; 
             overflow-x: hidden; 
         }
         
-        /* Grid Background Pattern */
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        h1, h2, h3, h4, h5, h6 { color: #fafafa; }
+
+        /* Fundo com ruído sutil para textura */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
         }
 
-        /* Glassmorphism Refinado */
-        .glass-panel {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        /* Classes para animação de scroll simples */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Custom Cursor Moderno */
-        #cursor-dot {
-            width: 8px; height: 8px;
+        /* Efeito de card glassmorphism refinado */
+        .glass-card {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(16, 185, 129, 0.3); /* Borda verde primária sutil */
+            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.15);
+        }
+        
+        .glass-card-ai:hover {
+            border-color: rgba(168, 85, 247, 0.3); /* Borda roxa para IA */
+            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.15);
+        }
+        
+        .glass-card-react:hover {
+            border-color: rgba(14, 165, 233, 0.3); /* Borda azul para E-commerce */
+            box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.15);
+        }
+
+        /* Cursor do terminal piscando */
+        .cursor-blink {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
             background-color: #10b981;
-            position: fixed; top: 0; left: 0;
-            border-radius: 50%; pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 10000;
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
         }
-        #cursor-ring {
-            width: 32px; height: 32px;
-            border: 2px solid rgba(16, 185, 129, 0.4);
-            position: fixed; top: 0; left: 0;
-            border-radius: 50%; pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            transition: all 0.1s ease-out;
-        }
-        
-        .hover-active #cursor-dot { width: 40px; height: 40px; background-color: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; }
-        .hover-active #cursor-ring { opacity: 0; scale: 1.5; }
 
-        /* GSAP Classes */
-        .reveal-up { opacity: 0; transform: translateY(50px); }
-        .reveal-left { opacity: 0; transform: translateX(-50px); }
-        .reveal-right { opacity: 0; transform: translateX(50px); }
-        .reveal-scale { opacity: 0; transform: scale(0.9); }
-
-        /* SVG Line Animation */
-        .path-line {
-            stroke-dasharray: 100;
-            stroke-dashoffset: 100;
-            transition: stroke-dashoffset 1s ease-in-out;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-        .path-line.active { stroke-dashoffset: 0; animation: dashMove 2s linear infinite; }
-        @keyframes dashMove { to { stroke-dashoffset: -200; } }
-        
-        /* Oculta scrollbar mas permite scroll */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #030712; }
-        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-django selection:text-white">
-
-    <!-- Fundo de Grade Dinâmico -->
-    <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
+<body class="antialiased selection:bg-primary selection:text-white bg-noise">
 
     <!-- Efeitos de Brilho de Fundo -->
-    <div class="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-django/10 blur-[120px] pointer-events-none z-0"></div>
-    <div class="fixed bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-brand-react/10 blur-[120px] pointer-events-none z-0"></div>
-
-    <!-- Custom Cursor -->
-    <div id="cursor-dot" class="hidden md:block"></div>
-    <div id="cursor-ring" class="hidden md:block"></div>
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[100px] pointer-events-none animate-pulse-slow z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-react/10 blur-[100px] pointer-events-none animate-pulse-slow z-0" style="animation-delay: 2s;"></div>
 
     <!-- Navegação -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 py-4 mt-2">
-            <div class="glass-panel rounded-full px-6 py-3 flex justify-between items-center w-full">
-                <span class="text-xl font-bold font-mono text-white tracking-tighter cursor-hover">
-                    Teylon<span class="text-brand-django">.</span>dev
-                </span>
-                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                    <a href="#home" class="hover:text-white transition-colors cursor-hover">Início</a>
-                    <a href="#skills" class="hover:text-white transition-colors cursor-hover">Expertise</a>
-                    <a href="#experiencia" class="hover:text-white transition-colors cursor-hover">Trajetória</a>
-                    <a href="#projetos" class="hover:text-white transition-colors cursor-hover">Projetos</a>
-                </div>
-                <div class="flex items-center gap-4">
-                    <a href="https://github.com/teylonkkjk" target="_blank" class="text-gray-400 hover:text-white transition-colors text-xl cursor-hover"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/teylonoliveira/" target="_blank" class="text-gray-400 hover:text-brand-react transition-colors text-xl cursor-hover"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio!" target="_blank" class="hidden md:flex px-5 py-2 rounded-full bg-brand-django/10 border border-brand-django/30 text-brand-django hover:bg-brand-django hover:text-brand-dark transition-all duration-300 font-semibold text-sm items-center gap-2 cursor-hover">
-                        <i class="fa-brands fa-whatsapp"></i> Vamos Conversar
-                    </a>
-                </div>
+    <nav class="fixed w-full z-50 top-0 bg-background/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
+            <span class="text-xl font-bold font-mono text-white tracking-tighter">
+                Teylon<span class="text-primary">.dev</span>
+            </span>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#home" class="hover:text-white transition-colors">Início</a>
+                <a href="#experiencia" class="hover:text-white transition-colors">Trajetória</a>
+                <a href="#projetos" class="hover:text-white transition-colors">Projetos</a>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="https://github.com/teylonkkjk" target="_blank" class="hover:text-white transition-colors hover:scale-110 duration-200 text-xl"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/teylonoliveira/" target="_blank" class="hover:text-white transition-colors hover:scale-110 duration-200 text-xl"><i class="fa-brands fa-linkedin"></i></a>
+                <!-- Botão do WhatsApp Restaurado -->
+                <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio!" target="_blank" class="hidden md:flex px-5 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary hover:bg-primary hover:text-background transition-all duration-300 font-semibold text-sm items-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> Vamos Conversar
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 z-10">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
+    <section id="home" class="min-h-[90vh] flex items-center pt-24 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
             
-            <!-- Conteúdo Textual -->
-            <div class="text-left">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-white/5 text-xs font-mono text-gray-300 mb-8 reveal-up">
-                    <span class="w-2 h-2 rounded-full bg-brand-django animate-pulse-glow"></span> 
+            <div class="text-left fade-up">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs font-mono mb-8 border border-white/10">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> 
                     Ciência da Computação | UNINASSAU
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-white reveal-up leading-[1.1]" style="transition-delay: 100ms;">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1] text-white">
                     Sistemas robustos.<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-django via-brand-react to-brand-ai">IA & Automação.</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-react to-ai">IA & Automação.</span>
                 </h1>
                 
-                <p class="text-gray-400 text-lg mb-8 reveal-up leading-relaxed max-w-xl" style="transition-delay: 200ms;">
+                <!-- Texto Exato Original -->
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed max-w-xl">
                     Sou <strong>Teylon Oliveira</strong>, desenvolvedor Full Stack. Uno o poder do Back-end <strong>Python/Django</strong> à performance do Front-end <strong>Next.js/React</strong>. Além de sistemas web, sou especialista em integrar <strong>Inteligência Artificial, RAG e agentes autônomos (n8n/Docker)</strong> para criar fluxos inovadores.
                 </p>
                 
-                <div class="flex flex-wrap gap-4 reveal-up" style="transition-delay: 300ms;">
-                    <a href="#projetos" class="px-8 py-3.5 rounded-xl bg-white text-brand-dark font-bold hover:bg-gray-200 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)] cursor-hover">
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projetos" class="px-8 py-3.5 rounded-xl bg-white text-background font-bold hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                         Ver Meus Projetos
                     </a>
-                    <a href="mailto:oteylon84@gmail.com" class="px-8 py-3.5 rounded-xl glass-panel text-white hover:border-gray-500 transition-all duration-300 font-mono text-sm flex items-center gap-2 cursor-hover">
+                    <a href="mailto:oteylon84@gmail.com" class="px-8 py-3.5 rounded-xl glass-card text-sm font-mono flex items-center gap-2 text-white hover:bg-white/5">
                         <i class="fa-regular fa-envelope"></i> oteylon84@gmail.com
                     </a>
                 </div>
             </div>
 
-            <!-- Modern Code Editor UI -->
-            <div class="relative reveal-scale animate-float w-full max-w-lg mx-auto lg:mx-0">
-                <!-- Efeito de brilho atrás do editor -->
-                <div class="absolute inset-0 bg-gradient-to-tr from-brand-django to-brand-ai opacity-20 blur-2xl rounded-2xl"></div>
-                
-                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 relative z-10 shadow-2xl">
-                    <!-- Mac Header -->
-                    <div class="bg-black/40 px-4 py-3 flex items-center gap-2 border-b border-white/5 backdrop-blur-md">
-                        <div class="flex gap-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                        </div>
+            <!-- Bloco de Código (Efeito VS Code Limpo) -->
+            <div class="relative w-full max-w-lg mx-auto lg:ml-auto fade-up delay-100 hidden md:block">
+                <div class="bg-[#121214] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
+                    <div class="h-1 w-full bg-gradient-to-r from-primary via-react to-ai opacity-50"></div>
+                    <div class="bg-[#18181b] px-4 py-3 flex items-center gap-2 border-b border-white/5">
+                        <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
                         <div class="mx-auto flex gap-4 text-[10px] font-mono text-gray-500">
-                            <span class="text-brand-django">app.py</span>
+                            <span class="text-primary">app.py</span>
                             <span class="text-gray-600">|</span>
-                            <span class="text-brand-react">agent.ts</span>
+                            <span class="text-react">agent.ts</span>
                         </div>
                     </div>
-                    <!-- Editor Body -->
-                    <div class="p-6 font-mono text-sm h-80 overflow-y-auto bg-[#0d1117] relative">
-                        <!-- Line numbers -->
-                        <div class="absolute left-0 top-0 bottom-0 w-8 bg-black/20 border-r border-white/5 flex flex-col items-center py-6 text-gray-700 text-xs select-none">
-                            1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9
-                        </div>
-                        <div class="pl-6" id="code-typer">
-                            <!-- JS fará a digitação aqui -->
-                        </div>
-                        <span class="animate-pulse text-white inline-block pl-6 mt-1" id="cursor-blink">|</span>
+                    <div class="p-6 font-mono text-[13px] h-64 overflow-hidden text-gray-300 relative">
+                        <pre><code id="typing-code"></code><span class="cursor-blink" id="cursor"></span></pre>
                     </div>
                 </div>
             </div>
@@ -229,106 +196,128 @@
         </div>
     </section>
 
-    <!-- Marquee de Tecnologias (Infinite Scroll) -->
-    <section id="skills" class="py-10 border-y border-white/5 bg-black/20 overflow-hidden relative z-10">
-        <div class="flex whitespace-nowrap">
-            <div class="animate-marquee flex gap-12 items-center text-gray-500 font-mono text-lg px-6 font-bold uppercase tracking-widest">
-                <span>Next.js SSR</span> • <span class="text-brand-django">Python/Django</span> • <span>React Hooks</span> • <span class="text-brand-react">Tailwind</span> • <span>PostgreSQL</span> • <span class="text-brand-ai">n8n (Workflows)</span> • <span>Docker</span> • <span>APIs REST</span> • <span>RAG/LLMs</span> •
-                <!-- Repeat for infinite illusion -->
-                <span>Next.js SSR</span> • <span class="text-brand-django">Python/Django</span> • <span>React Hooks</span> • <span class="text-brand-react">Tailwind</span> • <span>PostgreSQL</span> • <span class="text-brand-ai">n8n (Workflows)</span> • <span>Docker</span> • <span>APIs REST</span> • <span>RAG/LLMs</span> •
+    <!-- Marquee de Tecnologias (Texto Exato Original) -->
+    <section class="py-6 border-y border-white/5 bg-surface/20 overflow-hidden relative z-10">
+        <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
+        <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10"></div>
+        
+        <div class="flex w-[200%] animate-marquee">
+            <div class="flex-1 flex justify-around items-center text-sm font-mono text-gray-500 font-bold uppercase tracking-widest">
+                <span>Next.js SSR</span> •
+                <span class="text-primary">Python/Django</span> •
+                <span>React Hooks</span> •
+                <span class="text-react">Tailwind</span> •
+                <span>PostgreSQL</span> •
+                <span class="text-ai">n8n (Workflows)</span> •
+                <span>Docker</span> •
+                <span>APIs REST</span> •
+                <span>RAG/LLMs</span> •
+            </div>
+            <div class="flex-1 flex justify-around items-center text-sm font-mono text-gray-500 font-bold uppercase tracking-widest">
+                <span>Next.js SSR</span> •
+                <span class="text-primary">Python/Django</span> •
+                <span>React Hooks</span> •
+                <span class="text-react">Tailwind</span> •
+                <span>PostgreSQL</span> •
+                <span class="text-ai">n8n (Workflows)</span> •
+                <span>Docker</span> •
+                <span>APIs REST</span> •
+                <span>RAG/LLMs</span> •
             </div>
         </div>
     </section>
 
-    <!-- Jornada (Educação e Experiência lado a lado) -->
+    <!-- Trajetória (Experiência e Cursos Originais Restaurados) -->
     <section id="experiencia" class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 reveal-up">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">Minha <span class="text-brand-django">Trajetória</span></h2>
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Minha <span class="text-primary">Trajetória</span></h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">A evolução constante entre desenvolvimento tradicional e novas arquiteturas inteligentes.</p>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 
                 <!-- Coluna Esquerda: Experiência Profissional -->
-                <div class="reveal-left">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-10 h-10 rounded-lg bg-brand-react/10 text-brand-react flex items-center justify-center text-xl border border-brand-react/20"><i class="fa-solid fa-briefcase"></i></div>
-                        <h3 class="text-2xl font-bold">Experiência</h3>
-                    </div>
+                <div class="fade-up">
+                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-react/10 text-react flex items-center justify-center border border-react/20"><i class="fa-solid fa-briefcase"></i></div>
+                        Experiência
+                    </h3>
                     
-                    <div class="border-l border-gray-800 pl-8 space-y-12 relative ml-4">
-                        <!-- Exp 1 -->
-                        <div class="relative group cursor-hover">
-                            <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-brand-dark border-2 border-brand-django group-hover:bg-brand-django transition-colors"></div>
-                            <h4 class="font-bold text-white text-xl group-hover:text-brand-django transition-colors">Analista de Dados</h4>
-                            <p class="text-sm text-brand-django font-mono mb-3">Stringhini | Mar 2026 - Mai 2026</p>
-                            <p class="text-gray-400 text-sm leading-relaxed">Tratamento avançado e limpeza de bases de dados complexas. Desenvolvimento de dashboards interativos e relatórios gerenciais, focando em transformar dados brutos em inteligência estratégica para tomada de decisão.</p>
+                    <div class="space-y-12 border-l border-white/10 pl-8 ml-4">
+                        <div class="relative group">
+                            <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-background border-2 border-primary group-hover:bg-primary transition-colors"></div>
+                            <h4 class="font-bold text-white text-xl group-hover:text-primary transition-colors">Analista de Dados</h4>
+                            <p class="text-sm font-mono text-primary mb-3">Stringhini | Mar 2026 - Mai 2026</p>
+                            <!-- Texto Exato Original -->
+                            <p class="text-sm leading-relaxed text-gray-400">
+                                Tratamento avançado e limpeza de bases de dados complexas. Desenvolvimento de dashboards interativos e relatórios gerenciais, focando em transformar dados brutos em inteligência estratégica para tomada de decisão.
+                            </p>
                         </div>
                         
-                        <!-- Exp 2 -->
-                        <div class="relative group cursor-hover">
-                            <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-brand-dark border-2 border-gray-600 group-hover:border-white transition-colors"></div>
+                        <div class="relative group">
+                            <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-background border-2 border-gray-600 group-hover:border-white transition-colors"></div>
                             <h4 class="font-bold text-white text-xl group-hover:text-white transition-colors">Técnico de TI</h4>
-                            <p class="text-sm text-gray-500 font-mono mb-3">Miny preço | Jan 2022 - Mar 2025</p>
-                            <p class="text-gray-400 text-sm leading-relaxed">Infraestrutura, manutenção de hardware e redes LAN/WLAN. Suporte técnico ágil garantindo alta disponibilidade operacional para os usuários finais e sistemas da empresa.</p>
+                            <p class="text-sm font-mono text-gray-500 mb-3">Miny preço | Jan 2022 - Mar 2025</p>
+                            <!-- Texto Exato Original -->
+                            <p class="text-sm leading-relaxed text-gray-400">
+                                Infraestrutura, manutenção de hardware e redes LAN/WLAN. Suporte técnico ágil garantindo alta disponibilidade operacional para os usuários finais e sistemas da empresa.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Coluna Direita: Cursos e Especializações -->
-                <div class="reveal-right">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-10 h-10 rounded-lg bg-brand-ai/10 text-brand-ai flex items-center justify-center text-xl border border-brand-ai/20"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <h3 class="text-2xl font-bold">Capacitação & Cursos</h3>
-                    </div>
+                <!-- Coluna Direita: Capacitação & Cursos -->
+                <div class="fade-up delay-100">
+                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-ai/10 text-ai flex items-center justify-center border border-ai/20"><i class="fa-solid fa-graduation-cap"></i></div>
+                        Capacitação & Cursos
+                    </h3>
                     
                     <div class="space-y-4">
-                        <!-- Curso Destaque (IA / n8n) -->
-                        <div class="glass-panel p-5 rounded-xl border border-brand-ai/40 relative overflow-hidden group cursor-hover hover:border-brand-ai transition-colors">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-brand-ai/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-brand-ai/20 transition-all"></div>
+                        <!-- Top Skill Exata -->
+                        <div class="glass-card-ai p-5 rounded-xl group relative overflow-hidden bg-surface/50">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-ai/10 rounded-full blur-2xl group-hover:bg-ai/20 transition-all -mr-10 -mt-10"></div>
                             <div class="relative z-10 flex gap-4 items-start">
-                                <div class="text-brand-ai mt-1 text-2xl"><i class="fa-solid fa-robot"></i></div>
+                                <div class="text-ai mt-1 text-2xl"><i class="fa-solid fa-robot"></i></div>
                                 <div>
-                                    <div class="flex gap-2 mb-2 flex-wrap">
-                                        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-brand-ai/20 text-brand-ai rounded">Top Skill</span>
+                                    <div class="flex gap-2 mb-2">
+                                        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-ai/20 text-ai rounded">Top Skill</span>
                                     </div>
                                     <h4 class="font-bold text-white mb-1">n8n, IA, APIs e Agentes Inteligentes</h4>
+                                    <!-- Texto Exato Original -->
                                     <p class="text-xs text-gray-400 mb-2">Treinamento completo focando na criação de workflows reais, integração de APIs, Docker, WhatsApp bots, MCP e arquitetura RAG.</p>
                                     <span class="text-xs font-mono text-gray-500">Udemy</span>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Grid de Outros Cursos -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-brand-django/30 transition-colors cursor-hover">
-                                <i class="fa-brands fa-python text-brand-django mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-sm text-white">APIs REST Python & DRF</h4>
+                        
+                        <!-- Grid de Outros Cursos Exatos -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-primary/30">
+                                <i class="fa-brands fa-python text-primary mb-2 text-xl"></i>
+                                <h4 class="font-semibold text-white text-sm mb-1">APIs REST Python & DRF</h4>
                                 <span class="text-xs font-mono text-gray-500">Udemy</span>
                             </div>
-                            
-                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-brand-react/30 transition-colors cursor-hover">
-                                <i class="fa-brands fa-react text-brand-react mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-sm text-white">Next.js & React do Zero</h4>
+                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-react/30">
+                                <i class="fa-brands fa-react text-react mb-2 text-xl"></i>
+                                <h4 class="font-semibold text-white text-sm mb-1">Next.js & React do Zero</h4>
                                 <span class="text-xs font-mono text-gray-500">Udemy</span>
                             </div>
-                            
-                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-brand-django/30 transition-colors cursor-hover">
-                                <i class="fa-solid fa-server text-brand-django mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-sm text-white">Web c/ Django Framework</h4>
+                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-primary/30">
+                                <i class="fa-solid fa-server text-primary mb-2 text-xl"></i>
+                                <h4 class="font-semibold text-white text-sm mb-1">Web c/ Django Framework</h4>
                                 <span class="text-xs font-mono text-gray-500">Udemy</span>
                             </div>
-
-                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-gray-400/30 transition-colors cursor-hover">
+                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-gray-400/30">
                                 <i class="fa-solid fa-code text-gray-400 mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-sm text-white">Python: Básico ao Avançado</h4>
+                                <h4 class="font-semibold text-white text-sm mb-1">Python: Básico ao Avançado</h4>
                                 <span class="text-xs font-mono text-gray-500">Udemy</span>
                             </div>
-                            
-                            <div class="glass-panel p-4 rounded-xl border border-white/5 hover:border-orange-500/30 transition-colors cursor-hover md:col-span-2">
+                            <!-- Curso de HTML Restaurado -->
+                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-orange-500/30 md:col-span-2">
                                 <i class="fa-brands fa-html5 text-orange-500 mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-sm text-white">HTML5, CSS e Javascript na Prática</h4>
+                                <h4 class="font-semibold text-white text-sm mb-1">HTML5, CSS e Javascript na Prática</h4>
                                 <span class="text-xs font-mono text-gray-500">Udemy</span>
                             </div>
                         </div>
@@ -339,70 +328,15 @@
         </div>
     </section>
 
-    <!-- Simulador de Arquitetura (Com visual moderno em SVG) -->
-    <section id="arquitetura" class="py-24 relative overflow-hidden z-10 border-y border-white/5 bg-black/40">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-16 reveal-up">
-                <h2 class="text-3xl font-bold mb-4">Arquitetura <span class="text-brand-react">Full Stack</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-sm">Visualização do ciclo de requisições: O Front-end em Next.js consome de forma segura a robusta API do Django conectada ao banco relacional.</p>
-            </div>
-
-            <div class="glass-panel p-8 md:p-12 rounded-3xl border border-white/10 reveal-scale flex flex-col items-center">
-                
-                <!-- Diagrama SVG e Nodes -->
-                <div class="relative w-full h-64 flex justify-between items-center px-4 md:px-10 mb-8 max-w-3xl">
-                    <!-- Linhas SVG de conexão -->
-                    <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0;">
-                        <!-- Linha 1: Client to API -->
-                        <path id="svg-line-1" d="M 15% 50% L 50% 50%" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="5,5" fill="none" class="transition-colors duration-300"/>
-                        <!-- Linha 2: API to DB -->
-                        <path id="svg-line-2" d="M 50% 50% L 85% 50%" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="5,5" fill="none" class="transition-colors duration-300"/>
-                    </svg>
-
-                    <!-- NODE 1: NEXT.JS -->
-                    <div class="flex flex-col items-center gap-3 relative z-10 node-ui transition-all duration-300" id="node-client">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#030712] flex items-center justify-center border border-white/10 shadow-lg text-4xl text-brand-react transition-all"><i class="fa-brands fa-react"></i></div>
-                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Next.js UI</span>
-                    </div>
-
-                    <!-- NODE 2: DJANGO -->
-                    <div class="flex flex-col items-center gap-3 relative z-10 node-ui transition-all duration-300" id="node-api">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#030712] flex items-center justify-center border border-white/10 shadow-lg text-4xl text-brand-django transition-all"><i class="fa-brands fa-python"></i></div>
-                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Django API</span>
-                    </div>
-
-                    <!-- NODE 3: DB -->
-                    <div class="flex flex-col items-center gap-3 relative z-10 node-ui transition-all duration-300" id="node-db">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#030712] flex items-center justify-center border border-white/10 shadow-lg text-4xl text-blue-500 transition-all"><i class="fa-solid fa-database"></i></div>
-                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <!-- Painel de Controle -->
-                <div class="w-full bg-[#030712] rounded-xl p-5 border border-white/5 shadow-inner">
-                    <div id="sim-terminal" class="font-mono text-xs text-gray-500 mb-4 h-12 flex items-center justify-center text-center bg-black/50 rounded p-2 border border-white/5">
-                        > Aguardando inicialização do protocolo...
-                    </div>
-                    <div class="flex justify-center">
-                        <button onclick="runAdvancedSim()" id="sim-btn" class="px-8 py-3 rounded-full bg-white text-brand-dark font-bold hover:bg-gray-200 transition-all duration-300 flex items-center gap-2 cursor-hover">
-                            <i class="fa-solid fa-bolt text-brand-django"></i> Executar Requisição
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Projetos Destaque -->
-    <section id="projetos" class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal-up">
+    <!-- Projetos Destaque (Textos e Tags Originais) -->
+    <section id="projetos" class="py-24 relative z-10 bg-surface/20 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 fade-up">
                 <div>
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Projetos <span class="text-brand-react">Destaque</span></h2>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Projetos <span class="text-react">Destaque</span></h2>
                     <p class="text-gray-400 max-w-xl">Aplicações reais desenvolvidas do zero focadas em controle de acesso, regras de negócio complexas, IA e performance.</p>
                 </div>
-                <a href="https://github.com/teylonkkjk" target="_blank" class="mt-4 md:mt-0 text-sm font-mono text-gray-400 hover:text-white border-b border-gray-600 pb-1 flex items-center gap-2 transition-colors cursor-hover">
+                <a href="https://github.com/teylonkkjk" target="_blank" class="mt-4 md:mt-0 text-sm font-mono text-gray-400 hover:text-white border-b border-gray-600 hover:border-white pb-1 flex items-center gap-2 transition-colors">
                     Ver todos no GitHub <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
@@ -410,89 +344,81 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 
                 <!-- PROJETO 1: TASKFLOW -->
-                <div class="group relative rounded-3xl bg-brand-card border border-white/5 overflow-hidden reveal-up cursor-hover hover:border-brand-django/50 transition-colors duration-500 flex flex-col h-full">
-                    <!-- Image/Header área abstrata -->
-                    <div class="h-64 relative overflow-hidden bg-[#0a1018] flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-br from-brand-django/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <!-- Decorative CSS Grid -->
-                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
-                        
-                        <i class="fa-solid fa-layer-group text-7xl text-white/10 group-hover:text-brand-django group-hover:scale-110 transition-all duration-700 z-10"></i>
+                <div class="glass-card rounded-3xl overflow-hidden fade-up group flex flex-col h-full bg-[#111827]">
+                    <div class="h-48 relative overflow-hidden bg-[#0a1018] flex items-center justify-center border-b border-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <i class="fa-solid fa-layer-group text-6xl text-white/10 group-hover:text-primary group-hover:scale-110 transition-all duration-700 z-10"></i>
                     </div>
                     
-                    <div class="p-8 relative z-20 flex flex-col flex-grow bg-gradient-to-t from-brand-dark to-transparent">
+                    <div class="p-8 relative z-20 flex flex-col flex-grow">
                         <div class="flex gap-2 mb-5 flex-wrap">
-                            <span class="px-2.5 py-1 bg-brand-django/10 text-brand-django border border-brand-django/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Django</span>
-                            <span class="px-2.5 py-1 bg-brand-react/10 text-brand-react border border-brand-react/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Tailwind</span>
-                            <span class="px-2.5 py-1 bg-brand-ai/10 text-brand-ai border border-brand-ai/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">RBAC (Roles)</span>
+                            <span class="px-2.5 py-1 bg-primary/10 text-primary border border-primary/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Django</span>
+                            <span class="px-2.5 py-1 bg-react/10 text-react border border-react/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Tailwind</span>
+                            <span class="px-2.5 py-1 bg-ai/10 text-ai border border-ai/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">RBAC (Roles)</span>
                         </div>
                         
-                        <h3 class="text-3xl font-extrabold mb-1 text-white group-hover:text-brand-django transition-colors">Taskflow</h3>
+                        <h3 class="text-2xl font-extrabold mb-1 text-white group-hover:text-primary transition-colors">Taskflow</h3>
                         <h4 class="text-sm text-gray-500 font-mono mb-5">Gestão de Demandas Corporativas</h4>
                         
                         <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
                             Arquitetura relacional avançada para gerenciar fluxos entre setores. Implementação de <strong>Role-Based Access Control (RBAC)</strong> garantindo segurança nas permissões de administradores e usuários comuns.
                         </p>
                         
-                        <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                        <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-background transition-all duration-300 flex items-center justify-center gap-2">
                             <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
                         </a>
                     </div>
                 </div>
 
                 <!-- PROJETO 2: TT-ANABOLIC -->
-                <div class="group relative rounded-3xl bg-brand-card border border-white/5 overflow-hidden reveal-up cursor-hover hover:border-blue-500/50 transition-colors duration-500 flex flex-col h-full" style="transition-delay: 200ms;">
-                    <div class="h-64 relative overflow-hidden bg-[#0a1018] flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
-                        
-                        <i class="fa-solid fa-cart-shopping text-7xl text-white/10 group-hover:text-blue-500 group-hover:scale-110 transition-all duration-700 z-10"></i>
+                <div class="glass-card-react rounded-3xl overflow-hidden fade-up delay-100 group flex flex-col h-full bg-[#111827]">
+                    <div class="h-48 relative overflow-hidden bg-[#0a1018] flex items-center justify-center border-b border-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <i class="fa-solid fa-cart-shopping text-6xl text-white/10 group-hover:text-blue-500 group-hover:scale-110 transition-all duration-700 z-10"></i>
                     </div>
                     
-                    <div class="p-8 relative z-20 flex flex-col flex-grow bg-gradient-to-t from-brand-dark to-transparent">
+                    <div class="p-8 relative z-20 flex flex-col flex-grow">
                         <div class="flex gap-2 mb-5 flex-wrap">
-                            <span class="px-2.5 py-1 bg-brand-django/10 text-brand-django border border-brand-django/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Django</span>
+                            <span class="px-2.5 py-1 bg-primary/10 text-primary border border-primary/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Django</span>
                             <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">E-commerce</span>
                             <span class="px-2.5 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">SMTP / Auth</span>
                         </div>
                         
-                        <h3 class="text-3xl font-extrabold mb-1 text-white group-hover:text-blue-400 transition-colors">TT-ANABOLIC</h3>
+                        <h3 class="text-2xl font-extrabold mb-1 text-white group-hover:text-blue-400 transition-colors">TT-ANABOLIC</h3>
                         <h4 class="text-sm text-gray-500 font-mono mb-5">Plataforma E-commerce Completa</h4>
                         
                         <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
                             Sistema de loja virtual construído com robustez. Desenvolvi gestão de carrinho, disparo automático via SMTP e checkout baseado em <strong>Transações Atômicas</strong>, evitando inconsistências no estoque em concorrência.
                         </p>
                         
-                        <a href="https://github.com/teylonkkjk/TT-ANABOLIC" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                        <a href="https://github.com/teylonkkjk/TT-ANABOLIC" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-background transition-all duration-300 flex items-center justify-center gap-2">
                             <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
                         </a>
                     </div>
                 </div>
 
                 <!-- PROJETO 3: ASSISTENTE VIRTUAL IA N8N -->
-                <div class="group relative rounded-3xl bg-brand-card border border-white/5 overflow-hidden reveal-up cursor-hover hover:border-brand-ai/50 transition-colors duration-500 flex flex-col h-full lg:col-span-2 xl:col-span-1" style="transition-delay: 300ms;">
-                    <div class="h-64 relative overflow-hidden bg-[#0a1018] flex items-center justify-center">
-                        <div class="absolute inset-0 bg-gradient-to-br from-brand-ai/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
-                        
-                        <i class="fa-solid fa-network-wired text-7xl text-white/10 group-hover:text-brand-ai group-hover:scale-110 transition-all duration-700 z-10"></i>
+                <div class="glass-card-ai rounded-3xl overflow-hidden fade-up delay-200 group flex flex-col h-full bg-[#111827] lg:col-span-2 xl:col-span-1 xl:max-w-2xl mx-auto lg:w-1/2 lg:mx-auto">
+                    <div class="h-48 relative overflow-hidden bg-[#0a1018] flex items-center justify-center border-b border-white/5">
+                        <div class="absolute inset-0 bg-gradient-to-br from-ai/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <i class="fa-solid fa-network-wired text-6xl text-white/10 group-hover:text-ai group-hover:scale-110 transition-all duration-700 z-10"></i>
                     </div>
                     
-                    <div class="p-8 relative z-20 flex flex-col flex-grow bg-gradient-to-t from-brand-dark to-transparent">
+                    <div class="p-8 relative z-20 flex flex-col flex-grow">
                         <div class="flex gap-2 mb-5 flex-wrap">
-                            <span class="px-2.5 py-1 bg-brand-ai/10 text-brand-ai border border-brand-ai/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">n8n (Workflows)</span>
-                            <span class="px-2.5 py-1 bg-brand-react/10 text-brand-react border border-brand-react/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Google Gemini</span>
+                            <span class="px-2.5 py-1 bg-ai/10 text-ai border border-ai/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">n8n (Workflows)</span>
+                            <span class="px-2.5 py-1 bg-react/10 text-react border border-react/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Google Gemini</span>
                             <span class="px-2.5 py-1 bg-gray-500/10 text-gray-400 border border-gray-500/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Agentic AI</span>
                         </div>
                         
-                        <h3 class="text-3xl font-extrabold mb-1 text-white group-hover:text-brand-ai transition-colors">Assistente Virtual IA</h3>
+                        <h3 class="text-2xl font-extrabold mb-1 text-white group-hover:text-ai transition-colors">Assistente Virtual IA</h3>
                         <h4 class="text-sm text-gray-500 font-mono mb-5">Agentes Autónomos e Gestão de Calendário</h4>
                         
                         <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
                             Fluxo avançado construído no n8n utilizando <strong>Agentic AI</strong> para gerir calendário de forma autônoma. Inclui orquestração com Google Gemini, Tool Calling, validação de regras de negócio via JS e sistema de alerta condicional VIP integrado ao Gmail.
                         </p>
                         
-                        <a href="https://github.com/teylonkkjk/n8n-ai-calendar-agent" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                        <a href="https://github.com/teylonkkjk/n8n-ai-calendar-agent" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-background transition-all duration-300 flex items-center justify-center gap-2">
                             <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
                         </a>
                     </div>
@@ -503,69 +429,58 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-white/5 py-12 relative z-10 bg-brand-dark">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer class="border-t border-white/5 py-12 relative z-10 bg-[#030712]">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-gray-500 font-mono text-xs text-center md:text-left">
                 <p class="text-white font-bold text-sm mb-1">Teylon Carvalho Oliveira.</p>
                 <p>&copy; 2026 Desenvolvedor Full Stack & Especialista IA.</p>
                 <p class="mt-1"><i class="fa-solid fa-location-dot mr-1"></i> Teresina, Piauí, Brasil.</p>
             </div>
             <div class="flex gap-4">
-                <a href="https://github.com/teylonkkjk" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all cursor-hover"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/teylonoliveira/" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-react hover:bg-brand-react/10 transition-all cursor-hover"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="mailto:oteylon84@gmail.com" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-django hover:bg-brand-django/10 transition-all cursor-hover"><i class="fa-regular fa-envelope"></i></a>
+                <a href="https://github.com/teylonkkjk" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/teylonoliveira/" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-react hover:bg-react/10 transition-all"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:oteylon84@gmail.com" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:bg-primary/10 transition-all"><i class="fa-regular fa-envelope"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- Bibliotecas Externas GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+    <!-- Scripts de Interação -->
     <script>
-        // 1. Navbar Glass Effect on Scroll
+        // 1. Navbar Effect
         window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
+            const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
-                nav.classList.add('bg-brand-dark/50', 'backdrop-blur-lg', 'border-b', 'border-white/5');
-                nav.querySelector('.glass-panel').classList.remove('glass-panel');
-                nav.querySelector('div > div').classList.add('bg-transparent', 'border-transparent', 'shadow-none');
+                nav.classList.add('shadow-lg', 'bg-background/90');
             } else {
-                nav.classList.remove('bg-brand-dark/50', 'backdrop-blur-lg', 'border-b', 'border-white/5');
-                nav.querySelector('div > div').classList.add('glass-panel');
+                nav.classList.remove('shadow-lg', 'bg-background/90');
             }
         });
 
-        // 2. Custom Cursor Magnético
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorRing = document.getElementById('cursor-ring');
-        let isHovering = false;
+        // 2. Fade Up ao scrolar
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-        document.addEventListener('mousemove', (e) => {
-            // Dot follows instantly
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
-            
-            // Ring follows with slight delay using CSS transition
-            cursorRing.style.left = `${e.clientX}px`;
-            cursorRing.style.top = `${e.clientY}px`;
-        });
-
-        const hoverElements = document.querySelectorAll('.cursor-hover, a, button');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
-        });
-
-        // 3. Efeito de Digitação no Hero (Estilo VS Code)
+        // 3. Efeito de Digitação Limpo
         const codeText = [
-            "<span class='text-brand-ai'>import</span> { Django, Nextjs, AI } <span class='text-brand-ai'>from</span> <span class='text-brand-django'>'teylon-stack'</span>;",
+            "<span class='text-ai'>import</span> { Django, Nextjs, AI } <span class='text-ai'>from</span> <span class='text-primary'>'teylon-stack'</span>;",
             "",
-            "<span class='text-brand-react'>const</span> <span class='text-blue-400'>developer</span> = {",
-            "  name: <span class='text-brand-django'>'Teylon Oliveira'</span>,",
-            "  role: <span class='text-brand-django'>'Full Stack Software Engineer'</span>,",
-            "  skills: [<span class='text-brand-django'>'Python'</span>, <span class='text-brand-django'>'React'</span>, <span class='text-brand-django'>'Docker'</span>, <span class='text-brand-django'>'n8n'</span>],",
-            "  specialty: <span class='text-brand-django'>'Automating the future.'</span>",
+            "<span class='text-react'>const</span> <span class='text-blue-400'>developer</span> = {",
+            "  name: <span class='text-primary'>'Teylon Oliveira'</span>,",
+            "  role: <span class='text-primary'>'Full Stack Software Engineer'</span>,",
+            "  skills: [<span class='text-primary'>'Python'</span>, <span class='text-primary'>'React'</span>, <span class='text-primary'>'n8n'</span>],",
+            "  specialty: <span class='text-primary'>'Automating the future.'</span>",
             "};",
             "",
             "<span class='text-gray-500'>// Ready to build.</span>"
@@ -573,7 +488,7 @@
         
         let lineIndex = 0;
         let charIndex = 0;
-        const typerElement = document.getElementById('code-typer');
+        const typerElement = document.getElementById('typing-code');
         
         function typeCode() {
             if (lineIndex < codeText.length) {
@@ -582,7 +497,7 @@
                 }
                 
                 const currentLineDiv = document.getElementById(`line-${lineIndex}`);
-                // Simple hack for HTML tags typing effect
+                
                 if (codeText[lineIndex].charAt(charIndex) === '<') {
                     let fullTag = "";
                     while (codeText[lineIndex].charAt(charIndex) !== '>' && charIndex < codeText[lineIndex].length) {
@@ -600,124 +515,13 @@
                 if (charIndex >= codeText[lineIndex].length) {
                     charIndex = 0;
                     lineIndex++;
-                    setTimeout(typeCode, 200); // Pausa entre linhas
+                    setTimeout(typeCode, 200); 
                 } else {
-                    setTimeout(typeCode, 30); // Velocidade de digitação
+                    setTimeout(typeCode, 30);
                 }
-            } else {
-                document.getElementById('cursor-blink').classList.add('animate-pulse');
             }
         }
         setTimeout(typeCode, 1000);
-
-        // 4. Animações GSAP
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Elementos surgindo para cima
-        gsap.utils.toArray('.reveal-up').forEach(elem => {
-            gsap.to(elem, {
-                scrollTrigger: { trigger: elem, start: "top 85%" },
-                y: 0, opacity: 1, duration: 0.8, ease: "power3.out"
-            });
-        });
-        
-        // Timeline lateral esquerda
-        gsap.utils.toArray('.reveal-left').forEach(elem => {
-            gsap.to(elem, {
-                scrollTrigger: { trigger: elem, start: "top 85%" },
-                x: 0, opacity: 1, duration: 0.8, ease: "power3.out"
-            });
-        });
-
-        // Timeline lateral direita
-        gsap.utils.toArray('.reveal-right').forEach(elem => {
-            gsap.to(elem, {
-                scrollTrigger: { trigger: elem, start: "top 85%" },
-                x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2
-            });
-        });
-
-        // Scale nas caixas
-        gsap.utils.toArray('.reveal-scale').forEach(elem => {
-            gsap.to(elem, {
-                scrollTrigger: { trigger: elem, start: "top 85%" },
-                scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)"
-            });
-        });
-
-        // 5. Lógica da Simulação de Arquitetura (SVG Line Draw)
-        let isSimulating = false;
-        function runAdvancedSim() {
-            if(isSimulating) return;
-            isSimulating = true;
-            
-            const btn = document.getElementById('sim-btn');
-            const term = document.getElementById('sim-terminal');
-            const nodes = {
-                client: document.getElementById('node-client').firstElementChild,
-                api: document.getElementById('node-api').firstElementChild,
-                db: document.getElementById('node-db').firstElementChild
-            };
-            const lines = {
-                req: document.getElementById('svg-line-1'),
-                db: document.getElementById('svg-line-2')
-            };
-            
-            // Estado Inicial
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-brand-django"></i> Processando...';
-            btn.classList.add('opacity-50', 'pointer-events-none');
-            
-            term.innerHTML = "<span class='text-brand-react'>[Next.js] Request GET /api/data disparado via Next Auth.</span>";
-            nodes.client.classList.add('border-brand-react', 'shadow-[0_0_30px_rgba(14,165,233,0.5)]');
-            
-            // Anima Path 1 (Front to API)
-            lines.req.setAttribute('stroke', '#0ea5e9');
-            
-            setTimeout(() => {
-                lines.req.classList.add('active'); // Liga animação dashed
-                
-                setTimeout(() => {
-                    // API Recebe
-                    nodes.client.classList.remove('border-brand-react', 'shadow-[0_0_30px_rgba(14,165,233,0.5)]');
-                    lines.req.classList.remove('active');
-                    lines.req.setAttribute('stroke', 'rgba(255,255,255,0.1)');
-                    
-                    term.innerHTML = "<span class='text-brand-django'>[Django DRF] Token Validado. Consultando banco relacional...</span>";
-                    nodes.api.classList.add('border-brand-django', 'shadow-[0_0_30px_rgba(16,185,129,0.5)]');
-                    lines.db.setAttribute('stroke', '#10b981');
-                    
-                    setTimeout(() => {
-                        lines.db.classList.add('active');
-                        
-                        setTimeout(() => {
-                            // DB Responde
-                            nodes.api.classList.remove('border-brand-django', 'shadow-[0_0_30px_rgba(16,185,129,0.5)]');
-                            lines.db.classList.remove('active');
-                            
-                            term.innerHTML = "<span class='text-blue-400'>[PostgreSQL] Dados encontrados com sucesso. Retornando ORM.</span>";
-                            nodes.db.classList.add('border-blue-500', 'shadow-[0_0_30px_rgba(59,130,246,0.5)]');
-                            
-                            setTimeout(() => {
-                                // Resposta final
-                                nodes.db.classList.remove('border-blue-500', 'shadow-[0_0_30px_rgba(59,130,246,0.5)]');
-                                lines.db.setAttribute('stroke', 'rgba(255,255,255,0.1)');
-                                
-                                term.innerHTML = "<span class='text-white'>✔ Status 200 OK. Dados renderizados perfeitamente na UI!</span>";
-                                nodes.client.classList.add('border-white', 'shadow-[0_0_30px_rgba(255,255,255,0.5)]');
-                                
-                                setTimeout(() => {
-                                    nodes.client.classList.remove('border-white', 'shadow-[0_0_30px_rgba(255,255,255,0.5)]');
-                                    btn.innerHTML = '<i class="fa-solid fa-bolt text-brand-django"></i> Executar Novamente';
-                                    btn.classList.remove('opacity-50', 'pointer-events-none');
-                                    isSimulating = false;
-                                }, 2000);
-                                
-                            }, 1000);
-                        }, 800);
-                    }, 500);
-                }, 800);
-            }, 300);
-        }
     </script>
 </body>
 </html>
