@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teylon Oliveira | Full Stack & AI Developer</title>
+    <title>Teylon Oliveira — Full Stack & AI Developer</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,25 +15,16 @@
             theme: {
                 extend: {
                     colors: {
-                        background: '#09090b', // zinc-950
-                        surface: '#18181b', // zinc-900
-                        primary: '#10b981', // emerald-500
-                        react: '#0ea5e9', // sky-500
-                        ai: '#a855f7', // purple-500
+                        bg: '#09090b',       // zinc-950
+                        surface: '#111113',  // carbon dark
+                        panel: '#16161a',    // elevated panel
+                        border: '#232329',   // 1px structural hairline
+                        accent: '#10b981',   // terminal emerald
+                        muted: '#71717a',    // zinc-500
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                    animation: {
-                        'marquee': 'marquee 35s linear infinite',
-                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-50%)' },
-                        }
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
                     }
                 }
             }
@@ -41,538 +32,882 @@
     </script>
 
     <!-- Fontes e Ícones -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body { 
-            background-color: #09090b; 
-            color: #a1a1aa; 
-            overflow-x: hidden; 
-        }
-        
-        h1, h2, h3, h4, h5, h6 { color: #fafafa; }
-
-        /* Fundo com ruído sutil para textura */
-        .bg-noise {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        body {
+            background-color: #09090b;
+            color: #d4d4d8;
+            overflow-x: hidden;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
         }
 
-        /* Classes para animação de scroll simples */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Grid técnico discreto */
+        .bg-tech-grid {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
         }
 
-        /* Efeito de card glassmorphism refinado */
-        .glass-card {
-            background: rgba(24, 24, 27, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        /* Cards de engenharia com bordas secas */
+        .dev-card {
+            background-color: #111113;
+            border: 1px solid #232329;
+            transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+            position: relative;
         }
 
-        .glass-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(16, 185, 129, 0.3); /* Borda verde primária sutil */
-            box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.15);
-        }
-        
-        .glass-card-ai:hover {
-            border-color: rgba(168, 85, 247, 0.3); /* Borda roxa para IA */
-            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.15);
-        }
-        
-        .glass-card-react:hover {
-            border-color: rgba(14, 165, 233, 0.3); /* Borda azul para E-commerce */
-            box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.15);
+        .dev-card:hover {
+            border-color: #3f3f46;
+            background-color: #141417;
         }
 
-        /* Cursor do terminal piscando */
-        .cursor-blink {
-            display: inline-block;
-            width: 8px;
-            height: 15px;
-            background-color: #10b981;
-            vertical-align: middle;
-            animation: blink 1s step-end infinite;
+        /* Marcadores de canto (+) */
+        .corner-cross::before,
+        .corner-cross::after {
+            content: "+";
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #3f3f46;
+            line-height: 1;
+            pointer-events: none;
         }
+        .corner-cross::before { top: -6px; left: -5px; }
+        .corner-cross::after { bottom: -6px; right: -5px; }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
+        /* Scrollbar minimalista */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #09090b; }
-        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+        ::-webkit-scrollbar-thumb { background: #27272a; }
+        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+
+        /* Input do terminal */
+        .terminal-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fafafa;
+            font-family: 'JetBrains Mono', monospace;
+            width: 100%;
+            caret-color: #10b981;
+        }
+
+        kbd {
+            background-color: #18181b;
+            border: 1px solid #27272a;
+            border-bottom-width: 2px;
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #a1a1aa;
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-primary selection:text-white bg-noise">
+<body class="antialiased selection:bg-accent selection:text-bg bg-tech-grid">
 
-    <!-- Efeitos de Brilho de Fundo -->
-    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[100px] pointer-events-none animate-pulse-slow z-0"></div>
-    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-react/10 blur-[100px] pointer-events-none animate-pulse-slow z-0" style="animation-delay: 2s;"></div>
-
-    <!-- Navegação -->
-    <nav class="fixed w-full z-50 top-0 bg-background/80 backdrop-blur-md border-b border-white/5 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
-            <span class="text-xl font-bold font-mono text-white tracking-tighter">
-                Teylon<span class="text-primary">.dev</span>
-            </span>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#home" class="hover:text-white transition-colors">Início</a>
-                <a href="#experiencia" class="hover:text-white transition-colors">Trajetória</a>
-                <a href="#projetos" class="hover:text-white transition-colors">Projetos</a>
+    <!-- Top Status / Breadcrumb Bar -->
+    <header class="fixed top-0 w-full z-50 bg-bg/90 backdrop-blur-md border-b border-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+            
+            <!-- Path / Identidade -->
+            <div class="flex items-center gap-3">
+                <a href="#top" class="font-mono text-sm font-semibold text-white flex items-center gap-1.5 hover:text-accent transition-colors">
+                    <span class="text-accent">~</span>/teylon-oliveira
+                    <span class="inline-block w-2 h-4 bg-accent animate-pulse"></span>
+                </a>
+                <span class="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-accent/10 border border-accent/20 font-mono text-[11px] text-accent">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                    disponível
+                </span>
             </div>
-            <div class="flex items-center gap-5">
-                <a href="https://github.com/teylonkkjk" target="_blank" class="hover:text-white transition-colors hover:scale-110 duration-200 text-xl"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/teylonoliveira/" target="_blank" class="hover:text-white transition-colors hover:scale-110 duration-200 text-xl"><i class="fa-brands fa-linkedin"></i></a>
-                <!-- Botão do WhatsApp Restaurado -->
-                <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio!" target="_blank" class="hidden md:flex px-5 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary hover:bg-primary hover:text-background transition-all duration-300 font-semibold text-sm items-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i> Vamos Conversar
+
+            <!-- Navegação Indexada -->
+            <nav class="hidden md:flex items-center gap-6 font-mono text-xs">
+                <a href="#projetos" class="text-zinc-400 hover:text-white transition-colors"><span class="text-accent">01.</span>projetos()</a>
+                <a href="#stack" class="text-zinc-400 hover:text-white transition-colors"><span class="text-accent">02.</span>stack()</a>
+                <a href="#trajetoria" class="text-zinc-400 hover:text-white transition-colors"><span class="text-accent">03.</span>git_log()</a>
+            </nav>
+
+            <!-- Ações / Command Palette Trigger -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleCmdPalette()" class="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded bg-surface border border-border hover:border-zinc-600 text-xs font-mono text-zinc-400 hover:text-white transition-all" title="Abrir paleta de comandos">
+                    <i class="fa-solid fa-terminal text-[10px] text-accent"></i>
+                    <span>cmd</span>
+                    <kbd>Ctrl K</kbd>
+                </button>
+
+                <a href="https://github.com/teylonkkjk" target="_blank" aria-label="GitHub" class="p-2 text-zinc-400 hover:text-white transition-colors">
+                    <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/teylonoliveira/" target="_blank" aria-label="LinkedIn" class="p-2 text-zinc-400 hover:text-white transition-colors">
+                    <i class="fa-brands fa-linkedin text-lg"></i>
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio!" target="_blank" class="px-3 py-1.5 rounded bg-white text-bg font-mono font-semibold text-xs hover:bg-accent hover:text-bg transition-colors flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span class="hidden sm:inline">contato</span>
                 </a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-[90vh] flex items-center pt-24 relative z-10">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
-            
-            <div class="text-left fade-up">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs font-mono mb-8 border border-white/10">
-                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> 
-                    Ciência da Computação | UNINASSAU
-                </div>
-                
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1] text-white">
-                    Sistemas robustos.<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-react to-ai">IA & Automação.</span>
-                </h1>
-                
-                <!-- Texto Exato Original -->
-                <p class="text-gray-400 text-lg mb-8 leading-relaxed max-w-xl">
-                    Sou <strong>Teylon Oliveira</strong>, desenvolvedor Full Stack. Uno o poder do Back-end <strong>Python/Django</strong> à performance do Front-end <strong>Next.js/React</strong>. Além de sistemas web, sou especialista em integrar <strong>Inteligência Artificial, RAG e agentes autônomos (n8n/Docker)</strong> para criar fluxos inovadores.
-                </p>
-                
-                <div class="flex flex-wrap gap-4">
-                    <a href="#projetos" class="px-8 py-3.5 rounded-xl bg-white text-background font-bold hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                        Ver Meus Projetos
-                    </a>
-                    <a href="mailto:oteylon84@gmail.com" class="px-8 py-3.5 rounded-xl glass-card text-sm font-mono flex items-center gap-2 text-white hover:bg-white/5">
-                        <i class="fa-regular fa-envelope"></i> oteylon84@gmail.com
-                    </a>
-                </div>
-            </div>
+    <main id="top" class="max-w-6xl mx-auto px-4 sm:px-6 pt-24 pb-20">
 
-            <!-- Bloco de Código (Efeito VS Code Limpo) -->
-            <div class="relative w-full max-w-lg mx-auto lg:ml-auto fade-up delay-100 hidden md:block">
-                <div class="bg-[#121214] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
-                    <div class="h-1 w-full bg-gradient-to-r from-primary via-react to-ai opacity-50"></div>
-                    <div class="bg-[#18181b] px-4 py-3 flex items-center gap-2 border-b border-white/5">
-                        <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-                        <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-                        <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-                        <div class="mx-auto flex gap-4 text-[10px] font-mono text-gray-500">
-                            <span class="text-primary">app.py</span>
-                            <span class="text-gray-600">|</span>
-                            <span class="text-react">agent.ts</span>
-                        </div>
+        <!-- HERO SECTION: Engenharia & Terminal Interativo -->
+        <section class="py-10 lg:py-16 border-b border-border">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Coluna Esquerda: Apresentação Direta (7 cols) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 font-mono text-xs text-zinc-400 bg-surface px-3 py-1 border border-border">
+                        <span class="text-accent">●</span>
+                        <span>Teresina, PI</span>
+                        <span class="text-zinc-700">|</span>
+                        <span>Ciência da Computação @ UNINASSAU</span>
                     </div>
-                    <div class="p-6 font-mono text-[13px] h-64 overflow-hidden text-gray-300 relative">
-                        <pre><code id="typing-code"></code><span class="cursor-blink" id="cursor"></span></pre>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+                        Teylon Oliveira<span class="text-accent">.</span><br>
+                        <span class="text-zinc-400 font-normal text-2xl sm:text-3xl lg:text-4xl block mt-2">
+                            Full Stack & AI Developer.
+                        </span>
+                    </h1>
+
+                    <p class="text-zinc-400 text-base leading-relaxed max-w-2xl">
+                        Desenvolvedor Full Stack focado em arquitetura limpa, sistemas web escaláveis e automação. Utilizo <span class="text-white font-mono text-sm bg-surface px-1.5 py-0.5 border border-border">Python</span>, <span class="text-white font-mono text-sm bg-surface px-1.5 py-0.5 border border-border">JavaScript / TypeScript</span> e <span class="text-white font-mono text-sm bg-surface px-1.5 py-0.5 border border-border">SQL</span>; desenvolvo com <span class="text-white font-mono text-sm bg-surface px-1.5 py-0.5 border border-border">Django / DRF</span>, <span class="text-white font-mono text-sm bg-surface px-1.5 py-0.5 border border-border">Next.js</span>, <span class="text-white font-mono text-sm bg-surface px-1.5 py-0.5 border border-border">React</span> e <span class="text-white font-mono text-sm bg-surface px-1.5 py-0.5 border border-border">Node.js</span>, gerenciando dados em <span class="text-white font-mono text-sm bg-surface px-1.5 py-0.5 border border-border">PostgreSQL / SQLite</span> e integrando <span class="text-white font-mono text-sm bg-surface px-1.5 py-0.5 border border-border">IA Local (Ollama / Whisper)</span>.
+                    </p>
+
+                    <!-- Ações Rápidas -->
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <a href="#projetos" class="px-5 py-2.5 bg-accent text-bg font-mono font-bold text-xs uppercase tracking-wider hover:bg-emerald-400 transition-colors flex items-center gap-2">
+                            <span>./ver_projetos.sh</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+
+                        <button onclick="copyEmail()" class="px-4 py-2.5 bg-surface border border-border hover:border-zinc-600 font-mono text-xs text-zinc-300 flex items-center gap-2 transition-colors">
+                            <i class="fa-regular fa-envelope text-accent"></i>
+                            <span id="email-label">oteylon84@gmail.com</span>
+                            <i id="copy-icon" class="fa-regular fa-copy text-zinc-500 ml-1"></i>
+                        </button>
+
+                        <a href="https://github.com/teylonkkjk" target="_blank" class="px-4 py-2.5 bg-surface border border-border hover:border-zinc-600 font-mono text-xs text-zinc-300 flex items-center gap-2 transition-colors">
+                            <i class="fa-brands fa-github"></i>
+                            <span>github.com/teylonkkjk</span>
+                        </a>
                     </div>
-                </div>
-            </div>
-            
-        </div>
-    </section>
 
-    <!-- Marquee de Tecnologias (Texto Exato Original) -->
-    <section class="py-6 border-y border-white/5 bg-surface/20 overflow-hidden relative z-10">
-        <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10"></div>
-        <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10"></div>
-        
-        <div class="flex w-[200%] animate-marquee">
-            <div class="flex-1 flex justify-around items-center text-sm font-mono text-gray-500 font-bold uppercase tracking-widest">
-                <span>Next.js SSR</span> •
-                <span class="text-primary">Python/Django</span> •
-                <span>React Hooks</span> •
-                <span class="text-react">Tailwind</span> •
-                <span>PostgreSQL</span> •
-                <span class="text-ai">n8n (Workflows)</span> •
-                <span>Docker</span> •
-                <span>APIs REST</span> •
-                <span>RAG/LLMs</span> •
-            </div>
-            <div class="flex-1 flex justify-around items-center text-sm font-mono text-gray-500 font-bold uppercase tracking-widest">
-                <span>Next.js SSR</span> •
-                <span class="text-primary">Python/Django</span> •
-                <span>React Hooks</span> •
-                <span class="text-react">Tailwind</span> •
-                <span>PostgreSQL</span> •
-                <span class="text-ai">n8n (Workflows)</span> •
-                <span>Docker</span> •
-                <span>APIs REST</span> •
-                <span>RAG/LLMs</span> •
-            </div>
-        </div>
-    </section>
-
-    <!-- Trajetória (Experiência e Cursos Originais Restaurados) -->
-    <section id="experiencia" class="py-24 relative z-10">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-up">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">Minha <span class="text-primary">Trajetória</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">A evolução constante entre desenvolvimento tradicional e novas arquiteturas inteligentes.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                
-                <!-- Coluna Esquerda: Experiência Profissional -->
-                <div class="fade-up">
-                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-react/10 text-react flex items-center justify-center border border-react/20"><i class="fa-solid fa-briefcase"></i></div>
-                        Experiência
-                    </h3>
-                    
-                    <div class="space-y-12 border-l border-white/10 pl-8 ml-4">
-                        <div class="relative group">
-                            <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-background border-2 border-primary group-hover:bg-primary transition-colors"></div>
-                            <h4 class="font-bold text-white text-xl group-hover:text-primary transition-colors">Analista de Dados</h4>
-                            <p class="text-sm font-mono text-primary mb-3">Stringhini | Mar 2026 - Mai 2026</p>
-                            <!-- Texto Exato Original -->
-                            <p class="text-sm leading-relaxed text-gray-400">
-                                Tratamento avançado e limpeza de bases de dados complexas. Desenvolvimento de dashboards interativos e relatórios gerenciais, focando em transformar dados brutos em inteligência estratégica para tomada de decisão.
-                            </p>
+                    <!-- Resumo Técnico Categorizado -->
+                    <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-px bg-border border border-border">
+                        <div class="bg-bg p-3.5">
+                            <div class="font-mono text-[11px] text-zinc-500 uppercase">Linguagens</div>
+                            <div class="font-mono text-xs text-white font-semibold mt-1">Python • JS • TS • SQL</div>
                         </div>
-                        
-                        <div class="relative group">
-                            <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-background border-2 border-gray-600 group-hover:border-white transition-colors"></div>
-                            <h4 class="font-bold text-white text-xl group-hover:text-white transition-colors">Técnico de TI</h4>
-                            <p class="text-sm font-mono text-gray-500 mb-3">Miny preço | Jan 2022 - Mar 2025</p>
-                            <!-- Texto Exato Original -->
-                            <p class="text-sm leading-relaxed text-gray-400">
-                                Infraestrutura, manutenção de hardware e redes LAN/WLAN. Suporte técnico ágil garantindo alta disponibilidade operacional para os usuários finais e sistemas da empresa.
-                            </p>
+                        <div class="bg-bg p-3.5">
+                            <div class="font-mono text-[11px] text-zinc-500 uppercase">Frameworks & Libs</div>
+                            <div class="font-mono text-xs text-white font-semibold mt-1">Django • Next.js • React</div>
+                        </div>
+                        <div class="bg-bg p-3.5">
+                            <div class="font-mono text-[11px] text-zinc-500 uppercase">Bancos de Dados</div>
+                            <div class="font-mono text-xs text-white font-semibold mt-1">PostgreSQL • SQLite</div>
+                        </div>
+                        <div class="bg-bg p-3.5">
+                            <div class="font-mono text-[11px] text-zinc-500 uppercase">Infra & IA</div>
+                            <div class="font-mono text-xs text-white font-semibold mt-1">Node.js • Docker • Ollama</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Coluna Direita: Capacitação & Cursos -->
-                <div class="fade-up delay-100">
-                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-ai/10 text-ai flex items-center justify-center border border-ai/20"><i class="fa-solid fa-graduation-cap"></i></div>
-                        Capacitação & Cursos
-                    </h3>
-                    
-                    <div class="space-y-4">
-                        <!-- Top Skill Exata -->
-                        <div class="glass-card-ai p-5 rounded-xl group relative overflow-hidden bg-surface/50">
-                            <div class="absolute right-0 top-0 w-32 h-32 bg-ai/10 rounded-full blur-2xl group-hover:bg-ai/20 transition-all -mr-10 -mt-10"></div>
-                            <div class="relative z-10 flex gap-4 items-start">
-                                <div class="text-ai mt-1 text-2xl"><i class="fa-solid fa-robot"></i></div>
+                <!-- Coluna Direita: Terminal Interativo Real (5 cols) -->
+                <div class="lg:col-span-5 w-full">
+                    <div class="dev-card corner-cross overflow-hidden shadow-2xl">
+                        <!-- Barra Superior do Terminal -->
+                        <div class="bg-panel px-4 py-2.5 border-b border-border flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-accent"></span>
+                                <span class="font-mono text-xs text-zinc-400 ml-2">teylon@dev-machine: ~</span>
+                            </div>
+                            <span class="font-mono text-[10px] text-zinc-500">zsh • interativo</span>
+                        </div>
+
+                        <!-- Corpo do Terminal -->
+                        <div id="terminal-body" onclick="document.getElementById('cmd-input').focus()" class="p-4 font-mono text-xs h-80 overflow-y-auto space-y-2 cursor-text bg-[#0c0c0e]">
+                            <div class="text-zinc-500"># Sessão iniciada. Digite <span class="text-accent">'help'</span> ou clique nos comandos abaixo.</div>
+                            
+                            <div id="terminal-output" class="space-y-2">
                                 <div>
-                                    <h4 class="font-bold text-white mb-1">n8n, IA, APIs e Agentes Inteligentes</h4>
-                                    <!-- Texto Exato Original -->
-                                    <p class="text-xs text-gray-400 mb-2">Treinamento completo focando na criação de workflows reais, integração de APIs, Docker, WhatsApp bots, MCP e arquitetura RAG.</p>
-                                    <span class="text-xs font-mono text-gray-500">Udemy</span>
+                                    <span class="text-accent">teylon@dev</span>:<span class="text-sky-400">~</span>$ cat stack.json
+                                </div>
+                                <div class="text-zinc-300 pl-2 border-l border-zinc-800 space-y-0.5">
+                                    <div><span class="text-zinc-500">linguagens:</span> Python, JavaScript, TypeScript, SQL</div>
+                                    <div><span class="text-zinc-500">frameworks_libs:</span> Django / DRF, Next.js, React, Tailwind, Tkinter</div>
+                                    <div><span class="text-zinc-500">bancos_de_dados:</span> PostgreSQL, SQLite, ChromaDB</div>
+                                    <div><span class="text-zinc-500">infra_tooling:</span> Node.js, Docker, Vite, Git, Linux / Windows</div>
+                                    <div><span class="text-zinc-500">ia_automacao:</span> Ollama, Whisper, RAG, Playwright</div>
                                 </div>
                             </div>
+
+                            <!-- Linha de Comando Ativa -->
+                            <div class="flex items-center gap-1.5 pt-1">
+                                <span class="text-accent shrink-0">teylon@dev</span>:<span class="text-sky-400 shrink-0">~</span>$
+                                <input type="text" id="cmd-input" class="terminal-input" placeholder="digite 'help', 'ls', 'stack'..." autocomplete="off" spellcheck="false">
+                            </div>
                         </div>
-                        
-                        <!-- Grid de Outros Cursos Exatos -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-primary/30">
-                                <i class="fa-brands fa-python text-primary mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-white text-sm mb-1">APIs REST Python & DRF</h4>
-                                <span class="text-xs font-mono text-gray-500">Udemy</span>
-                            </div>
-                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-react/30">
-                                <i class="fa-brands fa-react text-react mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-white text-sm mb-1">Next.js & React do Zero</h4>
-                                <span class="text-xs font-mono text-gray-500">Udemy</span>
-                            </div>
-                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-primary/30">
-                                <i class="fa-solid fa-server text-primary mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-white text-sm mb-1">Web c/ Django Framework</h4>
-                                <span class="text-xs font-mono text-gray-500">Udemy</span>
-                            </div>
-                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-gray-400/30">
-                                <i class="fa-solid fa-code text-gray-400 mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-white text-sm mb-1">Python: Básico ao Avançado</h4>
-                                <span class="text-xs font-mono text-gray-500">Udemy</span>
-                            </div>
-                            <!-- Curso de HTML Restaurado -->
-                            <div class="glass-card p-4 rounded-xl flex flex-col justify-between hover:border-orange-500/30 md:col-span-2">
-                                <i class="fa-brands fa-html5 text-orange-500 mb-2 text-xl"></i>
-                                <h4 class="font-semibold text-white text-sm mb-1">HTML5, CSS e Javascript na Prática</h4>
-                                <span class="text-xs font-mono text-gray-500">Udemy</span>
-                            </div>
+
+                        <!-- Botões de Comando Rápido no Rodapé do Terminal -->
+                        <div class="bg-panel px-3 py-2 border-t border-border flex items-center gap-1.5 flex-wrap">
+                            <span class="font-mono text-[10px] text-zinc-500 mr-1">exec:</span>
+                            <button onclick="runQuickCmd('help')" class="px-2 py-0.5 bg-bg border border-border hover:border-accent font-mono text-[11px] text-zinc-300 transition-colors">help</button>
+                            <button onclick="runQuickCmd('ls')" class="px-2 py-0.5 bg-bg border border-border hover:border-accent font-mono text-[11px] text-zinc-300 transition-colors">ls -la</button>
+                            <button onclick="runQuickCmd('stack')" class="px-2 py-0.5 bg-bg border border-border hover:border-accent font-mono text-[11px] text-zinc-300 transition-colors">cat stack.json</button>
+                            <button onclick="runQuickCmd('clear')" class="px-2 py-0.5 bg-bg border border-border hover:border-zinc-500 font-mono text-[11px] text-zinc-500 hover:text-zinc-300 transition-colors ml-auto">clear</button>
                         </div>
                     </div>
                 </div>
 
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projetos Destaque (Textos e Tags Originais) -->
-    <section id="projetos" class="py-24 relative z-10 bg-surface/20 border-t border-white/5">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 fade-up">
-                <div>
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4">Projetos <span class="text-react">Destaque</span></h2>
-                    <p class="text-gray-400 max-w-xl">Aplicações reais desenvolvidas do zero focadas em controle de acesso, regras de negócio complexas, IA e performance.</p>
-                </div>
-                <a href="https://github.com/teylonkkjk" target="_blank" class="mt-4 md:mt-0 text-sm font-mono text-gray-400 hover:text-white border-b border-gray-600 hover:border-white pb-1 flex items-center gap-2 transition-colors">
-                    Ver todos no GitHub <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
+        <!-- SEÇÃO 01: PROJETOS / REPOSITÓRIOS -->
+        <section id="projetos" class="py-16 border-b border-border">
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- Cabeçalho da Seção + Filtros -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+                <div>
+                    <div class="font-mono text-xs text-accent mb-2">01 // ENGENHARIA & REPOSITÓRIOS</div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Projetos em Produção & Código</h2>
+                </div>
+
+                <!-- Filtros estilo CLI -->
+                <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                    <button onclick="filterRepos('all')" data-filter="all" class="repo-filter px-3 py-1.5 bg-white text-bg font-semibold border border-white transition-all">
+                        --all (6)
+                    </button>
+                    <button onclick="filterRepos('web')" data-filter="web" class="repo-filter px-3 py-1.5 bg-surface text-zinc-400 border border-border hover:border-zinc-600 hover:text-white transition-all">
+                        --fullstack-web (3)
+                    </button>
+                    <button onclick="filterRepos('ai')" data-filter="ai" class="repo-filter px-3 py-1.5 bg-surface text-zinc-400 border border-border hover:border-zinc-600 hover:text-white transition-all">
+                        --ai-automation (3)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de Repositórios (6 Projetos) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- 1. OSTREMBOLONO -->
+                <article data-category="web" class="repo-card dev-card flex flex-col justify-between p-6">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-border">
+                            <div class="flex items-center gap-2 font-mono text-xs">
+                                <i class="fa-regular fa-folder-open text-accent"></i>
+                                <span class="text-zinc-500">teylonkkjk /</span>
+                                <span class="text-white font-bold">ostrembolono</span>
+                            </div>
+                            <span class="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
+                                <span class="w-2 h-2 rounded-full bg-sky-400"></span> React + Vite
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-1">OSTREMBOLONO — Atlas de Treinamento & Biomecânica</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+                            Aplicação web construída com React, Vite e Tailwind CSS para catalogação de exercícios de musculação, guias técnicos de execução e mapeamento anatômico dos músculos alvo.
+                        </p>
+
+                        <div class="bg-[#0c0c0e] border border-border p-3 mb-5 font-mono text-[11px] text-zinc-400 space-y-1">
+                            <div class="text-zinc-500">// especificação técnica</div>
+                            <div><span class="text-accent">▸</span> Build otimizado via Vite + componentização modular em React</div>
+                            <div><span class="text-accent">▸</span> Filtro dinâmico por grupamento muscular e vetores de movimento</div>
+                            <div><span class="text-accent">▸</span> Interface Dark UI responsiva estilizada com Tailwind CSS</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-3 border-t border-border/60 gap-4">
+                        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400">
+                            <span class="px-2 py-0.5 bg-surface border border-border">javascript</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">react</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">tailwindcss</span>
+                        </div>
+                        <a href="https://github.com/teylonkkjk" target="_blank" class="font-mono text-xs text-white hover:text-accent flex items-center gap-1.5 shrink-0 transition-colors">
+                            <span>source</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 2. NTO OVERDRIVE -->
+                <article data-category="ai" class="repo-card dev-card flex flex-col justify-between p-6">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-border">
+                            <div class="flex items-center gap-2 font-mono text-xs">
+                                <i class="fa-solid fa-terminal text-accent"></i>
+                                <span class="text-zinc-500">teylonkkjk /</span>
+                                <span class="text-white font-bold">nto-overdrive</span>
+                            </div>
+                            <span class="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
+                                <span class="w-2 h-2 rounded-full bg-amber-400"></span> Python
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-1">NTO Overdrive — Bot & Calculadora Tática</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+                            Suite desktop de automação para o MMORPG NTO Idle com interface gráfica em Tkinter. Inclui motor matemático de cálculo de dano, rotação de jutsus e seleção de hunts.
+                        </p>
+
+                        <div class="bg-[#0c0c0e] border border-border p-3 mb-5 font-mono text-[11px] text-zinc-400 space-y-1">
+                            <div class="text-zinc-500">// módulos internos</div>
+                            <div><span class="text-accent">▸</span> <span class="text-zinc-200">DamageCalc:</span> simulação de DPS e escalonamento de atributos</div>
+                            <div><span class="text-accent">▸</span> <span class="text-zinc-200">RotationManager:</span> fila de prioridade de cooldowns e jutsus</div>
+                            <div><span class="text-accent">▸</span> <span class="text-zinc-200">AutoRecovery:</span> monitoramento contínuo de HP/Chakra e hunts</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-3 border-t border-border/60 gap-4">
+                        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400">
+                            <span class="px-2 py-0.5 bg-surface border border-border">python</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">tkinter</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">automation</span>
+                        </div>
+                        <a href="https://github.com/teylonkkjk" target="_blank" class="font-mono text-xs text-white hover:text-accent flex items-center gap-1.5 shrink-0 transition-colors">
+                            <span>source</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 3. TERÇA FEIRA -->
+                <article data-category="ai" class="repo-card dev-card flex flex-col justify-between p-6">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-border">
+                            <div class="flex items-center gap-2 font-mono text-xs">
+                                <i class="fa-solid fa-microchip text-accent"></i>
+                                <span class="text-zinc-500">teylonkkjk /</span>
+                                <span class="text-white font-bold">terca-feira</span>
+                            </div>
+                            <span class="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
+                                <span class="w-2 h-2 rounded-full bg-purple-400"></span> Python + Local AI
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-1">Terça Feira — Assistente de Voz IA 100% Offline</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+                            Assistente pessoal executada localmente sem dependência de nuvem. Combina transcrição neural OpenAI Whisper, inferência via Ollama (Llama 3.1) e banco vetorial ChromaDB.
+                        </p>
+
+                        <div class="bg-[#0c0c0e] border border-border p-3 mb-5 font-mono text-[11px] text-zinc-400 space-y-1">
+                            <div class="text-zinc-500">// pipeline de execução</div>
+                            <div><span class="text-accent">▸</span> Audio Input → Whisper STT → Llama 3.1 (Ollama)</div>
+                            <div><span class="text-accent">▸</span> Memória semântica persistente no ChromaDB (RAG local)</div>
+                            <div><span class="text-accent">▸</span> Execução de comandos de sistema, abertura de apps e mídia</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-3 border-t border-border/60 gap-4">
+                        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400">
+                            <span class="px-2 py-0.5 bg-surface border border-border">python</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">ollama</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">chromadb</span>
+                        </div>
+                        <a href="https://github.com/teylonkkjk/terca-feira" target="_blank" class="font-mono text-xs text-white hover:text-accent flex items-center gap-1.5 shrink-0 transition-colors">
+                            <span>repo</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 4. TASKFLOW -->
+                <article data-category="web" class="repo-card dev-card flex flex-col justify-between p-6">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-border">
+                            <div class="flex items-center gap-2 font-mono text-xs">
+                                <i class="fa-regular fa-folder-open text-accent"></i>
+                                <span class="text-zinc-500">teylonkkjk /</span>
+                                <span class="text-white font-bold">Gestao_Task_Setores</span>
+                            </div>
+                            <span class="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Django + PostgreSQL
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-1">Taskflow — Gestão de Demandas Multi-Setor</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+                            Sistema corporativo para orquestração de tarefas entre departamentos com controle estrito de permissões baseado em cargos (Role-Based Access Control).
+                        </p>
+
+                        <div class="bg-[#0c0c0e] border border-border p-3 mb-5 font-mono text-[11px] text-zinc-400 space-y-1">
+                            <div class="text-zinc-500">// arquitetura back-end</div>
+                            <div><span class="text-accent">▸</span> Middleware e decorators de permissão RBAC (Admin vs Operador)</div>
+                            <div><span class="text-accent">▸</span> Modelagem relacional SQL de setores, status e histórico</div>
+                            <div><span class="text-accent">▸</span> Views protegidas e templates estilizados com Tailwind CSS</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-3 border-t border-border/60 gap-4">
+                        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400">
+                            <span class="px-2 py-0.5 bg-surface border border-border">python</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">django</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">postgresql</span>
+                        </div>
+                        <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank" class="font-mono text-xs text-white hover:text-accent flex items-center gap-1.5 shrink-0 transition-colors">
+                            <span>repo</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 5. TT-ANABOLIC -->
+                <article data-category="web" class="repo-card dev-card flex flex-col justify-between p-6">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-border">
+                            <div class="flex items-center gap-2 font-mono text-xs">
+                                <i class="fa-regular fa-folder-open text-accent"></i>
+                                <span class="text-zinc-500">teylonkkjk /</span>
+                                <span class="text-white font-bold">TT-ANABOLIC</span>
+                            </div>
+                            <span class="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Django + SQLite
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-1">TT-ANABOLIC — Engine de E-Commerce Transacional</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+                            Plataforma completa de e-commerce com carrinho de compras, autenticação customizada, notificações assíncronas via SMTP e baixa de estoque segura.
+                        </p>
+
+                        <div class="bg-[#0c0c0e] border border-border p-3 mb-5 font-mono text-[11px] text-zinc-400 space-y-1">
+                            <div class="text-zinc-500">// integridade de banco de dados</div>
+                            <div><span class="text-accent">▸</span> Checkout protegido com <span class="text-zinc-200">transaction.atomic()</span> contra concorrência</div>
+                            <div><span class="text-accent">▸</span> Validação de saldo de estoque antes do commit no banco</div>
+                            <div><span class="text-accent">▸</span> Disparo automático de confirmação transacional via SMTP</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-3 border-t border-border/60 gap-4">
+                        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400">
+                            <span class="px-2 py-0.5 bg-surface border border-border">python</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">django</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">sqlite</span>
+                        </div>
+                        <a href="https://github.com/teylonkkjk/TT-ANABOLIC" target="_blank" class="font-mono text-xs text-white hover:text-accent flex items-center gap-1.5 shrink-0 transition-colors">
+                            <span>repo</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 6. CHAT-BOT-LOCAL -->
+                <article data-category="ai" class="repo-card dev-card flex flex-col justify-between p-6">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-border">
+                            <div class="flex items-center gap-2 font-mono text-xs">
+                                <i class="fa-solid fa-microchip text-accent"></i>
+                                <span class="text-zinc-500">teylonkkjk /</span>
+                                <span class="text-white font-bold">CHAT-BOT-LOCAL</span>
+                            </div>
+                            <span class="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
+                                <span class="w-2 h-2 rounded-full bg-purple-400"></span> Django + Ollama
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-1">Chatbot Local IA — Interface Web com Streaming</h3>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+                            Aplicação web que conecta um back-end Django diretamente ao servidor local do Ollama, entregando respostas de LLMs em tempo real com suporte a múltiplos contextos.
+                        </p>
+
+                        <div class="bg-[#0c0c0e] border border-border p-3 mb-5 font-mono text-[11px] text-zinc-400 space-y-1">
+                            <div class="text-zinc-500">// comunicação assíncrona</div>
+                            <div><span class="text-accent">▸</span> Streaming de tokens em tempo real (baixa latência percebida)</div>
+                            <div><span class="text-accent">▸</span> Consumo direto da API REST local do motor Ollama</div>
+                            <div><span class="text-accent">▸</span> Persistência de histórico em SQLite e interface Dark Mode</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-3 border-t border-border/60 gap-4">
+                        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400">
+                            <span class="px-2 py-0.5 bg-surface border border-border">django</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">ollama</span>
+                            <span class="px-2 py-0.5 bg-surface border border-border">sqlite</span>
+                        </div>
+                        <a href="https://github.com/teylonkkjk/CHAT-BOT-LOCAL" target="_blank" class="font-mono text-xs text-white hover:text-accent flex items-center gap-1.5 shrink-0 transition-colors">
+                            <span>repo</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO 02: MATRIZ DE STACK CATEGORIZADA COM RIGOR TÉCNICO -->
+        <section id="stack" class="py-16 border-b border-border">
+            <div class="mb-10">
+                <div class="font-mono text-xs text-accent mb-2">02 // ESPECIFICAÇÕES TÉCNICAS</div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Stack & Arquitetura</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-border border border-border">
                 
-                <!-- PROJETO 1: TASKFLOW -->
-                <div class="glass-card rounded-3xl overflow-hidden fade-up group flex flex-col h-full bg-[#111827]">
-                    <div class="h-48 relative overflow-hidden bg-[#0a1018] flex items-center justify-center border-b border-white/5">
-                        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <i class="fa-solid fa-layer-group text-6xl text-white/10 group-hover:text-primary group-hover:scale-110 transition-all duration-700 z-10"></i>
+                <!-- Coluna 1: Linguagens -->
+                <div class="bg-surface p-5">
+                    <div class="font-mono text-xs text-accent uppercase mb-4 flex items-center justify-between">
+                        <span>// Linguagens</span>
+                        <i class="fa-solid fa-code text-zinc-600"></i>
                     </div>
-                    
-                    <div class="p-8 relative z-20 flex flex-col flex-grow">
-                        <div class="flex gap-2 mb-5 flex-wrap">
-                            <span class="px-2.5 py-1 bg-primary/10 text-primary border border-primary/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Django</span>
-                            <span class="px-2.5 py-1 bg-react/10 text-react border border-react/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Tailwind</span>
-                            <span class="px-2.5 py-1 bg-ai/10 text-ai border border-ai/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">RBAC (Roles)</span>
+                    <ul class="space-y-2.5 font-mono text-xs text-zinc-300">
+                        <li class="flex items-center justify-between gap-2"><span>Python</span><span class="text-zinc-500 text-right">Back-end / IA</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>JavaScript</span><span class="text-zinc-500 text-right">ES6+</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>TypeScript</span><span class="text-zinc-500 text-right">Tipagem Estática</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>SQL</span><span class="text-zinc-500 text-right">Consultas</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>HTML5 / CSS3</span><span class="text-zinc-500 text-right">Marcação & Estilo</span></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 2: Frameworks & Libs -->
+                <div class="bg-surface p-5">
+                    <div class="font-mono text-xs text-accent uppercase mb-4 flex items-center justify-between">
+                        <span>// Frameworks & Libs</span>
+                        <i class="fa-solid fa-cubes text-zinc-600"></i>
+                    </div>
+                    <ul class="space-y-2.5 font-mono text-xs text-zinc-300">
+                        <li class="flex items-center justify-between gap-2"><span>Django / DRF</span><span class="text-zinc-500 text-right">Back-end / API</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>Next.js</span><span class="text-zinc-500 text-right">Full-stack Framework</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>React</span><span class="text-zinc-500 text-right">UI Library</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>Tailwind CSS</span><span class="text-zinc-500 text-right">CSS Framework</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>Tkinter</span><span class="text-zinc-500 text-right">Python GUI</span></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Bancos de Dados (SGBDs) -->
+                <div class="bg-surface p-5">
+                    <div class="font-mono text-xs text-accent uppercase mb-4 flex items-center justify-between">
+                        <span>// Bancos de Dados</span>
+                        <i class="fa-solid fa-database text-zinc-600"></i>
+                    </div>
+                    <ul class="space-y-2.5 font-mono text-xs text-zinc-300">
+                        <li class="flex items-center justify-between gap-2"><span>PostgreSQL</span><span class="text-zinc-500 text-right">SGBD SQL</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>SQLite</span><span class="text-zinc-500 text-right">SQL Embarcado</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>ChromaDB</span><span class="text-zinc-500 text-right">Vector DB</span></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Infra & Tooling -->
+                <div class="bg-surface p-5">
+                    <div class="font-mono text-xs text-accent uppercase mb-4 flex items-center justify-between">
+                        <span>// Infra & Tooling</span>
+                        <i class="fa-solid fa-server text-zinc-600"></i>
+                    </div>
+                    <ul class="space-y-2.5 font-mono text-xs text-zinc-300">
+                        <li class="flex items-center justify-between gap-2"><span>Node.js</span><span class="text-zinc-500 text-right">JS Runtime</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>Docker</span><span class="text-zinc-500 text-right">Containers</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>Vite</span><span class="text-zinc-500 text-right">Build Tool</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>Git / GitHub</span><span class="text-zinc-500 text-right">Versionamento</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>Linux / Windows</span><span class="text-zinc-500 text-right">Ambientes OS</span></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 5: IA & Automação -->
+                <div class="bg-surface p-5 sm:col-span-2 lg:col-span-1">
+                    <div class="font-mono text-xs text-accent uppercase mb-4 flex items-center justify-between">
+                        <span>// IA & Automação</span>
+                        <i class="fa-solid fa-microchip text-zinc-600"></i>
+                    </div>
+                    <ul class="space-y-2.5 font-mono text-xs text-zinc-300">
+                        <li class="flex items-center justify-between gap-2"><span>Ollama (Llama 3.1)</span><span class="text-zinc-500 text-right">Local LLM</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>OpenAI Whisper</span><span class="text-zinc-500 text-right">Speech-to-Text</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>Arquitetura RAG</span><span class="text-zinc-500 text-right">Busca Vetorial</span></li>
+                        <li class="flex items-center justify-between gap-2"><span>Playwright / Puppeteer</span><span class="text-zinc-500 text-right">Automação Web</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO 03: TRAJETÓRIA (ESTILO GIT LOG) & CAPACITAÇÃO -->
+        <section id="trajetoria" class="py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Experiência Profissional (7 cols) -->
+                <div class="lg:col-span-7">
+                    <div class="font-mono text-xs text-accent mb-2">03 // EXPERIÊNCIA PROFISSIONAL</div>
+                    <h2 class="text-2xl font-bold text-white mb-8">git log --experience</h2>
+
+                    <div class="space-y-6 border-l border-border pl-6 ml-2">
+                        
+                        <!-- Item 1 -->
+                        <div class="relative">
+                            <span class="absolute -left-[29px] top-1.5 w-2.5 h-2.5 bg-accent"></span>
+                            <div class="flex flex-wrap items-center gap-2 font-mono text-xs mb-1">
+                                <span class="text-accent font-semibold">commit a4f9c21</span>
+                                <span class="text-zinc-600">•</span>
+                                <span class="text-zinc-400">Mar 2026 — Mai 2026</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Analista de Dados <span class="text-zinc-400 font-normal">@ Stringhini</span></h3>
+                            <p class="text-zinc-400 text-sm mt-2 leading-relaxed">
+                                Tratamento avançado, higienização e estruturação de bases de dados complexas. Construção de dashboards interativos e relatórios gerenciais para apoiar decisões operacionais e estratégicas.
+                            </p>
                         </div>
-                        
-                        <h3 class="text-2xl font-extrabold mb-1 text-white group-hover:text-primary transition-colors">Taskflow</h3>
-                        <h4 class="text-sm text-gray-500 font-mono mb-5">Gestão de Demandas Corporativas</h4>
-                        
-                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
-                            Arquitetura relacional avançada para gerenciar fluxos entre setores. Implementação de <strong>Role-Based Access Control (RBAC)</strong> garantindo segurança nas permissões de administradores e usuários comuns.
-                        </p>
-                        
-                        <a href="https://github.com/teylonkkjk/Gestao_Task_Setores" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-background transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
-                        </a>
+
+                        <!-- Item 2 -->
+                        <div class="relative pt-4">
+                            <span class="absolute -left-[29px] top-5 w-2.5 h-2.5 bg-zinc-600"></span>
+                            <div class="flex flex-wrap items-center gap-2 font-mono text-xs mb-1">
+                                <span class="text-zinc-400 font-semibold">commit 7b3e190</span>
+                                <span class="text-zinc-600">•</span>
+                                <span class="text-zinc-400">Jan 2022 — Mar 2025</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Técnico de TI <span class="text-zinc-400 font-normal">@ Miny Preço</span></h3>
+                            <p class="text-zinc-400 text-sm mt-2 leading-relaxed">
+                                Administração de infraestrutura local, manutenção de hardware e redes LAN/WLAN. Suporte técnico direto garantindo disponibilidade contínua para os sistemas de PDV e operação da empresa.
+                            </p>
+                        </div>
+
+                        <!-- Item 3: Graduação -->
+                        <div class="relative pt-4">
+                            <span class="absolute -left-[29px] top-5 w-2.5 h-2.5 border border-accent bg-bg"></span>
+                            <div class="flex flex-wrap items-center gap-2 font-mono text-xs mb-1">
+                                <span class="text-sky-400 font-semibold">HEAD -> education</span>
+                                <span class="text-zinc-600">•</span>
+                                <span class="text-zinc-400">Em andamento</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Bacharelado em Ciência da Computação <span class="text-zinc-400 font-normal">@ UNINASSAU</span></h3>
+                            <p class="text-zinc-400 text-sm mt-2 leading-relaxed">
+                                Foco em estruturas de dados, algoritmos, engenharia de software, bancos de dados relacionais (PostgreSQL / SQLite) e inteligência artificial.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- PROJETO 2: TT-ANABOLIC -->
-                <div class="glass-card-react rounded-3xl overflow-hidden fade-up delay-100 group flex flex-col h-full bg-[#111827]">
-                    <div class="h-48 relative overflow-hidden bg-[#0a1018] flex items-center justify-center border-b border-white/5">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <i class="fa-solid fa-cart-shopping text-6xl text-white/10 group-hover:text-blue-500 group-hover:scale-110 transition-all duration-700 z-10"></i>
-                    </div>
-                    
-                    <div class="p-8 relative z-20 flex flex-col flex-grow">
-                        <div class="flex gap-2 mb-5 flex-wrap">
-                            <span class="px-2.5 py-1 bg-primary/10 text-primary border border-primary/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Django</span>
-                            <span class="px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">E-commerce</span>
-                            <span class="px-2.5 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">SMTP / Auth</span>
-                        </div>
-                        
-                        <h3 class="text-2xl font-extrabold mb-1 text-white group-hover:text-blue-400 transition-colors">TT-ANABOLIC</h3>
-                        <h4 class="text-sm text-gray-500 font-mono mb-5">Plataforma E-commerce Completa</h4>
-                        
-                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
-                            Sistema de loja virtual construído com robustez. Desenvolvi gestão de carrinho, disparo automático via SMTP e checkout baseado em <strong>Transações Atômicas</strong>, evitando inconsistências no estoque em concorrência.
-                        </p>
-                        
-                        <a href="https://github.com/teylonkkjk/TT-ANABOLIC" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-background transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
-                        </a>
-                    </div>
-                </div>
+                <!-- Capacitação & Cursos (5 cols) -->
+                <div class="lg:col-span-5">
+                    <div class="font-mono text-xs text-accent mb-2">04 // CERTIFICAÇÕES & ESTUDOS</div>
+                    <h2 class="text-2xl font-bold text-white mb-8">Formação Complementar</h2>
 
-                <!-- PROJETO 3: ASSISTENTE VIRTUAL IA N8N -->
-                <div class="glass-card-ai rounded-3xl overflow-hidden fade-up delay-200 group flex flex-col h-full bg-[#111827]">
-                    <div class="h-48 relative overflow-hidden bg-[#0a1018] flex items-center justify-center border-b border-white/5">
-                        <div class="absolute inset-0 bg-gradient-to-br from-ai/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <i class="fa-solid fa-network-wired text-6xl text-white/10 group-hover:text-ai group-hover:scale-110 transition-all duration-700 z-10"></i>
-                    </div>
-                    
-                    <div class="p-8 relative z-20 flex flex-col flex-grow">
-                        <div class="flex gap-2 mb-5 flex-wrap">
-                            <span class="px-2.5 py-1 bg-ai/10 text-ai border border-ai/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">n8n (Workflows)</span>
-                            <span class="px-2.5 py-1 bg-react/10 text-react border border-react/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Google Gemini</span>
-                            <span class="px-2.5 py-1 bg-gray-500/10 text-gray-400 border border-gray-500/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Agentic AI</span>
+                    <div class="divide-y divide-border border border-border bg-surface">
+                        <div class="p-4 flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">IA, APIs, RAG e Agentes Inteligentes</h4>
+                                <p class="text-xs text-zinc-400 mt-1">Arquitetura RAG, integração de LLMs, Docker, protocolo MCP e automação.</p>
+                            </div>
+                            <span class="font-mono text-[10px] px-2 py-0.5 bg-bg border border-border text-accent shrink-0">Udemy</span>
                         </div>
-                        
-                        <h3 class="text-2xl font-extrabold mb-1 text-white group-hover:text-ai transition-colors">Assistente Virtual IA</h3>
-                        <h4 class="text-sm text-gray-500 font-mono mb-5">Agentes Autónomos e Gestão de Calendário</h4>
-                        
-                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
-                            Fluxo avançado construído no n8n utilizando <strong>Agentic AI</strong> para gerir calendário de forma autônoma. Inclui orquestração com Google Gemini, Tool Calling, validação de regras de negócio via JS e sistema de alerta condicional VIP integrado ao Gmail.
-                        </p>
-                        
-                        <a href="https://github.com/teylonkkjk/n8n-ai-calendar-agent" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-background transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
-                        </a>
-                    </div>
-                </div>
 
-                <!-- PROJETO 4: CHAT-BOT-LOCAL -->
-                <div class="glass-card rounded-3xl overflow-hidden fade-up delay-300 group flex flex-col h-full bg-[#111827]">
-                    <div class="h-48 relative overflow-hidden bg-[#0a1018] flex items-center justify-center border-b border-white/5">
-                        <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <i class="fa-solid fa-comment-dots text-6xl text-white/10 group-hover:text-primary group-hover:scale-110 transition-all duration-700 z-10"></i>
-                    </div>
-                    
-                    <div class="p-8 relative z-20 flex flex-col flex-grow">
-                        <div class="flex gap-2 mb-5 flex-wrap">
-                            <span class="px-2.5 py-1 bg-primary/10 text-primary border border-primary/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Django</span>
-                            <span class="px-2.5 py-1 bg-ai/10 text-ai border border-ai/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Ollama (LLMs)</span>
-                            <span class="px-2.5 py-1 bg-react/10 text-react border border-react/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Streaming UI</span>
+                        <div class="p-4 flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">APIs REST com Python & Django REST Framework</h4>
+                                <p class="text-xs text-zinc-400 mt-1">Serializers, autenticação JWT, permissões, paginação e testes.</p>
+                            </div>
+                            <span class="font-mono text-[10px] px-2 py-0.5 bg-bg border border-border text-zinc-400 shrink-0">Udemy</span>
                         </div>
-                        
-                        <h3 class="text-2xl font-extrabold mb-1 text-white group-hover:text-primary transition-colors">Chatbot Local IA</h3>
-                        <h4 class="text-sm text-gray-500 font-mono mb-5">Assistente Virtual Integrado</h4>
-                        
-                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
-                            Desenvolvimento de um chatbot nativo rodando totalmente local. Integração de backend <strong>Django</strong> com o motor <strong>Ollama</strong>, implementando respostas em tempo real (Streaming) e interface moderna assíncrona com Dark Mode.
-                        </p>
-                        
-                        <a href="https://github.com/teylonkkjk/CHAT-BOT-LOCAL" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-background transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
-                        </a>
-                    </div>
-                </div>
 
-                <!-- PROJETO 5: TERÇA FEIRA -->
-                <div class="glass-card-ai rounded-3xl overflow-hidden fade-up delay-400 group flex flex-col h-full bg-[#111827]">
-                    <div class="h-48 relative overflow-hidden bg-[#0a1018] flex items-center justify-center border-b border-white/5">
-                        <div class="absolute inset-0 bg-gradient-to-br from-ai/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <i class="fa-solid fa-microphone-lines text-6xl text-white/10 group-hover:text-ai group-hover:scale-110 transition-all duration-700 z-10"></i>
-                    </div>
-                    
-                    <div class="p-8 relative z-20 flex flex-col flex-grow">
-                        <div class="flex gap-2 mb-5 flex-wrap">
-                            <span class="px-2.5 py-1 bg-primary/10 text-primary border border-primary/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Python</span>
-                            <span class="px-2.5 py-1 bg-ai/10 text-ai border border-ai/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Llama 3.1 / Whisper</span>
-                            <span class="px-2.5 py-1 bg-react/10 text-react border border-react/20 text-[10px] rounded-full font-mono font-bold uppercase tracking-wider">Desktop Automation</span>
+                        <div class="p-4 flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Next.js & React do Zero ao Avançado</h4>
+                                <p class="text-xs text-zinc-400 mt-1">Hooks, Server Components, SSR, roteamento e consumo de APIs.</p>
+                            </div>
+                            <span class="font-mono text-[10px] px-2 py-0.5 bg-bg border border-border text-zinc-400 shrink-0">Udemy</span>
                         </div>
-                        
-                        <h3 class="text-2xl font-extrabold mb-1 text-white group-hover:text-ai transition-colors">Terça Feira</h3>
-                        <h4 class="text-sm text-gray-500 font-mono mb-5">Assistente Pessoal IA Local</h4>
-                        
-                        <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-grow">
-                            Assistente virtual 100% autônoma e offline. Integra o motor <strong>Ollama (Llama 3.1)</strong> com reconhecimento de voz <strong>Whisper</strong>, capaz de gerenciar memória de longo prazo com ChromaDB e realizar automações reais no Windows, como abrir apps e reproduzir músicas.
-                        </p>
-                        
-                        <a href="https://github.com/teylonkkjk/terca-feira" target="_blank" class="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center hover:bg-white hover:text-background transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-github text-lg"></i> Explorar Repositório
-                        </a>
+
+                        <div class="p-4 flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Desenvolvimento Web com Django Framework</h4>
+                                <p class="text-xs text-zinc-400 mt-1">ORM avançado, Class-Based Views, segurança, deploy e bancos relacionais.</p>
+                            </div>
+                            <span class="font-mono text-[10px] px-2 py-0.5 bg-bg border border-border text-zinc-400 shrink-0">Udemy</span>
+                        </div>
+
+                        <div class="p-4 flex items-start justify-between gap-4">
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Python: Do Básico ao Avançado + HTML5/CSS/JS</h4>
+                                <p class="text-xs text-zinc-400 mt-1">Programação orientada a objetos, automação, manipulação de DOM e lógica.</p>
+                            </div>
+                            <span class="font-mono text-[10px] px-2 py-0.5 bg-bg border border-border text-zinc-400 shrink-0">Udemy</span>
+                        </div>
                     </div>
                 </div>
 
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/5 py-12 relative z-10 bg-[#030712]">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-gray-500 font-mono text-xs text-center md:text-left">
-                <p class="text-white font-bold text-sm mb-1">Teylon Carvalho Oliveira.</p>
-                <p>&copy; 2026 Desenvolvedor Full Stack & Especialista IA.</p>
-                <p class="mt-1"><i class="fa-solid fa-location-dot mr-1"></i> Teresina, Piauí, Brasil.</p>
+    </main>
+
+    <!-- FOOTER TÉCNICO -->
+    <footer class="border-t border-border bg-surface py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-500">
+            <div>
+                <span class="text-white font-semibold">Teylon Carvalho Oliveira</span> — Teresina, Piauí, Brasil
             </div>
-            <div class="flex gap-4">
-                <a href="https://github.com/teylonkkjk" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/teylonoliveira/" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-react hover:bg-react/10 transition-all"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="mailto:oteylon84@gmail.com" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:bg-primary/10 transition-all"><i class="fa-regular fa-envelope"></i></a>
+            <div class="flex items-center gap-6">
+                <a href="https://github.com/teylonkkjk" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+                <a href="https://www.linkedin.com/in/teylonoliveira/" target="_blank" class="hover:text-white transition-colors">LinkedIn</a>
+                <a href="mailto:oteylon84@gmail.com" class="hover:text-white transition-colors">E-mail</a>
+                <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio!" target="_blank" class="text-accent hover:underline">WhatsApp</a>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts de Interação -->
+    <!-- COMMAND PALETTE MODAL (Ctrl + K) -->
+    <div id="cmd-modal" class="fixed inset-0 z-50 hidden items-start justify-center pt-24 bg-black/75 backdrop-blur-sm px-4">
+        <div class="w-full max-w-lg bg-surface border border-zinc-700 shadow-2xl overflow-hidden">
+            <div class="px-4 py-3 border-b border-border flex items-center justify-between">
+                <span class="font-mono text-xs text-accent flex items-center gap-2">
+                    <i class="fa-solid fa-terminal"></i> Ações Rápidas
+                </span>
+                <button onclick="toggleCmdPalette()" class="font-mono text-xs text-zinc-500 hover:text-white">ESC</button>
+            </div>
+            <div class="p-2 divide-y divide-border/50 font-mono text-xs">
+                <a href="#projetos" onclick="toggleCmdPalette()" class="flex items-center justify-between px-3 py-2.5 hover:bg-panel text-zinc-300 hover:text-white">
+                    <span>Ir para Projetos (OSTREMBOLONO, NTO Overdrive...)</span>
+                    <span class="text-zinc-500">#projetos</span>
+                </a>
+                <a href="#stack" onclick="toggleCmdPalette()" class="flex items-center justify-between px-3 py-2.5 hover:bg-panel text-zinc-300 hover:text-white">
+                    <span>Inspecionar Stack (Linguagens, Frameworks, SGBDs, Infra)</span>
+                    <span class="text-zinc-500">#stack</span>
+                </a>
+                <button onclick="copyEmail(); toggleCmdPalette();" class="w-full flex items-center justify-between px-3 py-2.5 hover:bg-panel text-zinc-300 hover:text-white text-left">
+                    <span>Copiar endereço de e-mail (oteylon84@gmail.com)</span>
+                    <span class="text-accent">copy</span>
+                </button>
+                <a href="https://github.com/teylonkkjk" target="_blank" class="flex items-center justify-between px-3 py-2.5 hover:bg-panel text-zinc-300 hover:text-white">
+                    <span>Abrir perfil no GitHub (@teylonkkjk)</span>
+                    <span class="text-zinc-500">external ↗</span>
+                </a>
+                <a href="https://api.whatsapp.com/send?phone=5599984413253&text=Ol%C3%A1,%20vim%20pelo%20seu%20Portf%C3%B3lio!" target="_blank" class="flex items-center justify-between px-3 py-2.5 hover:bg-panel text-zinc-300 hover:text-white">
+                    <span>Iniciar conversa no WhatsApp</span>
+                    <span class="text-accent">chat ↗</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
     <script>
-        // 1. Navbar Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-lg', 'bg-background/90');
-            } else {
-                nav.classList.remove('shadow-lg', 'bg-background/90');
+        // 1. Copiar E-mail
+        function copyEmail() {
+            navigator.clipboard.writeText('oteylon84@gmail.com');
+            const label = document.getElementById('email-label');
+            const icon = document.getElementById('copy-icon');
+            label.textContent = 'copiado para o clipboard!';
+            label.classList.add('text-accent');
+            icon.className = 'fa-solid fa-check text-accent ml-1';
+            setTimeout(() => {
+                label.textContent = 'oteylon84@gmail.com';
+                label.classList.remove('text-accent');
+                icon.className = 'fa-regular fa-copy text-zinc-500 ml-1';
+            }, 2000);
+        }
+
+        // 2. Filtro de Repositórios
+        function filterRepos(category) {
+            const cards = document.querySelectorAll('.repo-card');
+            const buttons = document.querySelectorAll('.repo-filter');
+
+            buttons.forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.className = 'repo-filter px-3 py-1.5 bg-white text-bg font-semibold border border-white transition-all';
+                } else {
+                    btn.className = 'repo-filter px-3 py-1.5 bg-surface text-zinc-400 border border-border hover:border-zinc-600 hover:text-white transition-all';
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // 3. Terminal Interativo Real
+        const cmdInput = document.getElementById('cmd-input');
+        const terminalOutput = document.getElementById('terminal-output');
+        const terminalBody = document.getElementById('terminal-body');
+
+        const commands = {
+            help: `Comandos disponíveis:
+  <span class="text-accent">ls</span>       - Lista os repositórios em destaque
+  <span class="text-accent">stack</span>    - Exibe o arquivo stack.json
+  <span class="text-accent">whoami</span>   - Resumo do desenvolvedor
+  <span class="text-accent">contato</span>  - Exibe links diretos de contato
+  <span class="text-accent">clear</span>    - Limpa o histórico do terminal`,
+            
+            ls: `drwxr-xr-x  ostrembolono/         <span class="text-zinc-500">[React + Vite + Tailwind CSS]</span>
+drwxr-xr-x  nto-overdrive/        <span class="text-zinc-500">[Python + Tkinter GUI]</span>
+drwxr-xr-x  terca-feira/          <span class="text-zinc-500">[Python + Ollama + Whisper]</span>
+drwxr-xr-x  Gestao_Task_Setores/  <span class="text-zinc-500">[Django + PostgreSQL + RBAC]</span>
+drwxr-xr-x  TT-ANABOLIC/          <span class="text-zinc-500">[Django + SQLite + Atomic TX]</span>
+drwxr-xr-x  CHAT-BOT-LOCAL/       <span class="text-zinc-500">[Django + Ollama + SQLite]</span>`,
+
+            stack: `{
+  "linguagens": ["Python", "JavaScript", "TypeScript", "SQL", "HTML5/CSS3"],
+  "frameworks_libs": ["Django / DRF", "Next.js", "React", "Tailwind CSS", "Tkinter"],
+  "bancos_de_dados": ["PostgreSQL", "SQLite", "ChromaDB"],
+  "infra_tooling": ["Node.js", "Docker", "Vite", "Git / GitHub", "Linux / Windows"],
+  "ia_automacao": ["Ollama (Llama 3.1)", "OpenAI Whisper", "Arquitetura RAG", "Playwright / Puppeteer"]
+}`,
+            whoami: `Teylon Oliveira — Full Stack & AI Developer em Teresina, PI.`,
+            contato: `Email: oteylon84@gmail.com | GitHub: github.com/teylonkkjk | WhatsApp: (99) 98441-3253`
+        };
+
+        function executeCommand(raw) {
+            const cmd = raw.trim().toLowerCase();
+            if (!cmd) return;
+
+            if (cmd === 'clear') {
+                terminalOutput.innerHTML = '';
+                return;
+            }
+
+            const normalized = cmd === 'ls -la' ? 'ls' : (cmd === 'cat stack.json' ? 'stack' : cmd);
+            const response = commands[normalized] || `zsh: command not found: ${cmd}. Digite <span class="text-accent">'help'</span>.`;
+
+            terminalOutput.innerHTML += `
+                <div class="pt-1">
+                    <span class="text-accent">teylon@dev</span>:<span class="text-sky-400">~</span>$ ${raw}
+                </div>
+                <pre class="text-zinc-300 pl-2 border-l border-zinc-800 whitespace-pre-wrap font-mono text-xs">${response}</pre>
+            `;
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
+
+        cmdInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                executeCommand(cmdInput.value);
+                cmdInput.value = '';
             }
         });
 
-        // 2. Fade Up ao scrolar
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-        // 3. Efeito de Digitação Limpo
-        const codeText = [
-            "<span class='text-ai'>import</span> { Django, Nextjs, AI } <span class='text-ai'>from</span> <span class='text-primary'>'teylon-stack'</span>;",
-            "",
-            "<span class='text-react'>const</span> <span class='text-blue-400'>developer</span> = {",
-            "  name: <span class='text-primary'>'Teylon Oliveira'</span>,",
-            "  role: <span class='text-primary'>'Full Stack Software Engineer'</span>,",
-            "  skills: [<span class='text-primary'>'Python'</span>, <span class='text-primary'>'React'</span>, <span class='text-primary'>'n8n'</span>],",
-            "  specialty: <span class='text-primary'>'Automating the future.'</span>",
-            "};",
-            "",
-            "<span class='text-gray-500'>// Ready to build.</span>"
-        ];
-        
-        let lineIndex = 0;
-        let charIndex = 0;
-        const typerElement = document.getElementById('typing-code');
-        
-        function typeCode() {
-            if (lineIndex < codeText.length) {
-                if (charIndex === 0) {
-                    typerElement.innerHTML += `<div id="line-${lineIndex}" class="min-h-[1.25rem]"></div>`;
-                }
-                
-                const currentLineDiv = document.getElementById(`line-${lineIndex}`);
-                
-                if (codeText[lineIndex].charAt(charIndex) === '<') {
-                    let fullTag = "";
-                    while (codeText[lineIndex].charAt(charIndex) !== '>' && charIndex < codeText[lineIndex].length) {
-                        fullTag += codeText[lineIndex].charAt(charIndex);
-                        charIndex++;
-                    }
-                    fullTag += '>';
-                    currentLineDiv.innerHTML += fullTag;
-                    charIndex++;
-                } else {
-                    currentLineDiv.innerHTML += codeText[lineIndex].charAt(charIndex);
-                    charIndex++;
-                }
-
-                if (charIndex >= codeText[lineIndex].length) {
-                    charIndex = 0;
-                    lineIndex++;
-                    setTimeout(typeCode, 200); 
-                } else {
-                    setTimeout(typeCode, 30);
-                }
-            }
+        function runQuickCmd(cmd) {
+            executeCommand(cmd);
         }
-        setTimeout(typeCode, 1000);
+
+        // 4. Command Palette (Ctrl + K)
+        const cmdModal = document.getElementById('cmd-modal');
+        function toggleCmdPalette() {
+            cmdModal.classList.toggle('hidden');
+            cmdModal.classList.toggle('flex');
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                toggleCmdPalette();
+            }
+            if (e.key === 'Escape' && !cmdModal.classList.contains('hidden')) {
+                toggleCmdPalette();
+            }
+        });
+
+        cmdModal.addEventListener('click', (e) => {
+            if (e.target === cmdModal) toggleCmdPalette();
+        });
     </script>
 </body>
 </html>
